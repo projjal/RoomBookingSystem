@@ -20,7 +20,6 @@ public class AdminDaoImpl implements AdminDao {
 	
 	@Override
 	public List<Admin> getAdmins() {
-		// TODO Auto-generated method stub
 		TypedQuery<Admin> query = em.createQuery("SELECT a FROM Admin a", Admin.class);
 		System.out.println("in Dao");
 		return query.getResultList();
@@ -28,20 +27,17 @@ public class AdminDaoImpl implements AdminDao {
 
 	@Override
 	public Admin getAdmin(int id) {
-		// TODO Auto-generated method stub
 		return em.find(Admin.class, id);
 	}
 
 	@Override
 	public void addAdmin(Admin admin) {
-		// TODO Auto-generated method stub
 		em.persist(admin);
 
 	}
 
 	@Override
 	public void deleteAdmin(int id) {
-		// TODO Auto-generated method stub
 		Admin a = em.find(Admin.class, id);
 		em.remove(a);
 
@@ -49,7 +45,6 @@ public class AdminDaoImpl implements AdminDao {
 
 	@Override
 	public void updateAdmin(Admin admin) {
-		// TODO Auto-generated method stub
 		em.merge(admin);
 	}
 

@@ -11,16 +11,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.adobe.theforce.entity.Admin;
-import com.adobe.theforce.service.AdminService;
-
-
+import com.adobe.theforce.service.AdministratorService;
 
 
 @RestController
 public class AdminController {
 	
 	@Autowired
-	private AdminService adminService;
+	private AdministratorService adminService;
 	
 	
 	@RequestMapping(value = "/api/admins",method = RequestMethod.GET)

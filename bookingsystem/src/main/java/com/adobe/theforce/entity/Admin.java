@@ -1,6 +1,7 @@
 package com.adobe.theforce.entity;
 
 import java.security.MessageDigest;
+//import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchAlgorithmException;
 
 import javax.persistence.Entity;
@@ -10,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name ="admin")
+@Table(name ="admins")
 public class Admin {
 	
 	@Id
@@ -92,7 +93,7 @@ public class Admin {
 	}
 
 	public void setPassword(String password) {
-		this.password = generateHash(password);
+		this.password = password;
 	}
 	
 	
@@ -107,7 +108,7 @@ public class Admin {
 		this.emailID = emailID;
 		this.mobileNumber = mobileNumber;
 		this.address = address;
-		this.password = generateHash(password);
+		this.password = password;
 	}
 	
 }

@@ -9,12 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.adobe.theforce.dao.AdminDao;
 import com.adobe.theforce.dao.BookingDao;
 import com.adobe.theforce.dao.ClientDao;
 import com.adobe.theforce.dao.EquipmentDao;
 import com.adobe.theforce.dao.FoodDao;
 import com.adobe.theforce.dao.LayoutDao;
 import com.adobe.theforce.dao.RoomDao;
+import com.adobe.theforce.entity.Admin;
 import com.adobe.theforce.entity.Booking;
 import com.adobe.theforce.entity.Client;
 import com.adobe.theforce.entity.Equipment;
@@ -203,4 +205,35 @@ public class AdministratorService {
 	public void updateLayout(Layout layout) {
 		layoutDao.updateLayout(layout);
 	}
+	
+	/*
+	 * Admin related functions
+	 */
+	
+	@Autowired
+	private AdminDao adminDao;
+	
+	public List<Admin> getAdmins(){
+		System.out.println("here");
+		return adminDao.getAdmins();
+	}
+	public Admin getAdmin(int id){
+		return adminDao.getAdmin(id);
+	}
+	
+	@Transactional
+	public void addAdmin(Admin admin){
+		adminDao.addAdmin(admin);
+	}
+	
+	@Transactional
+	public void deleteAdmin(int id){
+		adminDao.deleteAdmin(id);
+	}
+	
+	@Transactional
+	public void updateAdmin(Admin admin){
+		adminDao.updateAdmin(admin);
+	}	
+
 }
