@@ -4,16 +4,18 @@ import RoomList  from '../../Containers/RoomList';
 export default class AdminRooms extends Component{
     constructor(props){
         super(props);
+       // this.fetchRooms();
     }
-    /* fetchRooms(){
-        axios.get("http://localhost:8080/api/rooms")
+    fetchRooms(){
+        axios.get("http://10.41.120.32:8080/api/rooms") //CORS Issue to see 
         .then((response)=>{
             console.log(response);
         }).catch((error)=>{
             throw err;
         });
-    } */
+    }
     render(){
+        //this.fetchRooms();
         return(
             <div>
                 <div>Rooms 11 Div</div>

@@ -8,7 +8,7 @@ export default function(){
             "image": "someimg",
             "pricePerDay": 10,
             "pricePerHour": 1,
-            "ststus": null
+            "ststus": 0
         },
         {
             "id": 2,
@@ -18,7 +18,7 @@ export default function(){
             "image": "someimg",
             "pricePerDay": 10,
             "pricePerHour": 1,
-            "ststus": null
+            "ststus": 1
         },
         {
             "id": 3,
@@ -28,7 +28,7 @@ export default function(){
             "image": "/path/to/img",
             "pricePerDay": 100,
             "pricePerHour": 10,
-            "ststus": null
+            "ststus": 1
         },
         {
             "id": 4,
@@ -38,7 +38,7 @@ export default function(){
             "image": "/path/to/img2",
             "pricePerDay": 80,
             "pricePerHour": 10,
-            "ststus": null
+            "ststus": 0
         }
     ];
 }
