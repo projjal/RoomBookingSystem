@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.adobe.theforce.entity.Food;
-import com.adobe.theforce.service.FoodService;
+import com.adobe.theforce.service.AdministratorService;
 
 /**
  * @author pchanda
@@ -23,7 +23,7 @@ import com.adobe.theforce.service.FoodService;
 @RestController
 public class FoodController {
 	@Autowired
-	private FoodService foodService;
+	private AdministratorService foodService;
 	
 	
 	@RequestMapping(value = "/api/foods",method = RequestMethod.GET)

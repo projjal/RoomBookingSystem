@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.adobe.theforce.entity.Client;
-import com.adobe.theforce.service.ClientService;
+import com.adobe.theforce.service.AdministratorService;
 
 /**
  * @author pchanda
@@ -23,7 +23,7 @@ import com.adobe.theforce.service.ClientService;
 @RestController
 public class ClientController {
 	@Autowired
-	private ClientService clientService;
+	private AdministratorService clientService;
 	
 	
 	@RequestMapping(value = "/api/clients",method = RequestMethod.GET)

@@ -11,13 +11,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.adobe.theforce.entity.Equipment;
-
-import com.adobe.theforce.service.EquipmentService;
+import com.adobe.theforce.service.AdministratorService;
 
 @RestController
 public class EquipmentController {
 	@Autowired
-	private EquipmentService equipmentService;
+	private AdministratorService equipmentService;
 	
 	
 	@RequestMapping(value = "/api/equipments",method = RequestMethod.GET)

@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.adobe.theforce.entity.Layout;
-import com.adobe.theforce.service.LayoutService;
+import com.adobe.theforce.service.AdministratorService;
 
 @RestController
 public class LayoutController {
 	
 	@Autowired
-	private LayoutService layoutService;
+	private AdministratorService layoutService;
 	
 	
 	@RequestMapping(value = "/api/layouts",method = RequestMethod.GET)
