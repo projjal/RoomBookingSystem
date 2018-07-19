@@ -1,7 +1,12 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import {fetchRooms} from './roomsAction';
 class RoomList extends Component{
-
+    constructor(props){
+        super(props);
+        this.props.fetchRooms();
+    }
     renderRoomList(room,i){
         var status=["Booked","Available"];
                 return (<li className='list-group-item' key={i}>
@@ -21,17 +26,26 @@ class RoomList extends Component{
                 </li>);
     }
     render(){
-        return(
-            <div>
-                <ul className='list-group col-md-12'>
-                {
-                    this.props.rooms.map((room, i)=>{
-                           return this.renderRoomList(room,i);
-                    })
-                }
-                </ul>
-            </div>
-        );
+        if(JSON.stringify(this.props.rooms) !== JSON.stringify({})){
+            console.log('rooms',this.props.rooms.rooms.length);
+            return(
+                <div>
+                    <ul className='list-group col-md-12'>
+                    {
+                        this.props.rooms.rooms.map((room, i)=>{
+                               return this.renderRoomList(room,i);
+                        })
+                    }
+                    </ul>
+                </div>
+            );
+        }
+        else{
+            console.log('rooms',this.props.rooms);
+            return(
+                <div>Loading...</div>
+            );
+        }
     }
 
 }
@@ -40,5 +54,10 @@ function mapStateToProps(state){
         rooms:state.rooms
     }
 }
+function mapPropsToDispatch(dispatch){
+    return bindActionCreators({
+        fetchRooms:fetchRooms
+    },dispatch);
+}
 
-export default connect(mapStateToProps)(RoomList);
+export default connect(mapStateToProps,mapPropsToDispatch)(RoomList);

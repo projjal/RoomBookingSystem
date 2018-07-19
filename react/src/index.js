@@ -6,8 +6,8 @@ import AdminMainTab from './admin/mainTab';
 import {createStore,applyMiddleware} from 'redux';
 import reducers from './Reducers/'; 
 import {Provider} from 'react-redux'; // stitch react and redux
-const creatStoreWithMiddleware=applyMiddleware()(createStore);
-
+const creatStoreWithMiddleware=applyMiddleware(thunk)(createStore);
+import thunk from 'redux-thunk';
 /* ReactDOM.render(
 <Provider store={creatStoreWithMiddleware(reducers)}>
 <App/>

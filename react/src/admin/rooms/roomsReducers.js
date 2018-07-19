@@ -1,4 +1,23 @@
-export default function(){
+export default function(state={}, action){
+    switch(action.type){
+        case "ROOMS_LIST_FETCH": {
+            state={ ...state,rooms: action.payload}
+            break;
+        }
+    }
+    console.log("rooms reducer",state,action);
+
+    return state;
+}
+
+
+
+
+
+
+
+
+/* export default function(){
     return[
         {
             "id": 1,
@@ -41,4 +60,4 @@ export default function(){
             "ststus": 0
         }
     ];
-}
+} */
