@@ -41,6 +41,10 @@ public class Booking {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date bookingDate;
 	
+	@Column(name="booking_for_date")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date bookedForDate;
+	
 	private double duration;
 	private String status;
 	private String paymentMethod;

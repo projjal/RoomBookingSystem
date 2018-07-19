@@ -3,6 +3,9 @@
  */
 package com.adobe.theforce.service;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.adobe.theforce.dao.AdminDao;
+import com.adobe.theforce.dao.BookingComparator;
 import com.adobe.theforce.dao.BookingDao;
 import com.adobe.theforce.dao.ClientDao;
 import com.adobe.theforce.dao.EquipmentDao;
@@ -90,6 +94,51 @@ public class AdministratorService {
 	@Transactional
 	public void updateBooking(Booking booking){
 		bookingDao.updateBooking(booking);
+	}
+	
+	/*
+	 * Latest 3 bookings for the dashboard
+	 */
+	
+	public List<Booking> getLatestBookings(){
+		List<Booking> b = bookingDao.getBookings();
+		b.sort(new BookingComparator());
+		List<Booking> result = new ArrayList<Booking>();
+		int i = 0;
+		System.out.println(b.size());
+		while(i<3 && i<b.size()){
+			result.add(b.get(i++));
+		}
+		return result;
+	}
+	
+	/*
+	 * Number of Bookings made today
+	 */
+	
+	public int getTodaysBookings(){
+		int count = 0;
+		Calendar today = Calendar.getInstance();
+		today.set(Calendar.HOUR_OF_DAY, 0);
+		List<Booking> b = bookingDao.getBookings();
+		for(Booking i : b){
+			if(i.getBookingDate() == today.getTime())
+				count++;
+		}
+		return count;
+	}
+	
+	/*
+	 * Number of bookings for today
+	 */
+	
+	
+	/*
+	 * Total number of bookings
+	 */
+	
+	public int getTotalBookings(){
+		return bookingDao.getBookings().size();
 	}
 	
 	/*
@@ -193,12 +242,20 @@ public class AdministratorService {
 	public Layout getLayout(int id) {
 		return layoutDao.getLayout(id);
 	}
+<<<<<<< Updated upstream
 
+=======
+	
+>>>>>>> Stashed changes
 	@Transactional
 	public void addLayout(Layout layout) {
 		layoutDao.addLayout(layout);
 	}
+<<<<<<< Updated upstream
 
+=======
+	
+>>>>>>> Stashed changes
 	@Transactional
 	public void deleteLayout(int id) {
 		layoutDao.deleteLayout(id);

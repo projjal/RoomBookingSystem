@@ -117,5 +117,4 @@ public class Room {
 		this.pricePerHour = pricePerHour;
 	}
 	
-	
 }
