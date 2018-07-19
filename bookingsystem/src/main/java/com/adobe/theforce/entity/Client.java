@@ -22,6 +22,7 @@ public class Client {
 	private int id;
 	
 	private String title;
+	private String name;
 	private String email;
 	private String phone;
 	private String notes;
@@ -32,9 +33,10 @@ public class Client {
 	private String zip;
 	private String country;
 	
-	public Client(int id, String title, String email, String phone, String notes, String company, String address,
+	public Client(int id, String title, String name, String email, String phone, String notes, String company, String address,
 			String city, String state, String zip, String country) {
 		this.id = id;
+		this.name = name;
 		this.title = title;
 		this.email = email;
 		this.phone = phone;
@@ -76,6 +78,22 @@ public class Client {
 	 */
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+	
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**

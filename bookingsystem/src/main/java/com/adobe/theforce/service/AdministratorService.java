@@ -194,14 +194,17 @@ public class AdministratorService {
 		return layoutDao.getLayout(id);
 	}
 
+	@Transactional
 	public void addLayout(Layout layout) {
 		layoutDao.addLayout(layout);
 	}
 
+	@Transactional
 	public void deleteLayout(int id) {
 		layoutDao.deleteLayout(id);
 	}
-
+	
+	@Transactional
 	public void updateLayout(Layout layout) {
 		layoutDao.updateLayout(layout);
 	}
