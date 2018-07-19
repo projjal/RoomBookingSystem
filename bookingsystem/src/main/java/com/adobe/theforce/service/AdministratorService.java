@@ -242,20 +242,12 @@ public class AdministratorService {
 	public Layout getLayout(int id) {
 		return layoutDao.getLayout(id);
 	}
-<<<<<<< Updated upstream
 
-=======
-	
->>>>>>> Stashed changes
 	@Transactional
 	public void addLayout(Layout layout) {
 		layoutDao.addLayout(layout);
 	}
-<<<<<<< Updated upstream
 
-=======
-	
->>>>>>> Stashed changes
 	@Transactional
 	public void deleteLayout(int id) {
 		layoutDao.deleteLayout(id);
