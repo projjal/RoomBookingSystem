@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import RoomList  from '../../Containers/RoomList';
+import RoomList  from './RoomList';
 export default class AdminRooms extends Component{
     constructor(props){
         super(props);
@@ -18,7 +18,7 @@ export default class AdminRooms extends Component{
         //this.fetchRooms();
         return(
             <div>
-                <div>Rooms 11 Div</div>
+               
                 <RoomList/>
             </div>
         );

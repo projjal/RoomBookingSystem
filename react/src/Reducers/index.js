@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import RoomReducer from './roomsReducers';
+import RoomReducer from '../admin/rooms/roomsReducers';
 const rootReducer= combineReducers({
     rooms:RoomReducer
 });

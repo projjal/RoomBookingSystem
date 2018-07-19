@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import { Switch, Route } from 'react-router-dom'
-import AdminDashboard from './admin/dashboard';
-import AdminBookings from './admin/bookings';
-import AdminRooms from './admin/rooms';
+import AdminDashboard from './dashboard/dashboard';
+import AdminBookings from './bookings/bookings';
+import AdminRooms from './rooms/rooms';
 class AdminMainTab extends Component{
     render(){
         return(
