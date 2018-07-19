@@ -29,3 +29,6 @@ This will start the backend server on localhost:8080
 2) npm start
 
 This will start the front end server on localhost:8081
+
+##Viewing API details using swagger
+Access from /swagger-ui.html at java server
