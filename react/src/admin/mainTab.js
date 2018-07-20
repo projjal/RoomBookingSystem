@@ -9,7 +9,7 @@ class AdminMainTab extends Component{
             <div className='col-md-8 no-padding '>
                 <main>
                     <Switch>
-                        <Route exact path='/dashboard' component={AdminDashboard}/>
+                        <Route exact path='/(|dashboard)' component={AdminDashboard}/>
                         <Route path='/bookings' component={AdminBookings}/>
                         <Route path='/rooms' component={AdminRooms}/>
                     </Switch>

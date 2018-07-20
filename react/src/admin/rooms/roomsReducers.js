@@ -4,6 +4,10 @@ export default function(state={}, action){
             state={ ...state,rooms: action.payload}
             break;
         }
+        case "ROOMS_LIST_ADD":{
+            state={ ...state,rooms: [...state.rooms, action.payload]}
+            break;
+        }
     }
     console.log("rooms reducer",state,action);
 
