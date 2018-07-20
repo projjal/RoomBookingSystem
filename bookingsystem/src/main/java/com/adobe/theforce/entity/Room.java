@@ -1,10 +1,17 @@
 package com.adobe.theforce.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -32,6 +39,10 @@ public class Room {
 	@Column(name = "price_hour")
 	private Double pricePerHour;
 	
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name="layoutline_id")
+	private List<LayoutLineItem> layoutItems = new ArrayList<LayoutLineItem>(); 
+	
 	/*
 	 * Default constructor
 	 */
@@ -41,17 +52,23 @@ public class Room {
 	}
 
 	/*
-	 * 
-	 * Parameterized constructor
+	 * Parameterized Constructor
 	 */
-	
-	public Room(String type, int capacity, Double pricePerDay, Double pricePerHour) {
-		super();
+
+	public Room(int id, String type, int capacity, String description, String image, Boolean status, Double pricePerDay,
+			Double pricePerHour, List<LayoutLineItem> layoutItems) {
+		this.id = id;
 		this.type = type;
 		this.capacity = capacity;
+		this.description = description;
+		this.image = image;
+		this.status = status;
 		this.pricePerDay = pricePerDay;
 		this.pricePerHour = pricePerHour;
+		this.layoutItems = layoutItems;
 	}
+
+
 
 	public int getId() {
 		return id;

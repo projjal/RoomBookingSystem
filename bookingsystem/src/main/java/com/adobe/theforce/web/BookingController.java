@@ -38,8 +38,9 @@ public class BookingController {
 	}
 	
 	@RequestMapping(value = "/api/bookings",method = RequestMethod.POST)
-	public void addBooking(@RequestBody Booking r){
+	public int addBooking(@RequestBody Booking r){
 		bookingService.addBooking(r);
+		return r.getId();
 	}
 	
 	@RequestMapping(value = "/api/bookings/{id}",method = RequestMethod.DELETE)

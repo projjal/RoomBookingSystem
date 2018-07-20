@@ -25,8 +25,9 @@ public class EquipmentController {
 	}
 	
 	@RequestMapping(value = "/api/equipments",method = RequestMethod.POST)
-	public void addEquipment(@RequestBody Equipment e){
+	public int addEquipment(@RequestBody Equipment e){
 		equipmentService.addEquipment(e);
+		return e.getId();
 	}
 	
 	@RequestMapping(value = "/api/equipments/{id}",method = RequestMethod.DELETE)

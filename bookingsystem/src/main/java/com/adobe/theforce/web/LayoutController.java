@@ -26,8 +26,9 @@ public class LayoutController {
 	}
 	
 	@RequestMapping(value = "/api/layouts",method = RequestMethod.POST)
-	public void addLayout(@RequestBody Layout r){
+	public int addLayout(@RequestBody Layout r){
 		layoutService.addLayout(r);
+		return r.getId();
 	}
 	
 	@RequestMapping(value = "/api/layouts/{id}",method = RequestMethod.DELETE)

@@ -32,8 +32,9 @@ public class ClientController {
 	}
 	
 	@RequestMapping(value = "/api/clients",method = RequestMethod.POST)
-	public void addClient(@RequestBody Client r){
+	public int addClient(@RequestBody Client r){
 		clientService.addClient(r);
+		return r.getId();
 	}
 	
 	@RequestMapping(value = "/api/clients/{id}",method = RequestMethod.DELETE)

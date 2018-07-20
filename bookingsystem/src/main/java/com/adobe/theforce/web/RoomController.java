@@ -27,8 +27,9 @@ public class RoomController {
 	}
 	
 	@RequestMapping(value = "/api/rooms",method = RequestMethod.POST)
-	public void addRoom(@RequestBody Room r){
+	public int addRoom(@RequestBody Room r){
 		roomService.addRoom(r);
+		return r.getId();
 	}
 	
 	@RequestMapping(value = "/api/rooms/{id}",method = RequestMethod.DELETE)

@@ -32,8 +32,9 @@ public class FoodController {
 	}
 	
 	@RequestMapping(value = "/api/foods",method = RequestMethod.POST)
-	public void addFood(@RequestBody Food r){
+	public int addFood(@RequestBody Food r){
 		foodService.addFood(r);
+		return r.getId();
 	}
 	
 	@RequestMapping(value = "/api/foods/{id}",method = RequestMethod.DELETE)
