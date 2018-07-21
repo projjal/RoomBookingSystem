@@ -28,7 +28,7 @@ class BookingDateRoom extends Component{
 		axios.get('/api/rooms/',{ 'headers': {} })
    .then(res => this.func(res.data));
 
-   console.log(this.state.roomsList);
+   //console.log(this.state.roomsList);
 
 		
 	}
@@ -42,7 +42,7 @@ class BookingDateRoom extends Component{
 
 	submitForm(e)
 	{
-		console.log("hii");
+		
 		e.preventDefault();
 		this.props.addData(this.state.obj1);
 		this.props.setRoomPrice(this.state.rprice);
@@ -103,11 +103,11 @@ class BookingDateRoom extends Component{
 		return(
 
 
-			<div>
-			{console.log(this.state.roomsList)}
+			<div className="container-fluid">
+			
 			
 
-			<form onSubmit={this.submitForm}>
+			<form onSubmit={this.submitForm} className="forms">
 
 			<table className="col-md-6">
 			<tbody>

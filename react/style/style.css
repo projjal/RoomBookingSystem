@@ -51,7 +51,6 @@
 div {
     /* background-color:rgb(255, 255, 255); */
     padding-left:0px;
-
 }
 .div-heading{
     background-color: rgb(199, 199, 238);
@@ -72,3 +71,21 @@ div {
     padding-left:0px !important;
     padding-right:0px !important;
 }
+
+.formdiv{
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+    border-style: solid;
+    border width: 1px;
+    border-color: lightblue;
+}
+
+.formhead{
+    background-color: blue;
+    color: white;
+}
+
+
+
+
+

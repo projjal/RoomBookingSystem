@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import RoomList  from './RoomList';
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
 import {RoomPanel} from './RoomPanel';
 import { Switch, Route } from 'react-router-dom'
 import AddRoom from './AddRoom';
-=======
->>>>>>> Stashed changes
+//=======
+//>>>>>>> Stashed changes
 export default class AdminRooms extends Component{
     constructor(props){
         super(props);
@@ -13,13 +13,13 @@ export default class AdminRooms extends Component{
     render(){
         return(
             <div>
-<<<<<<< Updated upstream
+
                 <RoomPanel/>
                     <Switch>
                         <Route exact path='/rooms/' component={RoomList}/>
                         <Route path='/rooms/addRoom' component={AddRoom}/>
                     </Switch>
-=======
+
                 
                 <RoomList/>
                 <div className="modal modal-lg">
@@ -42,7 +42,7 @@ export default class AdminRooms extends Component{
                 </div>
             </div>
             </div>
->>>>>>> Stashed changes
+
             </div>
         );
     }
