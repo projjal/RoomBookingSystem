@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {fetchRooms} from './roomsAction';
+import {fetchRooms, deleteRoom} from './roomsAction';
 class RoomList extends Component{
     constructor(props){
         super(props);
@@ -19,8 +19,8 @@ class RoomList extends Component{
                     <div className="col-md-3">{room.description}</div>
                     <div className="col-md-1">{room.capacity}</div>
                     <div className="col-md-2">{status[room.ststus]} </div>
-                    <div className="col-md-1"><button>Edit</button></div>
-                    <div className="col-md-2"><button>Delete</button></div>
+                    <div className="col-md-1"><button className="btn btn-primary btn-sm"> Edit</button></div>
+                    <div className="col-md-2"><button className="btn btn-primary btn-sm" onClick={(evt)=>this.props.deleteRoom(room)}>Delete</button></div>
                     </div>
                  </div>
                 </li>);
@@ -56,7 +56,8 @@ function mapStateToProps(state){
 }
 function mapPropsToDispatch(dispatch){
     return bindActionCreators({
-        fetchRooms:fetchRooms
+        fetchRooms:fetchRooms,
+        deleteRoom:deleteRoom
     },dispatch);
 }
 

@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
+import StatusPanel from './StatusPanel';
 export default class AdminDashboard extends Component{
     render(){
         return(
             <div>
                 <h5 className='div-heading'>Dashboard</h5>
-                <div className="container-fluid">
+                <StatusPanel/>
+
+                <div className="container-fluid" style={{"padding":"2px","margin":"5px"}} >
                 </div>
                 <div className="container-fluid">
                     <div className="col-md-4">

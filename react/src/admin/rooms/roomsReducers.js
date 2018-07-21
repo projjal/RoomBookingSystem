@@ -8,6 +8,21 @@ export default function(state={}, action){
             state={ ...state,rooms: [...state.rooms, action.payload]}
             break;
         }
+        case "ROOMS_LIST_DELETE":{
+            var roomsList=state.rooms;
+            console.log(roomsList);
+            var newRoomList=[];
+            var selectedRoomId= action.payload.id;
+            for (var i=0; i<roomsList.length;i++){
+                console.log(roomsList[i]);
+                if(roomsList[i].id===selectedRoomId)
+                    continue;
+                newRoomList.push(roomsList[i]);
+            }
+            console.log('updated room list',newRoomList);
+            state={ ...state,rooms: newRoomList}
+            break;
+        }
     }
     console.log("rooms reducer",state,action);
 
