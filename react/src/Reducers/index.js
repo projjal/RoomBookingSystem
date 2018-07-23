@@ -1,7 +1,9 @@
 import {combineReducers} from 'redux';
-import RoomReducer from '../admin/rooms/roomsReducers';
+import roomReducer from '../admin/rooms/roomsReducers';
+import layoutReducer from '../admin/layouts/layoutReducer';
 const rootReducer= combineReducers({
-    rooms:RoomReducer
+    rooms:roomReducer,
+    layouts:layoutReducer
 });
 
 export default rootReducer;

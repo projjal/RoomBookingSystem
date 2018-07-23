@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import {fetchLayouts} from '../layouts/layoutAction';
 class AddRoom extends Component{
     constructor(props){
         super(props);
+        this.props.fetchLayouts();
         this.image=""
         this.state={
             id:0,
@@ -12,7 +15,9 @@ class AddRoom extends Component{
             description:"",
             pricePerDay:0,
             pricePerHour:0,
-            layout:[]
+            status:true,
+            layoutId:["1", "2"],
+            layoutName:["a layout","b layout"]
 
         }
     }
@@ -20,9 +25,17 @@ class AddRoom extends Component{
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-        this.setState({
-          [name]: value
-        });
+        if(target.type==='checkbox'){
+            console.log(target.checked);
+            this.setState({layoutId: [...this.state.layoutId, target.value.split('-')[0]]});
+            this.setState({layoutName: [...this.state.layoutName, target.value.split('-')[1]]});           
+        }
+        else{
+            this.setState({
+                [name]: value
+              });
+        }
+        
       }
     handleSubmit(e){
         e.preventDefault();
@@ -51,6 +64,9 @@ class AddRoom extends Component{
     
       }
     render(){
+        if(JSON.stringify(this.props.layouts)===JSON.stringify({})){
+            return(<div>Loading form</div>);
+        }
         return(
             <div>
                 <form onSubmit={(evt)=>this.handleSubmit(evt)}>
@@ -81,14 +97,32 @@ class AddRoom extends Component{
                     <div>
                         <img src={this.state.image}/>
                     </div>
-                    <div className="checkbox">
-                        <label>
-                        <input type="checkbox" name="layouts" onChange={(evt)=>this.handleInputChange(evt)} /> Layouts:</label>
-                    </div>
+                    {this.props.layouts.layouts.map((layout,i)=>{
+                        return(
+                            <div className="checkbox" key={i}>
+                                <label>
+                                <input type="checkbox" name={layout.name}  value={layout.id+"-"+layout.name} onChange={(evt)=>this.handleInputChange(evt)} /> {layout.name}</label>
+                            </div>
+                        );
+
+                    })}
+
                     <button type="submit" className="btn btn-primary">Add Room</button>
                 </form>
             </div>
         );
     }
 }
-export default AddRoom;
+
+function mapStateToProps(state){
+    return{
+        layouts:state.layouts
+    }
+}
+function mapPropsToDispatch(dispatch){
+    return bindActionCreators({
+        fetchLayouts:fetchLayouts,
+    },dispatch);
+}
+
+export default connect(mapStateToProps,mapPropsToDispatch)(AddRoom);

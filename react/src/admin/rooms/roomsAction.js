@@ -1,11 +1,34 @@
 import axios from 'axios';
+function asyncLoop(count,roomsList,dispatch){
+    if(count<roomsList.length){
+        axios.post('/download/img',{"filePath":roomsList[count].image},{"Content-Type":"application/json"})
+                .then((response)=>{
+                    console.log(response);
+
+                    if(response.status===200){
+                        var imgData=response.data.imgData;
+                        roomsList[count].image=imgData;
+                    }
+                    else{
+                        roomsList[count].image=null;
+                    }
+                    count++;
+                    asyncLoop(count, roomsList,dispatch); 
+                })
+                .catch((err)=>{throw err;});
+    }
+    if(count===roomsList.length)
+        dispatch({type : "ROOMS_LIST_FETCH", payload:roomsList});
+
+}
 export function fetchRooms(){
 
     return (dispatch, getState) => {
         axios.get("/api/rooms") 
         .then((response)=>{
             console.log(response.data);
-            dispatch({type:"ROOMS_LIST_FETCH", payload:response.data});
+            var roomsList=response.data;
+            asyncLoop(0,roomsList,dispatch);
         }).catch((error)=>{
             dispatch({type : "ROOMS_LIST_FAILED", error : error});
         });   
@@ -19,18 +42,18 @@ export function addRoom(data){
             console.log(response);
             data.image=response.data.imgUrl;
             console.log('form data to be sent to the server ',data);
-            /* axios.post("/api/rooms",data.formData,{"Content-Type":"application/json"})
+            axios.post("/api/rooms",data,{"Content-Type":"application/json"})
             .then((response)=>{
                 console.log(response);
                 if(response.status===200){
                     var roomID= response.data;
-                    data.formData.id=roomID;
-                    dispatch({type:"ROOMS_LIST_ADD", payload:data.formData});
+                    data.id=roomID;
+                    dispatch({type:"ROOMS_LIST_ADD", payload:data});
                 }
             }).catch((error)=>{
                 throw error;
                 //dispatch({type : "ROOMS_LIST_FAILED", error : error});
-            }); */
+            });
         })
         .catch((err)=>console.log(err)); 
     };

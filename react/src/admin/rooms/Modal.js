@@ -38,30 +38,7 @@ class ModalNew extends Component{
                     <Button onClick={this.handleHide}>Cancel</Button>
                 </Modal.Footer>
                 </Modal>
-            
-
-
-            {/* <div id="roomFormModal" className="modal fade" style={
-                {display:"contents", top:"100px"}} role="dialog">
-                {console.log('modal state',this.state.formData)}
-                <div className="modal-dialog modal-lg">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h4 className="modal-title">Add Room</h4>
-                        </div>
-                        <div className="modal-body">
-                            <p>Add Room form </p>
-                            <AddRoom updateFormData={(formData)=>{
-                                console.log('Received form data',formData)
-                                this.postRoomData(formData);
-                            }}/>
-                        </div>
-                    </div>
-
-                </div>
-                {console.log('form data in modal',this.state.formData)}
-            </div>
- */}            </div>
+           </div>
             
         
         )
