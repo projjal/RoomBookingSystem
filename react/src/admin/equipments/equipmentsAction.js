@@ -15,13 +15,19 @@ export function fetchEquipments(){
 export function addEquipment(data){
 
     return (dispatch, getState) => {
-        axios.post("/upload/img",{"img":data.image,"type":"equipments"},{"Content-Type":"text/plain"}).then((response)=>{
-            console.log(response);
-            data.image=response.data.imgUrl;
-            console.log('form data to be sent to the server ',data);
-        })
-        .catch((err)=>console.log(err));
-    };
+        axios.post("/api/equipments",data,{"Content-Type":"application/json"})
+            .then((response)=>{
+                console.log(response);
+                if(response.status===200){
+                    var equipmentID= response.data;
+                    data.id=equipmentID;
+                    dispatch({type:"EQUIPMENTS_LIST_ADD", payload:data});
+                }
+            }).catch((error)=>{
+                throw error;
+                //dispatch({type : "ROOMS_LIST_FAILED", error : error});
+            });
+        }
 
 }
 
