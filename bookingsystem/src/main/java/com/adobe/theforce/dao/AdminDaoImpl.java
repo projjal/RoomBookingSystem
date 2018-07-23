@@ -21,12 +21,11 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public List<Admin> getAdmins() {
 		TypedQuery<Admin> query = em.createQuery("SELECT a FROM Admin a", Admin.class);
-		System.out.println("in Dao");
 		return query.getResultList();
 	}
 
 	@Override
-	public Admin getAdmin(int id) {
+	public Admin getAdmin(String id) {
 		return em.find(Admin.class, id);
 	}
 
@@ -37,7 +36,7 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public void deleteAdmin(int id) {
+	public void deleteAdmin(String id) {
 		Admin a = em.find(Admin.class, id);
 		em.remove(a);
 

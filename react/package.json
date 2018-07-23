@@ -30,6 +30,7 @@
     "babel-preset-stage-1": "^6.24.1",
     "lodash": "^4.17.4",
     "react": "^15.6.1",
+    "react-bootstrap": "^0.32.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
@@ -38,6 +39,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "s": "^0.1.1",
-    "youtube-api-search": "0.0.5"
+    "youtube-api-search": "0.0.5",
+    "material-ui": "0.20.1"
   }
 }
