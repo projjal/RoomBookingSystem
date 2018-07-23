@@ -15,18 +15,24 @@ export function fetchRooms(){
 export function addRoom(data){
 
     return (dispatch, getState) => {
-        axios.post("/api/rooms",data,{"Content-Type":"application/json"})
-        .then((response)=>{
+        axios.post("/upload/img",{"img":data.image,"type":"rooms"},{"Content-Type":"text/plain"}).then((response)=>{
             console.log(response);
-            if(response.status===200){
-                var roomID= response.data;
-                data.id=roomID;
-                dispatch({type:"ROOMS_LIST_ADD", payload:data});
-            }
-        }).catch((error)=>{
-            throw error;
-            //dispatch({type : "ROOMS_LIST_FAILED", error : error});
-        });   
+            data.image=response.data.imgUrl;
+            console.log('form data to be sent to the server ',data);
+            /* axios.post("/api/rooms",data.formData,{"Content-Type":"application/json"})
+            .then((response)=>{
+                console.log(response);
+                if(response.status===200){
+                    var roomID= response.data;
+                    data.formData.id=roomID;
+                    dispatch({type:"ROOMS_LIST_ADD", payload:data.formData});
+                }
+            }).catch((error)=>{
+                throw error;
+                //dispatch({type : "ROOMS_LIST_FAILED", error : error});
+            }); */
+        })
+        .catch((err)=>console.log(err)); 
     };
     
 }

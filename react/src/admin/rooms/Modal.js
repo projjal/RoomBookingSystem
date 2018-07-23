@@ -4,29 +4,46 @@ import AddRoom from './AddRoom';
 import {addRoom} from './roomsAction';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
-class Modal extends Component{
-    postRoomData(){
-        // call this function
-        var formData= {
-            "capacity": 12,
-            "description": "A conference room with capacity of 12 people.",
-            "id": 0,
-            "image": "/img",
-            "pricePerDay": 1000,
-            "pricePerHour": 10,
-            "ststus": true,
-            "type": "conference room 2"
-          };
-          console.log(formData);
-        this.props.addRoom(formData);
-        this.props.closeModal();
+import {Modal,Button} from 'react-bootstrap';
+class ModalNew extends Component{
+    constructor(props){
+        super(props);
+        this.state={
+            imgFile:null,
+            formData:null
+        }
+    }
+    postRoomData(formData){
+        console.log('form data in modal',formData);
+          this.props.addRoom(formData);
+          this.props.closeModal();
     }
     render(){
         if(!this.props.show)
             return null;
         return(
+            <div>
+                <Modal show={this.props.show} onHide={this.props.closeModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title">
+                    Add Room  </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <AddRoom updateFormData={(formData)=>{
+                                console.log('Received form data',formData)
+                                this.postRoomData(formData);
+                            }}/>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={this.handleHide}>Cancel</Button>
+                </Modal.Footer>
+                </Modal>
             
-            <div id="roomFormModal" className="modal fade" style={{display:"contents", top:"100px"}} role="dialog">
+
+
+            {/* <div id="roomFormModal" className="modal fade" style={
+                {display:"contents", top:"100px"}} role="dialog">
+                {console.log('modal state',this.state.formData)}
                 <div className="modal-dialog modal-lg">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -34,16 +51,18 @@ class Modal extends Component{
                         </div>
                         <div className="modal-body">
                             <p>Add Room form </p>
-                            <AddRoom/>
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={(evt)=>this.postRoomData()}>Add Room</button>
-                            <button type="button" className="btn btn-default" data-dismiss="modal" onClick={(evt)=>this.props.closeModal()}>Cancel</button>
+                            <AddRoom updateFormData={(formData)=>{
+                                console.log('Received form data',formData)
+                                this.postRoomData(formData);
+                            }}/>
                         </div>
                     </div>
 
                 </div>
+                {console.log('form data in modal',this.state.formData)}
             </div>
+ */}            </div>
+            
         
         )
     }
@@ -55,4 +74,4 @@ function mapPropsToDispatch(dispatch){
     },dispatch);
 }
 
-export default connect(null,mapPropsToDispatch)(Modal);
+export default connect(null,mapPropsToDispatch)(ModalNew);
