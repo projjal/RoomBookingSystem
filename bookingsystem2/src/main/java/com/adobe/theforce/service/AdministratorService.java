@@ -273,7 +273,7 @@ public class AdministratorService {
 		System.out.println("here");
 		return adminDao.getAdmins();
 	}
-	public Admin getAdmin(int id){
+	public Admin getAdmin(String id){
 		return adminDao.getAdmin(id);
 	}
 	
@@ -283,7 +283,7 @@ public class AdministratorService {
 	}
 	
 	@Transactional
-	public void deleteAdmin(int id){
+	public void deleteAdmin(String id){
 		adminDao.deleteAdmin(id);
 	}
 	
