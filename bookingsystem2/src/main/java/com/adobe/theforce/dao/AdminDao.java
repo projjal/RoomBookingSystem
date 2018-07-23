@@ -6,8 +6,8 @@ import com.adobe.theforce.entity.Admin;
 
 public interface AdminDao {
 	List<Admin> getAdmins();
-	Admin getAdmin(int id);
+	Admin getAdmin(String id);
 	void addAdmin(Admin admin);
-	void deleteAdmin(int id);
+	void deleteAdmin(String id);
 	void updateAdmin(Admin admin);
 }

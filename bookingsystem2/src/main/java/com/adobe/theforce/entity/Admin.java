@@ -1,12 +1,6 @@
 package com.adobe.theforce.entity;
 
-import java.security.MessageDigest;
-//import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchAlgorithmException;
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,46 +9,15 @@ import javax.persistence.Table;
 public class Admin {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private String emailID;
 	
 	private String name;
-	
-	private String emailID;
 	
 	private String mobileNumber;
 	
 	private String address;
 	
 	private String password;
-	
-	public String generateHash(String input) {
-		StringBuilder hash = new StringBuilder();
-
-		try {
-			MessageDigest sha = MessageDigest.getInstance("SHA-1");
-			byte[] hashedBytes = sha.digest(input.getBytes());
-			char[] digits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-					'a', 'b', 'c', 'd', 'e', 'f' };
-			for (int idx = 0; idx < hashedBytes.length; ++idx) {
-				byte b = hashedBytes[idx];
-				hash.append(digits[(b & 0xf0) >> 4]);
-				hash.append(digits[b & 0x0f]);
-			}
-		} catch (NoSuchAlgorithmException e) {
-			// handle error here.
-		}
-
-		return hash.toString();
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return name;
@@ -102,8 +65,6 @@ public class Admin {
 	}
 
 	public Admin(int id, String name, String emailID, String mobileNumber, String address, String password) {
-		System.out.println("fffffff cons");
-		this.id = id;
 		this.name = name;
 		this.emailID = emailID;
 		this.mobileNumber = mobileNumber;

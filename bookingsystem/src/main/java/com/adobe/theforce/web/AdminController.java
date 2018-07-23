@@ -26,13 +26,8 @@ public class AdminController {
 	
 	@RequestMapping(value = "/api/admins/signup",method = RequestMethod.POST)
 	public void signUp(@RequestBody Admin user){
-		System.out.println(user.getPassword());
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-		System.out.println(bCryptPasswordEncoder.encode(user.getPassword()));
-		System.out.println(bCryptPasswordEncoder.encode(user.getPassword()));
-		System.out.println(bCryptPasswordEncoder.encode(user.getPassword()));
-		System.out.println(bCryptPasswordEncoder.encode(user.getPassword()));
-        adminService.addAdmin(user);
+		adminService.addAdmin(user);
 	}
 	
 	@RequestMapping(value = "/api/admins",method = RequestMethod.GET)

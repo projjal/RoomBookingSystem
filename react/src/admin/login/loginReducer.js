@@ -1,16 +1,24 @@
 import axios from 'axios';
 
+var querystring = require('querystring');
+
 const SET_LOGIN_PENDING = 'SET_LOGIN_PENDING';
 const SET_LOGIN_SUCCESS = 'SET_LOGIN_SUCCESS';
 const SET_LOGIN_ERROR = 'SET_LOGIN_ERROR';
 
 export function login(email, password) {
   return dispatch => {
-    dispatch(setLoginPending(true));
-    dispatch(setLoginSuccess(false));
-    dispatch(setLoginError(null));
-
-    axios.get("/api/login",{},{auth:{username:"projjal", password:"password"}})
+    // dispatch(setLoginPending(true));
+    // dispatch(setLoginSuccess(false));
+    // dispatch(setLoginError(null));
+    
+    axios.post("/api/login",querystring.stringify({
+      username: 'projjal@admin.com', //gave the values directly for testing
+      password: 'password'
+    }),{
+      headers: { 
+      "Content-Type": "application/x-www-form-urlencoded"
+    }})
         .then((response)=>{
             console.log("hello");
             console.log(response);
@@ -18,6 +26,7 @@ export function login(email, password) {
                 console.log("Djflsflswlfs")
             }
         }).catch((error)=>{
+            console.log("error maybe :P")
             throw error;
             //dispatch({type : "ROOMS_LIST_FAILED", error : error});
         }); 
@@ -29,7 +38,7 @@ export function login(email, password) {
     //     dispatch(setLoginError(error));
     //   }
     // });
-  }
+  };
 }
 
 function setLoginPending(isLoginPending) {
@@ -63,7 +72,7 @@ function callLoginApi(email, password, callback) {
   }, 1000);
 }
 
-export default function reducer(state = {
+export default function loginReducer(state = {
   isLoginSuccess: false,
   isLoginPending: false,
   loginError: null

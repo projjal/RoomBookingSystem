@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { login } from './loginReducer';
+import {bindActionCreators} from 'redux';
 
 class LoginForm extends Component {
 
@@ -52,9 +53,10 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    login: (email, password) => dispatch(login(email, password))
-  };
+  return bindActionCreators({
+    login:login
+},dispatch);
+    
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
