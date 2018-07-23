@@ -1,11 +1,16 @@
 import {combineReducers} from 'redux';
 import RoomReducer from '../admin/rooms/roomsReducers';
 import loginReducer from '../admin/login/loginReducer';
+import EquipmentReducer from '../admin/equipments/equipmentsReducers';
+import FoodReducer from '../admin/food/foodsReducers';
+import layoutReducer from '../admin/layouts/layoutReducer';
 
 const rootReducer= combineReducers({
     rooms:RoomReducer,
     layouts:layoutReducer,
-    login:loginReducer
+    login:loginReducer,
+    equipments:EquipmentReducer,
+    foods:FoodReducer
 
 });
 

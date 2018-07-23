@@ -4,6 +4,8 @@ import AdminDashboard from './dashboard/dashboard';
 import AdminBookings from './bookings/bookings';
 import AdminRooms from './rooms/rooms';
 import LoginForm from './login/login';
+import AdminEquipments from './equipments/equipments';
+import AdminFoods from './food/foods';
 
 class AdminMainTab extends Component{
     render(){
@@ -15,6 +17,8 @@ class AdminMainTab extends Component{
                         <Route path='/bookings' component={AdminBookings}/>
                         <Route path='/rooms' component={AdminRooms}/>
                         <Route path='/login' component={LoginForm}/>
+                        <Route path='/equipments' component={AdminEquipments}/>
+                        <Route path='/foods' component={AdminFoods}/>
                     </Switch>
                 </main>
             </div>
