@@ -13,8 +13,8 @@ export function login(email, password) {
     // dispatch(setLoginError(null));
     
     axios.post("/api/login",querystring.stringify({
-      username: 'projjal@admin.com', //gave the values directly for testing
-      password: 'password'
+      username: email, //gave the values directly for testing
+      password: password
     }),{
       headers: { 
       "Content-Type": "application/x-www-form-urlencoded"
