@@ -6,7 +6,7 @@ import AdminRooms from './rooms/rooms';
 import LoginForm from './login/login';
 import AdminEquipments from './equipments/equipments';
 import AdminFoods from './food/foods';
-
+import AdminLayout from './layouts/layouts';
 class AdminMainTab extends Component{
     render(){
         return(
@@ -19,6 +19,8 @@ class AdminMainTab extends Component{
                         <Route path='/login' component={LoginForm}/>
                         <Route path='/equipments' component={AdminEquipments}/>
                         <Route path='/foods' component={AdminFoods}/>
+                        <Route path='/roomLayouts' component={AdminLayout}/>
+
                     </Switch>
                 </main>
             </div>

@@ -12,6 +12,8 @@ class TableHeading extends Component{
 
 class TableCell extends Component{
   render(){
+    if(this.props.type==="image")
+      return(<td><img src={this.props.data}/></td>);
     return (
       <td>{this.props.data}</td>
     )
@@ -22,7 +24,7 @@ class TableRow extends Component{
   render(){
     return (
           <tr>
-              {this.props.keys.map((index, i) => <TableCell key={i} data={this.props.data[index]}/>)}
+              {this.props.keys.map((index, i) => <TableCell key={i} data={this.props.data[index]} type={index} />)}
               {console.log("yoohoo")}
               {console.log(this.props.data)}
               {console.log(this.props.keys)}

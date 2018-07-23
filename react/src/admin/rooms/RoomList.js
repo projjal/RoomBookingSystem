@@ -30,15 +30,16 @@ class RoomList extends Component{
         if(JSON.stringify(this.props.rooms) !== JSON.stringify({})){
             console.log('rooms',this.props.rooms.rooms.length);
             /*Commented changes use the general table*/
-            // var arr = Object.keys(this.props.rooms.rooms[0]);
-            // console.log(arr);
-            // return(
-            // <div>
-            // {console.log("In here")}
-            // {console.log(this.props.rooms.rooms)}
-            // <TableView heading={arr} data={this.props.rooms.rooms}/>
-            // </div>
-            // );
+             /* var arr = Object.keys(this.props.rooms.rooms[0]);
+             console.log(arr);
+             var arr1=["id","type","capacity","image"];
+             return(
+             <div>
+             {console.log("In here")}
+             {console.log(this.props.rooms.rooms)}
+             <TableView heading={arr} data={this.props.rooms.rooms}/>
+             </div>
+             ); */
             return(
                 <div>
                     <ul className='list-group col-md-12'>

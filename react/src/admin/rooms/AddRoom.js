@@ -16,8 +16,8 @@ class AddRoom extends Component{
             pricePerDay:0,
             pricePerHour:0,
             status:true,
-            layoutId:["1", "2"],
-            layoutName:["a layout","b layout"]
+            layoutId:[],
+            layoutName:[]
 
         }
     }
@@ -27,8 +27,29 @@ class AddRoom extends Component{
         const name = target.name;
         if(target.type==='checkbox'){
             console.log(target.checked);
-            this.setState({layoutId: [...this.state.layoutId, target.value.split('-')[0]]});
-            this.setState({layoutName: [...this.state.layoutName, target.value.split('-')[1]]});           
+            if(target.checked){
+                this.setState({layoutId: [...this.state.layoutId, target.value.split('-')[0]]});
+                this.setState({layoutName: [...this.state.layoutName, target.value.split('-')[1]]});  
+            }
+            else{
+                var tId=target.value.split('-')[0];
+                var tName=target.value.split('-')[1];
+                var layoutIDs=[];
+                var layoutName=[];
+                for(var i=0;i<this.state.layoutId.length;i++){
+                    if(this.state.layoutId[i]==tId){
+                        continue;
+                    }
+                    else{
+                        layoutIDs.push(this.state.layoutId[i]);
+                        layoutName.push(this.state.layoutName[i]);
+                    }
+                }
+                this.setState({layoutId:layoutIDs});
+                this.setState({layoutName:layoutName});
+            }
+            console.log(this.state.layoutId);       
+            console.log(this.state.layoutName);       
         }
         else{
             this.setState({
