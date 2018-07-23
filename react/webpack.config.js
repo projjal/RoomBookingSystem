@@ -1,5 +1,6 @@
 const bodyParser = require("body-parser");
 const fs= require('fs');
+const proxyMiddleware= require("http-proxy-middleware");
 module.exports = {
     entry: [
       './src/index.js'
@@ -23,24 +24,37 @@ module.exports = {
     },
     devServer: {
       before: function(app) {
+        var proxy = proxyMiddleware('/api', {
+          target: 'http://localhost:8080'
+       });
+        app.use(proxy);
         app.use(bodyParser.json());
         app.post("/download/img",(req,res)=>{
           var filePath= req.body.filePath;
           console.log(filePath);
-          fs.readFile(filePath,'utf-8',(err,data)=>{
-            if(err){
-              res
-                .status(403)
-                .contentType("application/json")
-                .json({"imgData":null});
-            }
-            else{
-              res
-                .status(200)
-                .contentType("application/json")
-                .json({"imgData":data});
-            }
-          })
+          if(filePath!=null|| filePath=="null"){
+            fs.readFile(filePath,'utf-8',(err,data)=>{
+              if(err){
+                res
+                  .status(200)
+                  .contentType("application/json")
+                  .json({"imgData":null});
+              }
+              else{
+                res
+                  .status(200)
+                  .contentType("application/json")
+                  .json({"imgData":data});
+              }
+            })
+          }
+          else{
+            res
+                  .status(200)
+                  .contentType("application/json")
+                  .json({"imgData":null});
+          }
+          
         });
         app.post(
           "/upload/img",
@@ -71,7 +85,7 @@ module.exports = {
       },
       proxy: {
         '/api':{
-          target:'http://10.41.120.32:8080',
+          target:'http://localhost:8080',
           changeOrigin: true
         }
       },
