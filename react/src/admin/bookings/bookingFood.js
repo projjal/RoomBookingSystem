@@ -109,10 +109,8 @@ render(){
 
 		<div>
 
-			{console.log(this.state.foodList)}
-			{console.log(this.state.foodform)}
 
-			<form onSubmit={this.submit}>
+			<form onSubmit={this.submit} className="forms">
 			<table className="table-bordered col-md-12">
 			<thead>
 

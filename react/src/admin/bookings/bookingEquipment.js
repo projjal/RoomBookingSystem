@@ -128,10 +128,9 @@ class BookingEquipments extends Component{
 
 			<div>
 
-			{console.log(this.state.equipList)}
-			{console.log(this.state.equipform)}
+			
 
-			<form onSubmit={this.submit}>
+			<form onSubmit={this.submit} className="forms1">
 			<table className="table-bordered col-md-12">
 			<thead>
 
