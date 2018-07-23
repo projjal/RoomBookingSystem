@@ -1,24 +1,24 @@
 import axios from 'axios';
-function asyncLoop(count,roomsList,dispatch){
-    if(count<roomsList.length){
-        axios.post('/download/img',{"filePath":roomsList[count].image},{"Content-Type":"application/json"})
+function asyncLoop(count,layoutsList,dispatch){
+    if(count<layoutsList.length){
+        axios.post('/download/img',{"filePath":layoutsList[count].image},{"Content-Type":"application/json"})
                 .then((response)=>{
                     console.log(response);
 
                     if(response.status===200){
                         var imgData=response.data.imgData;
-                        roomsList[count].image=imgData;
+                        layoutsList[count].image=imgData;
                     }
                     else{
-                        roomsList[count].image=null;
+                        layoutsList[count].image=null;
                     }
                     count++;
-                    asyncLoop(count, roomsList,dispatch); 
+                    asyncLoop(count, layoutsList,dispatch); 
                 })
                 .catch((err)=>{throw err;});
     }
-    if(count===roomsList.length)
-        dispatch({type : "LAYOUTS_LIST_FETCH", payload:roomsList});
+    if(count===layoutsList.length)
+        dispatch({type : "LAYOUTS_LIST_FETCH", payload:layoutsList});
 
 }
 export function fetchLayouts(){
@@ -28,7 +28,7 @@ export function fetchLayouts(){
         .then((response)=>{
             console.log(response.data);
             var layoutsList=response.data;
-           // asyncLoop(0,roomsList,dispatch);
+           // asyncLoop(0,layoutsList,dispatch);
            dispatch({type : "LAYOUTS_LIST_FETCH", payload:layoutsList});
 
         }).catch((error)=>{
@@ -38,10 +38,10 @@ export function fetchLayouts(){
     
 }
 
-export function addRoom(data){
+export function addLayout(data){
 
     return (dispatch, getState) => {
-        axios.post("/upload/img",{"img":data.image,"type":"rooms"},{"Content-Type":"text/plain"}).then((response)=>{
+        axios.post("/upload/img",{"img":data.image,"type":"layouts"},{"Content-Type":"text/plain"}).then((response)=>{
             console.log(response);
             data.image=response.data.imgUrl;
             console.log('form data to be sent to the server ',data);

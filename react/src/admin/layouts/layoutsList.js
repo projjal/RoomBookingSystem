@@ -1,8 +1,8 @@
 import React,{Component} from 'react';
-import LayoutPanel from './LayoutPanel';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {fetchLayouts} from '../layouts/layoutAction';
+import TableView from '../../utils/index.js';
 
 class LayoutsList extends Component{
     constructor(props){
