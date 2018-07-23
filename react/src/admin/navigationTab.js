@@ -14,7 +14,7 @@ class TabOptions extends Component{
 }
 class AdminNavigationTab extends Component{
     // NavTabs=['Dashboard','Bookings','Rooms','Room Layouts','Equipment','Food & Drinks','Users','Logout'];
-    NavTabs=['dashboard','bookings','rooms','roomLayouts','equipment','foodDrinks','users','logout'];
+    NavTabs=['dashboard','bookings','rooms','roomLayouts','equipments','foods','users','logout'];
     render(){
         return(
             <div className='col-md-4 '>
