@@ -71,7 +71,7 @@ class BookingDateRoom extends Component{
         		if(event.target.value==this.state.roomsList[i].type)
         			 {
         			 	this.setState({rprice:this.state.roomsList[i].pricePerHour})
-        			 	 this.setState({layout:this.state.roomsList[i].layouts});
+        			 	 this.setState({layout:this.state.roomsList[i].layoutName});
         			 	 break;
         			 }
         	}
@@ -103,8 +103,9 @@ class BookingDateRoom extends Component{
 		return(
 
 
+
 			<div className="container-fluid">
-			
+			{console.log(this.state.roomsList)}
 			
 
 			<form onSubmit={this.submitForm} className="forms">

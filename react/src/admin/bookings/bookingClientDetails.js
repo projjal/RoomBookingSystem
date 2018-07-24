@@ -66,7 +66,7 @@ render(){
 
 		<tr>
 		<td><label>Notes</label></td>
-		<td><textarea type="text" name="name"  required onChange={this.handleChange}/></td>
+		<td><textarea type="text" name="notes"  required onChange={this.handleChange}/></td>
 		</tr>
 
 		<tr>

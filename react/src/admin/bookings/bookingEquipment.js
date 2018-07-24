@@ -10,7 +10,8 @@ class BookingEquipments extends Component{
 		this.state={
 			equipList:[],
 			tprice:0,
-			equipform:{}
+			equipform:{},
+			check:{}
 		}
 
 		
@@ -38,18 +39,31 @@ class BookingEquipments extends Component{
 
 	func2(equip)
 	{
-		console.log("hii");
+		
        var updatedState={};
        updatedState[equip.name]={
-       		"name":equip.name,
-			"price":equip.price,
+       		"equipmentName":equip.name,
+			"pricePerUnit":equip.price,
 			"quantity":1,
-			"checked":false
+			
+			"id":equip.id,
+			"totalPrice":0
 		}
 
        var prev=this.state.equipform;
        var obj2=Object.assign(prev,updatedState);
        this.setState({equiform:obj2});
+
+      
+       var updatedState={};
+       updatedState[equip.name]={
+       		"checked": false
+		}
+
+       var prev=this.state.check;
+       var obj2=Object.assign(prev,updatedState);
+       this.setState({check:obj2});
+
 
 	}
 
@@ -84,9 +98,9 @@ class BookingEquipments extends Component{
 
 		handleChange(event)
 		{
-			var prev=this.state.equipform;
+			var prev=this.state.check;
 			prev[event.target.name]["checked"]=event.target.checked;
-			this.setState({equipform:prev});
+			this.setState({check:prev});
 		}
 
 		handleChange1(event)
@@ -102,14 +116,16 @@ class BookingEquipments extends Component{
 		{
 			e.preventDefault();
 			var equiform=this.state.equipform;
+			var check=this.state.check;
 			var fform=[];
 			var x;
 			 var price1=0;
 			for(x in equiform)
 			{
-				if(equiform[x].checked)
+				if(check[x].checked)
 				{
-					price1+=equiform[x].quantity * equiform[x].price;
+					price1+=equiform[x].quantity * equiform[x].pricePerUnit;
+					equiform[x].totalPrice=equiform[x].quantity * equiform[x].pricePerUnit;
 					fform.push(equiform[x]);
 				}
 			}
