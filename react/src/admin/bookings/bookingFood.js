@@ -42,7 +42,7 @@ func1(res)
        updatedState[food.name]={
        		"foodItemName":food.name,
 			"pricePerUnit":food.price,
-			"id":food.id,
+			"id":0,
 			"quantity":1,
 			"totalPrice":0
 		}

@@ -172,8 +172,8 @@ class BookingDateRoom extends Component{
 
 			 <tr>
 			 <td></td>
-			 <td><input type="submit" value="Save"/>
-			 <input type="button"  value="Clear"/></td>
+			 <td><input type="submit" value="Save"/></td>
+			 
 			 <td></td>
 			 </tr>
 

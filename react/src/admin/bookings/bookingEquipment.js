@@ -46,7 +46,7 @@ class BookingEquipments extends Component{
 			"pricePerUnit":equip.price,
 			"quantity":1,
 			
-			"id":equip.id,
+			"id":0,
 			"totalPrice":0
 		}
 

@@ -106,7 +106,7 @@ render(){
 
 		<tr>
 		<td></td>
-		<td><input type="submit" value="Save and Confirm Booking"/></td>
+		<td><input type="submit" value="Save"/></td>
 		</tr>
 
 		</tbody>

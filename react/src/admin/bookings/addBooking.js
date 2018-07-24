@@ -98,12 +98,11 @@ render()
 {	
 
 
-	console.log(new Date().getTime());
-
 
 
 	return(
 		<div>
+
 
 		
 
@@ -145,7 +144,7 @@ render()
 
   		<button onClick={()=>{PostData(this.state.obj,this.state.equipobj,
   				this.state.foodobj,this.state.prices,
-  				this.state.clientobj)}}>Click me</button> 
+  				this.state.clientobj)}}>Confirm and Submit</button> 
 
   		</Tab>
   		</Tabs>
