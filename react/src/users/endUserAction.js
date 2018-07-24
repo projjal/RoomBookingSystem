@@ -11,7 +11,7 @@ export function selectLayout(layout){
 export function selectEquipments(equipments){
     dispatch({type:"EQUIPMENTS_SELECTED", payload:equipments})
 }
-export function selectFood(foods){
+export function selectFoods(foods){
     dispatch({type:"FOODS_SELECTED", payload:food})
 }
 export function addUserDetails(userDetails){

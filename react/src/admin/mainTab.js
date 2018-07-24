@@ -8,8 +8,7 @@ import AdminEquipments from './equipments/equipments';
 import AdminUsers from './users/users';
 import AdminFoods from './food/foods';
 import AdminLayout from './layouts/layouts';
-import Logout from './logout.js';
-
+import Logout from './logout';
 class AdminMainTab extends Component{
     render(){
         return(
