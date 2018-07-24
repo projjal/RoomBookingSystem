@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.adobe.theforce.dao.DaoException;
 import com.adobe.theforce.entity.Admin;
 import com.adobe.theforce.entity.ExceptionJSONInfo;
-import com.adobe.theforce.service.AdministratorService;
+import com.adobe.theforce.service.AdminService;
 
 
 @RestController
 public class AdminController {
 	
 	@Autowired
-	private AdministratorService adminService;
+	private AdminService adminService;
 	
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;

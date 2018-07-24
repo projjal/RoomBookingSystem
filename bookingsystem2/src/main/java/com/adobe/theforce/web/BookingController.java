@@ -18,14 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.adobe.theforce.dao.DaoException;
 import com.adobe.theforce.entity.Booking;
 import com.adobe.theforce.entity.ExceptionJSONInfo;
-import com.adobe.theforce.service.AdministratorService;
-import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.adobe.theforce.service.BookingService;
 
 @RestController
 public class BookingController {
 	
 	@Autowired
-	private AdministratorService bookingService;
+	private BookingService bookingService;
 	
 	
 	@RequestMapping(value = "/api/bookings",method = RequestMethod.GET)
@@ -105,6 +104,18 @@ public class BookingController {
 		try{
 		result.add(bookingService.getTodaysBookings());
 		result.add(bookingService.getTotalBookings());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new DaoException("Unable to get todays Bookings");
+		}
+		return result;
+	}
+	
+	@RequestMapping(value = "/api/bookings/todays",method = RequestMethod.GET)
+	public @ResponseBody List<Booking> getTodayBookingList()  throws DaoException {
+		List<Booking> result = new ArrayList<Booking>();
+		try{
+		result = (bookingService.getTodayBookingList());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			throw new DaoException("Unable to get todays Bookings");

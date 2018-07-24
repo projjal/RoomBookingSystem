@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.adobe.theforce.dao.DaoException;
 import com.adobe.theforce.entity.Client;
 import com.adobe.theforce.entity.ExceptionJSONInfo;
-import com.adobe.theforce.service.AdministratorService;
+import com.adobe.theforce.service.ClientService;
 
 /**
  * @author pchanda
@@ -28,7 +28,7 @@ import com.adobe.theforce.service.AdministratorService;
 @RestController
 public class ClientController {
 	@Autowired
-	private AdministratorService clientService;
+	private ClientService clientService;
 	
 	
 	@RequestMapping(value = "/api/clients",method = RequestMethod.GET)

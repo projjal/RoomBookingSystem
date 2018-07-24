@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.adobe.theforce.dao.DaoException;
 import com.adobe.theforce.entity.ExceptionJSONInfo;
 import com.adobe.theforce.entity.Layout;
-import com.adobe.theforce.service.AdministratorService;
+import com.adobe.theforce.service.LayoutService;
 
 @RestController
 public class LayoutController {
 	
 	@Autowired
-	private AdministratorService layoutService;
+	private LayoutService layoutService;
 	
 	
 	

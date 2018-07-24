@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.adobe.theforce.dao.DaoException;
 import com.adobe.theforce.entity.Equipment;
 import com.adobe.theforce.entity.ExceptionJSONInfo;
-import com.adobe.theforce.service.AdministratorService;
+import com.adobe.theforce.service.EquipmentService;
 
 @RestController
 public class EquipmentController {
 	@Autowired
-	private AdministratorService equipmentService;
+	private EquipmentService equipmentService;
 	
 	
 	@RequestMapping(value = "/api/equipments",method = RequestMethod.GET)

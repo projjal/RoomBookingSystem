@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.adobe.theforce.dao.DaoException;
 import com.adobe.theforce.entity.ExceptionJSONInfo;
 import com.adobe.theforce.entity.Room;
-import com.adobe.theforce.service.AdministratorService;
+import com.adobe.theforce.service.RoomService;
 
 
 @RestController
 public class RoomController {
 	
 	@Autowired
-	private AdministratorService roomService;
+	private RoomService roomService;
 	
 	
 	@RequestMapping(value = "/api/rooms",method = RequestMethod.GET)
