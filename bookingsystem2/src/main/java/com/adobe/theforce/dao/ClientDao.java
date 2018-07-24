@@ -13,9 +13,9 @@ import com.adobe.theforce.entity.Client;
  *
  */
 public interface ClientDao {
-	List<Client> getClients();
-	Client getClient(int id);
-	void addClient(Client client);
-	void deleteClient(int id);
-	void updateClient(Client client);
+	List<Client> getClients() throws Exception;
+	Client getClient(int id) throws Exception;
+	void addClient(Client client) throws Exception;
+	void deleteClient(int id) throws Exception;
+	void updateClient(Client client) throws Exception;
 }

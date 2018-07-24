@@ -5,9 +5,9 @@ import java.util.List;
 import com.adobe.theforce.entity.Booking;
 
 public interface BookingDao {
-	void addBooking(Booking booking);
-	List<Booking> getBookings();
-	Booking getBooking(int id);
-	void deleteBooking(int id);
-	void updateBooking(Booking booking);
+	void addBooking(Booking booking) throws Exception;
+	List<Booking> getBookings() throws Exception;
+	Booking getBooking(int id) throws Exception;
+	void deleteBooking(int id) throws Exception;
+	void updateBooking(Booking booking) throws Exception;
 }

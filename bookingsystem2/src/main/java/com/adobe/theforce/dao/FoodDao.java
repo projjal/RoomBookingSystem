@@ -12,9 +12,9 @@ import com.adobe.theforce.entity.Food;
  *
  */
 public interface FoodDao {
-	List<Food> getFoods();
-	Food getFood(int id);
-	void addFood(Food food);
-	void deleteFood(int id);
-	void updateFood(Food food);
+	List<Food> getFoods() throws Exception;
+	Food getFood(int id) throws Exception;
+	void addFood(Food food) throws Exception;
+	void deleteFood(int id) throws Exception;
+	void updateFood(Food food) throws Exception;
 }

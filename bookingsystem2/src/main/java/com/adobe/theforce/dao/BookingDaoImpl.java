@@ -17,29 +17,29 @@ public class BookingDaoImpl implements BookingDao {
 	private EntityManager em;
 
 	@Override
-	public void addBooking(Booking booking) {
+	public void addBooking(Booking booking)  throws Exception{
 		em.persist(booking);
 	}
 
 	@Override
-	public List<Booking> getBookings() {
+	public List<Booking> getBookings()  throws Exception{
 		TypedQuery<Booking> query = em.createQuery("SELECT b FROM Booking b", Booking.class);
 		return query.getResultList();
 	}
 
 	@Override
-	public Booking getBooking(int id) {
+	public Booking getBooking(int id)  throws Exception{
 		return em.find(Booking.class, id);
 	}
 
 	@Override
-	public void deleteBooking(int id) {
+	public void deleteBooking(int id)  throws Exception{
 		Booking b = em.find(Booking.class, id);
 		em.remove(b);
 	}
 
 	@Override
-	public void updateBooking(Booking booking) {
+	public void updateBooking(Booking booking)  throws Exception{
 		em.merge(booking);
 	}
 

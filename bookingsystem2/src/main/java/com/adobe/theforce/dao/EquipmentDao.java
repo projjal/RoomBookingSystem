@@ -6,9 +6,9 @@ import com.adobe.theforce.entity.Equipment;
 
 
 public interface EquipmentDao {
-	List<Equipment> getEquipments();
-	Equipment getEquipment(int id);
-	void addEquipment(Equipment equipment);
-	void deleteEquipment(int id);
-	void updateEquipment(Equipment equipment);
+	List<Equipment> getEquipments() throws Exception;
+	Equipment getEquipment(int id) throws Exception;
+	void addEquipment(Equipment equipment) throws Exception;
+	void deleteEquipment(int id) throws Exception;
+	void updateEquipment(Equipment equipment) throws Exception;
 }

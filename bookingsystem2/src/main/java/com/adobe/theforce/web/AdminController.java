@@ -2,8 +2,14 @@ package com.adobe.theforce.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+<<<<<<< Updated upstream
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+=======
+import org.springframework.web.bind.annotation.ExceptionHandler;
+>>>>>>> Stashed changes
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.adobe.theforce.dao.DaoException;
 import com.adobe.theforce.entity.Admin;
+import com.adobe.theforce.entity.ExceptionJSONInfo;
 import com.adobe.theforce.service.AdministratorService;
 
 
@@ -31,28 +39,80 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/api/admins",method = RequestMethod.GET)
+<<<<<<< Updated upstream
 	public @ResponseBody List<Admin> getAdmins(){
+=======
+	public @ResponseBody List<Admin> getAdmins()  throws DaoException{
+		System.out.println("heasasasfre");
+		try{
+>>>>>>> Stashed changes
 		return adminService.getAdmins();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new DaoException("Unable to get Admins");
+		}
+		
 	}
 	
 	@RequestMapping(value = "/api/admins",method = RequestMethod.POST)
+<<<<<<< Updated upstream
 	public void addAdmin(@RequestBody Admin a){
+=======
+	public void addAdmin(@RequestBody Admin a) throws DaoException{
+		System.out.println("hefre");
+		try{
+>>>>>>> Stashed changes
 		adminService.addAdmin(a);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new DaoException("Unable to Add Admin");
+		}
 	}
 	
 	@RequestMapping(value = "/api/admins/{id}",method = RequestMethod.DELETE)
+<<<<<<< Updated upstream
 	public void deleteAdmin(@PathVariable("id") String id){
+=======
+	public void deleteAdmin(@PathVariable("id") int id) throws DaoException{
+		try{
+>>>>>>> Stashed changes
 		adminService.deleteAdmin(id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new DaoException("Unable to Delete Admin with Id = "+ id);
+		}
 	}
 	
 	@RequestMapping(value = "/api/admins/{id}",method = RequestMethod.PUT)
-	public void updateAdmin(@PathVariable("id") int id,@RequestBody Admin a){
+	public void updateAdmin(@PathVariable("id") int id,@RequestBody Admin a) throws DaoException{
+		try{
 		adminService.updateAdmin(a);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new DaoException("Unable to update Admin with Id = " + id);
+		}
 	}
 	
 	@RequestMapping(value = "/api/admins/{id}",method = RequestMethod.GET)
+<<<<<<< Updated upstream
 	public @ResponseBody Admin getAdmin(@PathVariable("id") String id){
+=======
+	public @ResponseBody Admin getAdmin(@PathVariable("id") int id) throws DaoException{
+		try{
+>>>>>>> Stashed changes
 		return adminService.getAdmin(id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new DaoException("Unable to get Admin with Id = " + id);
+		}
+	}
+	
+	@ExceptionHandler(DaoException.class)
+	public @ResponseBody ExceptionJSONInfo handleDaoException(HttpServletRequest request, DaoException ex){
+		
+		ExceptionJSONInfo response = new ExceptionJSONInfo();
+		response.setMessage(ex.getMessage());
+		
+		return response;
 	}
 }
-

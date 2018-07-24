@@ -8,10 +8,7 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
-import com.adobe.theforce.entity.Layout;
-import com.adobe.theforce.entity.LayoutLineItem;
 import com.adobe.theforce.entity.Room;
-import com.adobe.theforce.util.RoomLayout;
 
 @Repository
 public class RoomDaoImpl implements RoomDao {
@@ -44,19 +41,34 @@ public class RoomDaoImpl implements RoomDao {
 //			}
 //	}
 	@Override
-	public void addRoom(Room r) {
+	public void addRoom(Room r) throws DaoException {
+		
+		try{
 		em.persist(r);
+		} catch (Exception e){
+			throw new DaoException("Unable to add Room");
+		}
 	}
 
 	@Override
-	public void deleteRoom(int id) {
+	public void deleteRoom(int id) throws Exception {
+		
+		try{
 		Room r = em.find(Room.class, id);
 		em.remove(r);
+		} catch(Exception e){
+			throw e;
+		}
 	}
 
 	@Override
-	public void updateRoom(Room room) {
+	public void updateRoom(Room room) throws Exception {
+		
+		try{
 		em.merge(room);
+		} catch(Exception e){
+			throw e;
+		}
 	}
 	
 //	@Override

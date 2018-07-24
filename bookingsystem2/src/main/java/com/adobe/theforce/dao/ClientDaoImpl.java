@@ -17,29 +17,29 @@ public class ClientDaoImpl implements ClientDao {
 	private EntityManager em;
 	
 	@Override
-	public List<Client> getClients() {
+	public List<Client> getClients()  throws Exception{
 		TypedQuery<Client> query = em.createQuery("SELECT e FROM Client e", Client.class);
 		return query.getResultList();
 	}
 
 	@Override
-	public Client getClient(int id) {
+	public Client getClient(int id)  throws Exception{
 		return em.find(Client.class, id);
 	}
 
 	@Override
-	public void addClient(Client client) {
+	public void addClient(Client client)  throws Exception{
 		em.persist(client);
 	}
 
 	@Override
-	public void deleteClient(int id) {
+	public void deleteClient(int id)  throws Exception{
 		Client e = em.find(Client.class, id);
 		em.remove(e);
 	}
 
 	@Override
-	public void updateClient(Client client) {
+	public void updateClient(Client client)  throws Exception{
 		em.merge(client);
 
 	}

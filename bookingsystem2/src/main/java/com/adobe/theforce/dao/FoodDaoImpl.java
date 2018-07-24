@@ -27,42 +27,63 @@ public class FoodDaoImpl implements FoodDao {
 	 * @see com.adobe.theforce.dao.FoodDao#getFoods()
 	 */
 	@Override
-	public List<Food> getFoods() {
+	public List<Food> getFoods()  throws Exception{
 		TypedQuery<Food> query = em.createQuery("SELECT r FROM Food r", Food.class);
+		try{
 		return query.getResultList();
+		} catch (Exception e){
+			throw e;
+		}
+		
 	}
 
 	/* (non-Javadoc)
 	 * @see com.adobe.theforce.dao.FoodDao#getFood(int)
 	 */
 	@Override
-	public Food getFood(int id) {
+	public Food getFood(int id)  throws Exception{
+		try{
 		return em.find(Food.class, id);
+		} catch (Exception e){
+			throw e;
+		}
 	}
 
 	/* (non-Javadoc)
 	 * @see com.adobe.theforce.dao.FoodDao#addFood(com.adobe.theforce.entity.Food)
 	 */
 	@Override
-	public void addFood(Food food) {
+	public void addFood(Food food)  throws Exception{
+		try{
 		em.persist(food);
+		} catch (Exception e){
+			throw e;
+		}
 	}
 
 	/* (non-Javadoc)
 	 * @see com.adobe.theforce.dao.FoodDao#deleteFood(int)
 	 */
 	@Override
-	public void deleteFood(int id) {
+	public void deleteFood(int id)  throws Exception{
+		try{
 		Food r = em.find(Food.class, id);
 		em.remove(r);
+		} catch (Exception e){
+			throw e;
+		}
 	}
 
 	/* (non-Javadoc)
 	 * @see com.adobe.theforce.dao.FoodDao#updateFood(com.adobe.theforce.entity.Food)
 	 */
 	@Override
-	public void updateFood(Food food) {
+	public void updateFood(Food food)  throws Exception {
+		try{
 		em.merge(food);
+		} catch (Exception e){
+			throw e;
+		}
 	}
 
 }

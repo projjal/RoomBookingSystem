@@ -45,31 +45,31 @@ public class UserService {
 	@Autowired
 	private EquipmentDao equipmentDao;
 	
-	public List<Equipment> getEquipments(){
+	public List<Equipment> getEquipments()  throws Exception{
 		return equipmentDao.getEquipments();
 	}
-	public Equipment getEquipment(int id){
+	public Equipment getEquipment(int id)  throws Exception{
 		return equipmentDao.getEquipment(id);
 	}
 	
 	@Autowired
 	private FoodDao foodDao;
 	
-	public List<Food> getFoods(){
+	public List<Food> getFoods() throws Exception{
 		return foodDao.getFoods();
 	}
-	public Food getFood(int id){
+	public Food getFood(int id)  throws Exception{
 		return foodDao.getFood(id);
 	}
 	
 	@Autowired
 	private LayoutDao layoutDao;
 	
-	public List<Layout> getLayouts() {
+	public List<Layout> getLayouts() throws Exception{
 		return layoutDao.getLayouts();
 	}
 
-	public Layout getLayout(int id) {
+	public Layout getLayout(int id) throws Exception{
 		return layoutDao.getLayout(id);
 	}
 
@@ -77,7 +77,7 @@ public class UserService {
 	private ClientDao clientDao;
 	
 	@Transactional
-	public void addClient(Client client){
+	public void addClient(Client client)  throws Exception{
 		clientDao.addClient(client);
 	}
 	
@@ -85,7 +85,7 @@ public class UserService {
 	private BookingDao bookingDao;
 	
 	@Transactional
-	public void addBooking(Booking booking){
+	public void addBooking(Booking booking)  throws Exception{
 		bookingDao.addBooking(booking);
 	}
 }

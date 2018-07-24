@@ -18,31 +18,31 @@ public class EquipmentDaoImpl implements EquipmentDao {
 	private EntityManager em;
 	
 	@Override
-	public List<Equipment> getEquipments() {
+	public List<Equipment> getEquipments()  throws Exception {
 		TypedQuery<Equipment> query = em.createQuery("SELECT e FROM Equipment e", Equipment.class);
 		return query.getResultList();
 	}
 
 	@Override
-	public Equipment getEquipment(int id) {
+	public Equipment getEquipment(int id)  throws Exception{
 		return em.find(Equipment.class, id);
 	}
 
 	@Override
-	public void addEquipment(Equipment equipment) {
+	public void addEquipment(Equipment equipment)  throws Exception{
 		em.persist(equipment);
 
 	}
 
 	@Override
-	public void deleteEquipment(int id) {
+	public void deleteEquipment(int id)  throws Exception{
 		Equipment e = em.find(Equipment.class, id);
 		em.remove(e);
 
 	}
 
 	@Override
-	public void updateEquipment(Equipment equipment) {
+	public void updateEquipment(Equipment equipment)  throws Exception {
 		em.merge(equipment);
 
 	}

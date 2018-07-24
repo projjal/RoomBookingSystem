@@ -15,6 +15,7 @@ import com.adobe.theforce.dao.AdminDao;
 import com.adobe.theforce.dao.BookingComparator;
 import com.adobe.theforce.dao.BookingDao;
 import com.adobe.theforce.dao.ClientDao;
+import com.adobe.theforce.dao.DaoException;
 import com.adobe.theforce.dao.EquipmentDao;
 import com.adobe.theforce.dao.FoodDao;
 import com.adobe.theforce.dao.LayoutDao;
@@ -51,18 +52,36 @@ public class AdministratorService {
 	}
 	
 	@Transactional
-	public void addRoom(Room r){
-		roomDao.addRoom(r);
+	public void addRoom(Room r) throws Exception {
+		
+		try {
+			roomDao.addRoom(r);
+		} catch (DaoException e) {
+			// TODO Auto-generated catch block
+			System.out.println("In Service" + e.getMessage());
+			throw e;
+		}
 	}
 	
 	@Transactional
-	public void deleteRoom(int id){
+	public void deleteRoom(int id) throws Exception{
+		
+		try{
 		roomDao.deleteRoom(id);
+		} catch(Exception e){
+			throw e;
+		}
 	}
 	
 	@Transactional
-	public void updateRoom(Room room){
-		roomDao.updateRoom(room);
+	public void updateRoom(Room room) throws Exception {
+		
+		try {
+			roomDao.updateRoom(room);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw e;
+		}
 	}
 	
 //	@Transactional
@@ -78,25 +97,25 @@ public class AdministratorService {
 	private BookingDao bookingDao;
 	
 	@Transactional
-	public void addBooking(Booking booking){
+	public void addBooking(Booking booking)  throws Exception{
 		bookingDao.addBooking(booking);
 	}
 	
-	public List<Booking> getBookings(){
+	public List<Booking> getBookings()  throws Exception{
 		return bookingDao.getBookings();
 	}
 	
-	public Booking getBooking(int id){
+	public Booking getBooking(int id)  throws Exception{
 		return bookingDao.getBooking(id);
 	}
 	
 	@Transactional
-	public void deleteBooking(int id){
+	public void deleteBooking(int id)  throws Exception{
 		bookingDao.deleteBooking(id);
 	}
 	
 	@Transactional
-	public void updateBooking(Booking booking){
+	public void updateBooking(Booking booking)  throws Exception{
 		bookingDao.updateBooking(booking);
 	}
 	
@@ -104,7 +123,7 @@ public class AdministratorService {
 	 * Latest 3 bookings for the dashboard
 	 */
 	
-	public List<Booking> getLatestBookings(){
+	public List<Booking> getLatestBookings()  throws Exception{
 		List<Booking> b = bookingDao.getBookings();
 		b.sort(new BookingComparator());
 		List<Booking> result = new ArrayList<Booking>();
@@ -120,7 +139,7 @@ public class AdministratorService {
 	 * Number of Bookings made today
 	 */
 	
-	public int getTodaysBookings(){
+	public int getTodaysBookings()  throws Exception{
 		int count = 0;
 		Calendar today = Calendar.getInstance();
 		today.set(Calendar.HOUR_OF_DAY, 0);
@@ -141,7 +160,7 @@ public class AdministratorService {
 	 * Total number of bookings
 	 */
 	
-	public int getTotalBookings(){
+	public int getTotalBookings()  throws Exception{
 		return bookingDao.getBookings().size();
 	}
 	
@@ -152,25 +171,25 @@ public class AdministratorService {
 	@Autowired
 	private ClientDao clientDao;
 	
-	public List<Client> getClients(){
+	public List<Client> getClients()  throws Exception{
 		return clientDao.getClients();
 	}
-	public Client getClient(int id){
+	public Client getClient(int id)  throws Exception{
 		return clientDao.getClient(id);
 	}
 	
 	@Transactional
-	public void addClient(Client client){
+	public void addClient(Client client)  throws Exception{
 		clientDao.addClient(client);
 	}
 	
 	@Transactional
-	public void deleteClient(int id){
+	public void deleteClient(int id)  throws Exception{
 		clientDao.deleteClient(id);
 	}
 	
 	@Transactional
-	public void updateClient(Client client){
+	public void updateClient(Client client)  throws Exception{
 		clientDao.updateClient(client);
 	}
 	
@@ -181,25 +200,25 @@ public class AdministratorService {
 	@Autowired
 	private EquipmentDao equipmentDao;
 	
-	public List<Equipment> getEquipments(){
+	public List<Equipment> getEquipments()  throws Exception{
 		return equipmentDao.getEquipments();
 	}
-	public Equipment getEquipment(int id){
+	public Equipment getEquipment(int id)  throws Exception{
 		return equipmentDao.getEquipment(id);
 	}
 	
 	@Transactional
-	public void addEquipment(Equipment equipment){
+	public void addEquipment(Equipment equipment)  throws Exception{
 		equipmentDao.addEquipment(equipment);
 	}
 	
 	@Transactional
-	public void deleteEquipment(int id){
+	public void deleteEquipment(int id)  throws Exception{
 		equipmentDao.deleteEquipment(id);
 	}
 	
 	@Transactional
-	public void updateEquipment(Equipment equipment){
+	public void updateEquipment(Equipment equipment)  throws Exception{
 		equipmentDao.updateEquipment(equipment);
 	}
 	
@@ -210,25 +229,25 @@ public class AdministratorService {
 	@Autowired
 	private FoodDao foodDao;
 	
-	public List<Food> getFoods(){
+	public List<Food> getFoods()  throws Exception{
 		return foodDao.getFoods();
 	}
-	public Food getFood(int id){
+	public Food getFood(int id)  throws Exception{
 		return foodDao.getFood(id);
 	}
 	
 	@Transactional
-	public void addFood(Food food){
+	public void addFood(Food food)  throws Exception{
 		foodDao.addFood(food);
 	}
 	
 	@Transactional
-	public void deleteFood(int id){
+	public void deleteFood(int id)  throws Exception{
 		foodDao.deleteFood(id);
 	}
 	
 	@Transactional
-	public void updateFood(Food food){
+	public void updateFood(Food food)  throws Exception{
 		foodDao.updateFood(food);
 	}
 	
@@ -239,27 +258,47 @@ public class AdministratorService {
 	@Autowired
 	private LayoutDao layoutDao;
 	
-	public List<Layout> getLayouts() {
+	public List<Layout> getLayouts() throws Exception{
+		try {
 		return layoutDao.getLayouts();
+		} catch (Exception e){
+			throw e;
+		}
 	}
 
-	public Layout getLayout(int id) {
+	public Layout getLayout(int id) throws Exception{
+		try{
 		return layoutDao.getLayout(id);
+		} catch (Exception e){
+			throw e;
+		}
 	}
 
 	@Transactional
-	public void addLayout(Layout layout) {
+	public void addLayout(Layout layout) throws Exception{
+		try{
 		layoutDao.addLayout(layout);
+		} catch (Exception e){
+			throw e;
+		}
 	}
 
 	@Transactional
-	public void deleteLayout(int id) {
+	public void deleteLayout(int id) throws Exception{
+		try{
 		layoutDao.deleteLayout(id);
+		} catch (Exception e){
+			throw e;
+		}
 	}
 	
 	@Transactional
-	public void updateLayout(Layout layout) {
+	public void updateLayout(Layout layout) throws Exception{
+		try{
 		layoutDao.updateLayout(layout);
+		} catch (Exception e){
+			throw e;
+		}
 	}
 	
 	/*
@@ -269,26 +308,34 @@ public class AdministratorService {
 	@Autowired
 	private AdminDao adminDao;
 	
-	public List<Admin> getAdmins(){
+	public List<Admin> getAdmins()  throws Exception{
 		System.out.println("here");
 		return adminDao.getAdmins();
 	}
+<<<<<<< Updated upstream
 	public Admin getAdmin(String id){
+=======
+	public Admin getAdmin(int id)  throws Exception{
+>>>>>>> Stashed changes
 		return adminDao.getAdmin(id);
 	}
 	
 	@Transactional
-	public void addAdmin(Admin admin){
+	public void addAdmin(Admin admin)  throws Exception{
 		adminDao.addAdmin(admin);
 	}
 	
 	@Transactional
+<<<<<<< Updated upstream
 	public void deleteAdmin(String id){
+=======
+	public void deleteAdmin(int id)  throws Exception{
+>>>>>>> Stashed changes
 		adminDao.deleteAdmin(id);
 	}
 	
 	@Transactional
-	public void updateAdmin(Admin admin){
+	public void updateAdmin(Admin admin)  throws Exception{
 		adminDao.updateAdmin(admin);
 	}	
 
