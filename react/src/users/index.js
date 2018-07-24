@@ -16,7 +16,7 @@ class UserApp extends Component{
     return(
       <Router history={history}>
         <div className='container-fluid'>
-        <div className="col-md-12 panel-bar" ><h6><Link to='/login'>admin sigin</Link></h6></div>
+        <div className="col-md-12 panel-bar" ><Link to='/login'><button className="btn btn-primary" style={{"float":"right"}}>Login as Admin</button></Link></div>
         <UserStatus />
         <UserMainTab />
         </div>

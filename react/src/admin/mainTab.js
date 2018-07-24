@@ -20,6 +20,7 @@ class AdminMainTab extends Component{
                         <Route path='/equipments' component={AdminEquipments}/>
                         <Route path='/foods' component={AdminFoods}/>
                         <Route path='/roomLayouts' component={AdminLayout}/>
+                        <Route path='/logout' component={Logout}/>
 
                     </Switch>
                 </main>
