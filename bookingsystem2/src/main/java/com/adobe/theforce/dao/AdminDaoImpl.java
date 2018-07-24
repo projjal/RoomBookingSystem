@@ -21,23 +21,13 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public List<Admin> getAdmins()  throws Exception{
 		TypedQuery<Admin> query = em.createQuery("SELECT a FROM Admin a", Admin.class);
-<<<<<<< Updated upstream
 		return query.getResultList();
 	}
 
-	@Override
-	public Admin getAdmin(String id) {
-=======
-		
-		
-		List<Admin> list = query.getResultList();
-		
-		return list;
-	}
 
 	@Override
 	public Admin getAdmin(int id)  throws Exception{
->>>>>>> Stashed changes
+
 		return em.find(Admin.class, id);
 	}
 
@@ -47,12 +37,8 @@ public class AdminDaoImpl implements AdminDao {
 
 	}
 
-	@Override
-<<<<<<< Updated upstream
-	public void deleteAdmin(String id) {
-=======
+	
 	public void deleteAdmin(int id)  throws Exception{
->>>>>>> Stashed changes
 		Admin a = em.find(Admin.class, id);
 		em.remove(a);
 
@@ -61,6 +47,13 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public void updateAdmin(Admin admin)  throws Exception{
 		em.merge(admin);
+	}
+	
+	@Override
+	public Admin getAdmin(String id) throws Exception{
+		TypedQuery<Admin> query = em.createQuery("SELECT a FROM Admin a WHERE a.emailID = :id", Admin.class);
+		Admin result =  query.getSingleResult();
+		return result;
 	}
 
 }

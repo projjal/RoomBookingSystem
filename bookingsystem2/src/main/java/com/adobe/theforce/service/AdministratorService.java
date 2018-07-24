@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.persistence.TypedQuery;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -312,11 +314,7 @@ public class AdministratorService {
 		System.out.println("here");
 		return adminDao.getAdmins();
 	}
-<<<<<<< Updated upstream
-	public Admin getAdmin(String id){
-=======
 	public Admin getAdmin(int id)  throws Exception{
->>>>>>> Stashed changes
 		return adminDao.getAdmin(id);
 	}
 	
@@ -326,11 +324,7 @@ public class AdministratorService {
 	}
 	
 	@Transactional
-<<<<<<< Updated upstream
-	public void deleteAdmin(String id){
-=======
 	public void deleteAdmin(int id)  throws Exception{
->>>>>>> Stashed changes
 		adminDao.deleteAdmin(id);
 	}
 	
@@ -338,5 +332,9 @@ public class AdministratorService {
 	public void updateAdmin(Admin admin)  throws Exception{
 		adminDao.updateAdmin(admin);
 	}	
-
+	
+	@Transactional
+	public Admin getAdmin(String id) throws Exception{
+		return adminDao.getAdmin(id);
+	}
 }

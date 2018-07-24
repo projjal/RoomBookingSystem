@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.adobe.theforce.dao.AdminDao;
+import com.adobe.theforce.dao.DaoException;
 import com.adobe.theforce.entity.Admin;
 
 import static java.util.Collections.emptyList;
@@ -19,8 +20,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	AdminDao adminDao;
 	
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Admin admin = adminDao.getAdmin(username);
+	public UserDetails loadUserByUsername(String username) {
+		Admin admin = null;
+		try{
+			admin = adminDao.getAdmin(username);
+		} catch (Exception e) {
+				System.out.println("in UserDetailsService");
+			}
 		System.out.println("check " + username);
 		if (admin == null) {
             throw new UsernameNotFoundException(username);

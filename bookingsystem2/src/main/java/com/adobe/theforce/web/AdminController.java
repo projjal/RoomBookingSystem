@@ -5,11 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-<<<<<<< Updated upstream
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-=======
 import org.springframework.web.bind.annotation.ExceptionHandler;
->>>>>>> Stashed changes
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,19 +30,31 @@ public class AdminController {
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@RequestMapping(value = "/api/admins/signup",method = RequestMethod.POST)
-	public void signUp(@RequestBody Admin user){
+	public void signUp(@RequestBody Admin user) throws DaoException {
+
+		String emailId = user.getEmailID();
+		Admin temp = null;
+		try{
+		temp = adminService.getAdmin(emailId);
+		}catch(Exception e){
+			
+		}
+		if(temp != null){
+			throw new DaoException("Admin EmailId Already Exist");
+		}
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+		try{
 		adminService.addAdmin(user);
+		} catch (Exception e) {
+		// TODO Auto-generated catch block
+		throw new DaoException("Unable to get Admins");
+		}
 	}
 	
 	@RequestMapping(value = "/api/admins",method = RequestMethod.GET)
-<<<<<<< Updated upstream
-	public @ResponseBody List<Admin> getAdmins(){
-=======
 	public @ResponseBody List<Admin> getAdmins()  throws DaoException{
 		System.out.println("heasasasfre");
 		try{
->>>>>>> Stashed changes
 		return adminService.getAdmins();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -55,13 +64,9 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/api/admins",method = RequestMethod.POST)
-<<<<<<< Updated upstream
-	public void addAdmin(@RequestBody Admin a){
-=======
 	public void addAdmin(@RequestBody Admin a) throws DaoException{
 		System.out.println("hefre");
 		try{
->>>>>>> Stashed changes
 		adminService.addAdmin(a);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -70,12 +75,9 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/api/admins/{id}",method = RequestMethod.DELETE)
-<<<<<<< Updated upstream
-	public void deleteAdmin(@PathVariable("id") String id){
-=======
+
 	public void deleteAdmin(@PathVariable("id") int id) throws DaoException{
 		try{
->>>>>>> Stashed changes
 		adminService.deleteAdmin(id);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -94,12 +96,8 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/api/admins/{id}",method = RequestMethod.GET)
-<<<<<<< Updated upstream
-	public @ResponseBody Admin getAdmin(@PathVariable("id") String id){
-=======
 	public @ResponseBody Admin getAdmin(@PathVariable("id") int id) throws DaoException{
 		try{
->>>>>>> Stashed changes
 		return adminService.getAdmin(id);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
