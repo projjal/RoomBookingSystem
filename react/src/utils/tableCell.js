@@ -30,7 +30,7 @@ class TableCell extends Component{
     }
     render(){
       if(this.props.type==="image")
-        return(<td><img src={this.props.data}/></td>);
+        return(<td><img height="80px" width="80px" src={this.props.data}/></td>);
       if(this.props.type==="button")
         return(<td><button className="btn btn-primary" onClick={evt=>this.deleteEntity(this.props.entity,this.props.record)}>Delete</button> </td>);
       return (  

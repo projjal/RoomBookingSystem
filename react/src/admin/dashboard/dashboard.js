@@ -10,7 +10,7 @@ class BookingRecord extends Component{
         <li className="list-group-item">
             <div>
                 {this.props.booking.roomType}
-                Date: {this.booking.bookingForDate}
+                Date: {this.props.booking.bookingForDate}
                 {this.props.booking.client.name}
             </div>  
         </li>
