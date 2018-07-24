@@ -42,23 +42,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.cors().and()
 			.csrf().disable()
-////			.antMatcher("/api/admins").permitAll()
 			.authorizeRequests()
-				.antMatchers(HttpMethod.POST, "/api/admins/signup").permitAll()
+				.antMatchers(HttpMethod.POST, "/api/bookings").permitAll()
+				.antMatchers(HttpMethod.GET, "/api/bookings").authenticated()
+				.antMatchers(HttpMethod.GET,"/api/**").permitAll()
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
 				.loginProcessingUrl("/api/login")
-				.defaultSuccessUrl("/api/rooms");
-//				.permitAll()
-//				.and()
-//			.httpBasic();
-//				.and()
-//            .addFilter(new JWTAuthenticationFilter(authenticationManager()))
-//            .addFilter(new JWTAuthorizationFilter(authenticationManager()));
-////            .formLogin();
-////				.requestCache()
-////                	.requestCache(new NullRequestCache())
+//				.defaultSuccessUrl("/api/loginsuccess")
+//				.requestCache()
+//                	.requestCache(new NullRequestCache())
+				.and()
+			.logout()
+				.logoutUrl("/api/logout")
+//				.logoutSuccessUrl("api/logoutsuccess");
+				.invalidateHttpSession(true);
 					
 			
 	}

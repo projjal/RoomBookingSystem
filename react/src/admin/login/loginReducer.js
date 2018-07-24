@@ -20,15 +20,12 @@ export function login(email, password) {
       "Content-Type": "application/x-www-form-urlencoded"
     }})
         .then((response)=>{
-            console.log("hello");
-            console.log(response);
             if(response.status===200){
-                console.log("Djflsflswlfs")
+              // dispatch(setLoginSuccess(true));
             }
         }).catch((error)=>{
             console.log("error maybe :P")
             throw error;
-            //dispatch({type : "ROOMS_LIST_FAILED", error : error});
         }); 
     // callLoginApi(email, password, error => {
     //   dispatch(setLoginPending(false));
