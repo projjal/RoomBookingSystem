@@ -5,6 +5,7 @@ import AdminBookings from './bookings/bookings';
 import AdminRooms from './rooms/rooms';
 import LoginForm from './login/login';
 import AdminEquipments from './equipments/equipments';
+import AdminUsers from './users/users';
 import AdminFoods from './food/foods';
 import AdminLayout from './layouts/layouts';
 import Logout from './logout.js';

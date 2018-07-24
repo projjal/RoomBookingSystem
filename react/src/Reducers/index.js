@@ -4,13 +4,16 @@ import loginReducer from '../admin/login/loginReducer';
 import EquipmentReducer from '../admin/equipments/equipmentsReducers';
 import FoodReducer from '../admin/food/foodsReducers';
 import layoutReducer from '../admin/layouts/layoutReducer';
+import UserReducer from '../admin/users/usersReducers';
 
 const rootReducer= combineReducers({
     rooms:RoomReducer,
     layouts:layoutReducer,
     login:loginReducer,
     equipments:EquipmentReducer,
-    foods:FoodReducer
+    foods:FoodReducer,
+    users:UserReducer
+    
 
 });
 
