@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.adobe.theforce.dao.DaoException;
 import com.adobe.theforce.entity.Admin;
 import com.adobe.theforce.entity.ExceptionJSONInfo;
+import com.adobe.theforce.entity.PublicAdmin;
 import com.adobe.theforce.service.AdminService;
+import com.adobe.theforce.service.PublicAdminService;
 
 
 @RestController
@@ -25,6 +27,9 @@ public class AdminController {
 	
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private PublicAdminService publicAdminService;
 	
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -52,10 +57,9 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/api/admins",method = RequestMethod.GET)
-	public @ResponseBody List<Admin> getAdmins()  throws DaoException{
-		System.out.println("heasasasfre");
+	public @ResponseBody List<PublicAdmin> getAdmins()  throws DaoException{
 		try{
-		return adminService.getAdmins();
+			return publicAdminService.getPublicAdminListFromAdmins(adminService.getAdmins());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			throw new DaoException("Unable to get Admins");
@@ -95,9 +99,9 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/api/admins/{id}",method = RequestMethod.GET)
-	public @ResponseBody Admin getAdmin(@PathVariable("id") int id) throws DaoException{
+	public @ResponseBody PublicAdmin getAdmin(@PathVariable("id") int id) throws DaoException{
 		try{
-		return adminService.getAdmin(id);
+			return publicAdminService.getPublicAdminFromAdmin(adminService.getAdmin(id));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			throw new DaoException("Unable to get Admin with Id = " + id);

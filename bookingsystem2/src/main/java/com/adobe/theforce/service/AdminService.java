@@ -16,7 +16,6 @@ public class AdminService {
 	private AdminDao adminDao;
 	
 	public List<Admin> getAdmins()  throws Exception{
-		System.out.println("here");
 		return adminDao.getAdmins();
 	}
 	public Admin getAdmin(int id)  throws Exception{
