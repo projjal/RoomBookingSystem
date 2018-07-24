@@ -25,6 +25,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		try{
 			admin = adminDao.getAdmin(username);
 		} catch (Exception e) {
+				e.printStackTrace();
 				System.out.println("in UserDetailsService");
 			}
 		System.out.println("check " + username);

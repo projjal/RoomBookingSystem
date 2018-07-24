@@ -50,10 +50,10 @@ public class AdminDaoImpl implements AdminDao {
 	}
 	
 	@Override
-	public Admin getAdmin(String id) throws Exception{
-		TypedQuery<Admin> query = em.createQuery("SELECT a FROM Admin a WHERE a.emailID = :id", Admin.class);
-		Admin result =  query.getSingleResult();
-		return result;
+	public Admin getAdmin(String emailID) throws Exception{
+		TypedQuery<Admin> query = em.createQuery("SELECT a FROM Admin a WHERE a.emailID = :emailID", Admin.class);
+		Admin a = query.setParameter("emailID", emailID).getSingleResult();
+		return a;
 	}
 
 }
