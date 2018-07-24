@@ -30,17 +30,26 @@ class RoomList extends Component{
         if(JSON.stringify(this.props.rooms) !== JSON.stringify({})){
             console.log('rooms',this.props.rooms.rooms.length);
             /*Commented changes use the general table*/
-             /* var arr = Object.keys(this.props.rooms.rooms[0]);
-             console.log(arr);
-             var arr1=["id","type","capacity","image"];
-             return(
-             <div>
-             {console.log("In here")}
-             {console.log(this.props.rooms.rooms)}
-             <TableView heading={arr} data={this.props.rooms.rooms}/>
-             </div>
-             ); */
-            return(
+            if(this.props.rooms.rooms.length>0){
+                var arr = Object.keys(this.props.rooms.rooms[0]);
+                console.log(arr);
+                var arr1=["id","type","capacity","image","button"];
+                return(
+                <div>
+                    {console.log("In here")}
+                    {console.log(this.props.rooms.rooms)}
+                    <TableView heading={arr1} data={this.props.rooms.rooms} entity="rooms"/>
+                </div>
+             );
+            }
+            else{
+                //console.log('rooms',this.props.rooms);
+                return(
+                    <div>Loading...</div>
+                );
+            }
+             
+            /* return(
                 <div>
                     <ul className='list-group col-md-12'>
                     {
@@ -50,10 +59,10 @@ class RoomList extends Component{
                     }
                     </ul>
                 </div>
-            );
+            ); */
         }
         else{
-            console.log('rooms',this.props.rooms);
+           // console.log('rooms',this.props.rooms);
             return(
                 <div>Loading...</div>
             );

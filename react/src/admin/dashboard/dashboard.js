@@ -1,10 +1,60 @@
 import React, {Component} from 'react';
 import StatusPanel from './StatusPanel';
+import axios from 'axios';
+
+class BookingRecord extends Component{
+    constructor(props){
+        super(props);
+    }
+    render(){
+        <li className="list-group-item">
+            <div>
+                {this.props.booking.roomType}
+                Date: {this.booking.bookingForDate}
+                {this.props.booking.client.name}
+            </div>  
+        </li>
+    }
+}
 export default class AdminDashboard extends Component{
+    constructor(props){
+        super(props);
+        this.state={
+            latestBookings:null
+        }
+        axios.get('/api/bookings/latest')
+        .then(response=>{
+            this.setState({latestBookings:response.data})
+            console.log(response);
+        })
+        .catch(err=> {throw err;});
+    }
+    getLatestBookings=()=>{
+        if(this.state.latestBookings){
+            if(this.state.latestBookings.length>0){
+                return(
+                    <div>
+                        <ul className="list-group">
+                            {this.state.latestBookings.map((booking,i)=><BookingRecord data={booking} key={i}/>)}
+                        </ul>
+                    </div>
+                )
+            }
+            else{
+                return(<div> most recent booking info is displayed here</div>
+                );
+            }
+            
+        }
+        else{
+            return(<div> most recent booking info is displayed here</div>
+            );
+        }
+    }
     render(){
         return(
             <div>
-                <h5 className='div-heading'>Dashboard</h5>
+                <h3 className='div-heading'>Dashboard</h3>
                 <StatusPanel/>
 
                 <div className="container-fluid" style={{"padding":"2px","margin":"5px"}} >
@@ -16,7 +66,7 @@ export default class AdminDashboard extends Component{
                                  Recent Bookings
                             </div>
                             <div className="div-content">
-                                <div> most recent booking info is displayed here</div>
+                                {this.getLatestBookings()}
                             </div>
                         </div>
                     </div>

@@ -28,8 +28,7 @@ export function fetchLayouts(){
         .then((response)=>{
             console.log(response.data);
             var layoutsList=response.data;
-           // asyncLoop(0,layoutsList,dispatch);
-           dispatch({type : "LAYOUTS_LIST_FETCH", payload:layoutsList});
+            asyncLoop(0,layoutsList,dispatch);
 
         }).catch((error)=>{
             dispatch({type : "LAYOUTS_LIST_FAILED", error : error});

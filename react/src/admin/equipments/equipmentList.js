@@ -12,16 +12,25 @@ class EquipmentList extends Component{
         if(JSON.stringify(this.props.equipments) !== JSON.stringify({})){
           console.log("Yahoo");
           console.log('equipments',this.props.equipments.equipments.length);
-          var arr = Object.keys(this.props.equipments.equipments[0]);
-          console.log(arr);
+          if(this.props.equipments.equipments.length>0){
+            var arr = Object.keys(this.props.equipments.equipments[0]);
+            console.log(arr);
             return(
               <div>
               <TableView heading={arr} data={this.props.equipments.equipments}/>
               </div>
             )
+          }
+          else{
+           // console.log('equipments',this.props.equipments);
+            return(
+                <div>Loading...</div>
+            );
+          }  
+          
         }
         else{
-            console.log('equipments',this.props.equipments);
+            //console.log('equipments',this.props.equipments);
             return(
                 <div>Loading...</div>
             );

@@ -12,13 +12,17 @@ class FoodList extends Component{
         if(JSON.stringify(this.props.foods) !== JSON.stringify({})){
           console.log("Yahoo");
           console.log('foods',this.props.foods.foods.length);
-          var arr = Object.keys(this.props.foods.foods[0]);
-          console.log(arr);
-            return(
-              <div>
-              <TableView heading={arr} data={this.props.foods.foods}/>
-              </div>
-            )
+          if(this.props.foods.foods.length>0){
+            var arr = Object.keys(this.props.foods.foods[0]);
+            arr.push("button");
+            console.log(arr);
+                return(
+                <div>
+                <TableView heading={arr} data={this.props.foods.foods}/>
+                </div>
+                )
+          }
+           
         }
         else{
             console.log('foods',this.props.foods);

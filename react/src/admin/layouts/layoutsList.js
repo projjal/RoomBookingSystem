@@ -16,12 +16,24 @@ class LayoutsList extends Component{
             );
 
         }
-        return(
-            <div>
-                List fetched!
-                {console.log('layouts',this.props.layouts.layouts.length)}
-            </div>
-        );
+        else if(this.props.layouts.layouts.length<=0){
+            return (
+                <div>Loading....</div>
+            );
+        }
+        else{
+            var arr = Object.keys(this.props.layouts.layouts[0]);
+            console.log(arr);
+            arr.push("button");
+            var arr1=["id","type","capacity","image"];
+            return(
+                <div>
+                    {console.log('layouts',this.props.layouts.layouts.length)}
+                    <TableView heading={arr} data={this.props.layouts.layouts} entity="layouts"/>
+                </div>
+           );
+        }
+        
     }
 }
 

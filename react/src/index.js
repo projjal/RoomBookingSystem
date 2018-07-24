@@ -19,7 +19,7 @@ class App extends Component{
         return(
             <BrowserRouter>
             <div className='container-fluid'>
-                <div className="col-md-12 panel-bar" ><h4>Admin Panel</h4></div>
+                <div className="col-md-12 panel-bar" ><h2>Admin Panel</h2></div>
                 <AdminNavigationTab/>
                 <AdminMainTab/>
             </div>
