@@ -51,13 +51,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 			.formLogin()
 				.loginProcessingUrl("/api/login")
-//				.defaultSuccessUrl("/api/loginsuccess")
+				.defaultSuccessUrl("/api/loginsuccess")
 //				.requestCache()
 //                	.requestCache(new NullRequestCache())
 				.and()
 			.logout()
 				.logoutUrl("/api/logout")
-//				.logoutSuccessUrl("api/logoutsuccess");
+				.logoutSuccessUrl("/api/logoutsuccess")
 				.invalidateHttpSession(true);
 					
 			

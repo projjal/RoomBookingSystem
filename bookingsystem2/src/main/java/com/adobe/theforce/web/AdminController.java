@@ -65,7 +65,6 @@ public class AdminController {
 	
 	@RequestMapping(value = "/api/admins",method = RequestMethod.POST)
 	public void addAdmin(@RequestBody Admin a) throws DaoException{
-		System.out.println("hefre");
 		try{
 		adminService.addAdmin(a);
 		} catch (Exception e) {

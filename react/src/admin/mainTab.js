@@ -16,7 +16,7 @@ class AdminMainTab extends Component{
                         <Route exact path='/(|dashboard)' component={AdminDashboard}/>
                         <Route path='/bookings' component={AdminBookings}/>
                         <Route path='/rooms' component={AdminRooms}/>
-                        <Route path='/login' component={LoginForm}/>
+                        {/* <Route path='/login' component={LoginForm}/> */}
                         <Route path='/equipments' component={AdminEquipments}/>
                         <Route path='/foods' component={AdminFoods}/>
                         <Route path='/roomLayouts' component={AdminLayout}/>

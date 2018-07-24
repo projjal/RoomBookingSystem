@@ -19,13 +19,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class AppConfig {
 	
-	@Bean //the returned object is managed by spring...
-		 // we put the @bean annotation on the function that returns the object tobe managed by spring anf not on the class
+	@Bean
 	public DataSource getDataSource (){ //pool of database connection unlike the jdbc
 		DriverManagerDataSource ds = new DriverManagerDataSource();
 		ds.setDriverClassName("com.mysql.jdbc.Driver");
 		ds.setUsername("root");
-		ds.setPassword("kshkumar");
+		ds.setPassword("password");
 		ds.setUrl("jdbc:mysql://localhost:3306/adobe_trg_db?createDatabaseIfNotExist=true");
 		return  ds;
 	}

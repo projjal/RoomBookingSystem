@@ -43,6 +43,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "s": "^0.1.1",
-    "youtube-api-search": "0.0.5"
+    "youtube-api-search": "0.0.5",
+    "history": "^4.7.2"
   }
 }

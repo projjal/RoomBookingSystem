@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 var querystring = require('querystring');
+import history from '../../history'
 
 const SET_LOGIN_PENDING = 'SET_LOGIN_PENDING';
 const SET_LOGIN_SUCCESS = 'SET_LOGIN_SUCCESS';
@@ -8,6 +9,8 @@ const SET_LOGIN_ERROR = 'SET_LOGIN_ERROR';
 
 export function login(email, password) {
   return dispatch => {
+
+    
     // dispatch(setLoginPending(true));
     // dispatch(setLoginSuccess(false));
     // dispatch(setLoginError(null));
@@ -21,12 +24,15 @@ export function login(email, password) {
     }})
         .then((response)=>{
             if(response.status===200){
+              history.push('/dashboard')
               // dispatch(setLoginSuccess(true));
             }
         }).catch((error)=>{
             console.log("error maybe :P")
             throw error;
         }); 
+
+
     // callLoginApi(email, password, error => {
     //   dispatch(setLoginPending(false));
     //   if (!error) {
