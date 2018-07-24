@@ -79,6 +79,8 @@ class AddRoom extends Component{
         reader.readAsDataURL(file);
         reader.onload = (e)=> {
             var imgFile=reader.result;
+            //-------adding resize code
+            
            // console.log('image result',imgFile);
             self.setState({image:imgFile});
         };    
