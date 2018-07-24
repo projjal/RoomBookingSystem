@@ -10,7 +10,8 @@ class BookingFood extends Component{
 		this.state={
 			foodList:[],
 			tprice:0,
-			foodform:{}
+			foodform:{},
+			check:{}
 		}
 	
 		this.func1=this.func1.bind(this);
@@ -36,14 +37,27 @@ func1(res)
 
 	func2(food)
 	{
-		console.log("hii");
+		//console.log("hii");
        var updatedState={};
        updatedState[food.name]={
-       		"name":food.name,
-			"price":food.price,
+       		"foodItemName":food.name,
+			"pricePerUnit":food.price,
+			"id":food.id,
 			"quantity":1,
-			"checked":false
+			"totalPrice":0
 		}
+		  var prev=this.state.foodform;
+       var obj2=Object.assign(prev,updatedState);
+       this.setState({foodform:obj2});
+
+          var updatedState={};
+       updatedState[food.name]={
+			"checked":false,
+		}
+		  var prev=this.state.check;
+       var obj2=Object.assign(prev,updatedState);
+       this.setState({check:obj2});
+
 	}
 
 
@@ -67,9 +81,9 @@ func1(res)
 
 		handleChange(event)
 		{
-			var prev=this.state.foodform;
+			var prev=this.state.check;
 			prev[event.target.name]["checked"]=event.target.checked;
-			this.setState({foodform:prev});
+			this.setState({check:prev});
 		}
 
 		handleChange1(event)
@@ -85,14 +99,16 @@ func1(res)
 		{
 			e.preventDefault();
 			var fooform=this.state.foodform;
+			var check=this.state.check;
 			var fform=[];
 			var x;
 			 var price1=0;
 			for(x in fooform)
 			{
-				if(fooform[x].checked)
+				if(check[x].checked)
 				{
-					price1+=fooform[x].quantity * fooform[x].price;
+					price1+=fooform[x].quantity * fooform[x].pricePerUnit;
+					fooform[x].totalPrice=fooform[x].quantity * fooform[x].pricePerUnit;
 					fform.push(fooform[x]);
 				}
 			}

@@ -6,6 +6,7 @@ import BookingEquipments from './bookingEquipment';
 import BookingFood from './bookingFood';
 import BookingClientDetails from './bookingClientDetails';
 import {Tabs, Tab} from 'react-bootstrap';
+import PostData from './postingBookings';
 
 
 
@@ -26,6 +27,7 @@ constructor(props)
 	},
 		obj:{},
 		equipobj:[],
+		foodobj:[],
 		clientobj:{}
 		
 	}
@@ -36,7 +38,7 @@ constructor(props)
 	this.addFoodData=this.addFoodData.bind(this)
 	this.setFoodPrice=this.setFoodPrice.bind(this)
 	this.addClientData=this.addClientData.bind(this)
-
+	
 }
 
 addData(obj1){
@@ -52,7 +54,10 @@ addFoodData(obj1){
 }
 
 addClientData(obj1){
-	this.setState({clientobj:obj1})
+	this.setState({clientobj:obj1});
+
+
+
 }
 
 setRoomPrice(val){
@@ -71,7 +76,15 @@ setEquipPrice(val){
 setFoodPrice(val){
 	var updated=this.state.prices;
 	updated.foodPrice=val;
+	updated.subTotal=this.state.prices.roomPrice+
+						this.state.prices.equipPrice+
+							this.state.prices.foodPrice;
+	updated.tax=updated.subTotal/10;
+	updated.total=updated.subTotal+updated.tax;
+	updated.deposit=updated.total/10;
+
 	this.setState({prices:updated});
+
 }
 
 
@@ -79,12 +92,22 @@ setFoodPrice(val){
 
 
 
+
+
 render()
-{
+{	
+
+
+	console.log(new Date().getTime());
+
+
+
 	return(
 		<div>
 
-		<Tabs defaultActiveKey={1} >
+		
+
+		<Tabs defaultActiveKey={1} id="1">
 
 		<Tab eventKey={1} title="Booking Details">
 
@@ -120,10 +143,16 @@ render()
 		<BookingClientDetails addClientData={this.addClientData}/>
   		</div>
 
+  		<button onClick={()=>{PostData(this.state.obj,this.state.equipobj,
+  				this.state.foodobj,this.state.prices,
+  				this.state.clientobj)}}>Click me</button> 
+
   		</Tab>
   		</Tabs>
 
-  	{console.log(this.state)}
+
+
+  	
 
   	</div>
 
