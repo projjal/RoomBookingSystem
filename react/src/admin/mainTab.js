@@ -7,20 +7,22 @@ import LoginForm from './login/login';
 import AdminEquipments from './equipments/equipments';
 import AdminFoods from './food/foods';
 import AdminLayout from './layouts/layouts';
+import Logout from './logout.js';
+
 class AdminMainTab extends Component{
     render(){
         return(
             <div className='col-md-8 no-padding '>
                 <main>
                     <Switch>
-                        <Route exact path='/(|dashboard)' component={AdminDashboard}/>
-                        <Route path='/bookings' component={AdminBookings}/>
-                        <Route path='/rooms' component={AdminRooms}/>
+                        <Route exact path='/admin/(|dashboard)' component={AdminDashboard}/>
+                        <Route path='/admin/bookings' component={AdminBookings}/>
+                        <Route path='/admin/rooms' component={AdminRooms}/>
                         {/* <Route path='/login' component={LoginForm}/> */}
-                        <Route path='/equipments' component={AdminEquipments}/>
-                        <Route path='/foods' component={AdminFoods}/>
-                        <Route path='/roomLayouts' component={AdminLayout}/>
-                        <Route path='/logout' component={Logout}/>
+                        <Route path='/admin/equipments' component={AdminEquipments}/>
+                        <Route path='/admin/foods' component={AdminFoods}/>
+                        <Route path='/admin/roomLayouts' component={AdminLayout}/>
+                        <Route path='/admin/logout' component={Logout}/>
 
                     </Switch>
                 </main>

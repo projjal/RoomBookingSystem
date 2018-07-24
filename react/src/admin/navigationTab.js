@@ -7,7 +7,7 @@ class TabOptions extends Component{
     }
     render(){
         return(
-            <Link to={'/'+this.props.item}><li className='list-group-item '>{_.capitalize(this.props.item)}</li></Link>
+            <Link to={'/admin/'+this.props.item}><li className='list-group-item '>{_.capitalize(this.props.item)}</li></Link>
         );
     }
 
