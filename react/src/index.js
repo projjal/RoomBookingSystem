@@ -1,32 +1,35 @@
-import React,{Component} from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter} from 'react-router-dom';
-import AdminNavigationTab from './admin/navigationTab';
-import AdminMainTab from './admin/mainTab';
+import UserMainTab from './users/mainTab.js';
+import UserStatus from './users/status.js';
 import {createStore,applyMiddleware} from 'redux';
-import reducers from './Reducers/'; 
+import reducers from './Reducers/';
 import {Provider} from 'react-redux'; // stitch react and redux
+import { Switch, Route } from 'react-router-dom';
+import {Router} from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import LoginForm from './admin/login/login.js';
+import history from './history.js';
+import UserApp from './users/index.js';
+import AdminApp from './admin/index.js';
 
 const creatStoreWithMiddleware=applyMiddleware(thunk)(createStore);
 import thunk from 'redux-thunk';
-/* ReactDOM.render(
-<Provider store={creatStoreWithMiddleware(reducers)}>
-<App/>
-</Provider>,
-document.querySelector('.container')); */
-class App extends Component{
-    render(){
-        return(
-            <BrowserRouter>
-            <div className='container-fluid'>
-                <div className="col-md-12 panel-bar" ><h2>Admin Panel</h2></div>
-                <AdminNavigationTab/>
-                <AdminMainTab/>
-            </div>
-            </BrowserRouter>
-        );
-    }
-}
 
+class App extends Component{
+  render(){
+    return (
+        <Router history={history}>
+          <div className='container-fluid'>
+            <Switch>
+              <Route path='/login' component={LoginForm}/>
+              <Route exact path='/' component={UserApp}/>
+              <Route path='/admin' component={AdminApp}/>
+            </Switch>
+          </div>
+        </Router>
+    )
+  }
+}
 
 ReactDOM.render(<Provider store={creatStoreWithMiddleware(reducers)}><App/></Provider>,document.querySelector('.app-container'));

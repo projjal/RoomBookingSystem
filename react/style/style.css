@@ -25,7 +25,7 @@
 }
 
 .list-group-item:hover{
-    background-color: #ccc; 
+    background-color: #ccc;
 }
 .panel-bar{
     padding:10px;
@@ -71,7 +71,6 @@ div {
     padding-left:0px !important;
     padding-right:0px !important;
 }
-
 .formdiv{
     padding-bottom: 20px;
     margin-bottom: 40px;
@@ -79,13 +78,10 @@ div {
     border-width: 1px;
     border-color: lightblue;
 }
-
 .formhead{
     background-color: blue;
     color: white;
 }
-
-
-
-
-
+.tab{
+    font-size: 12px;
+}
