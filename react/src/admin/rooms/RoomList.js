@@ -13,7 +13,7 @@ class RoomList extends Component{
                 return (<li className='list-group-item' key={i}>
                 <div className="media">
                     <div className="media-left">
-                        <img src={room.image} className="media-object" />
+                        <img src={room.image} className="media-object" height="42" width="42"/>
                     </div>
                     <div className="media-body container-fluid">
                     <div className="col-md-3">{room.type}</div>
