@@ -1,6 +1,7 @@
 package com.adobe.theforce.entity;
 
 public class PublicAdmin {
+	private int id;
 	private String emailID;
 	private String name;
 	private String mobileNumber;
@@ -8,11 +9,30 @@ public class PublicAdmin {
 	
 	
 	public PublicAdmin(Admin a) {
+		this.id = a.getId();
 		this.emailID = a.getEmailID();
 		this.name = a.getName();
 		this.mobileNumber = a.getMobileNumber();
 		this.address = a.getAddress();
 	}
+	
+	
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
 	/**
 	 * @return the emailID
 	 */

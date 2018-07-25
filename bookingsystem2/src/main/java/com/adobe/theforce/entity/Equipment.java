@@ -15,8 +15,7 @@ public class Equipment {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name = "name")
-	private String Name;
+	private String name;
 	
 	private double price;
 	
@@ -39,7 +38,7 @@ public class Equipment {
 	 */
 	public Equipment(int id, String name, double price, int quantity, boolean multiunits) {
 		this.id = id;
-		Name = name;
+		this.name = name;
 		this.price = price;
 		this.quantity = quantity;
 		this.multiunits = multiunits;
@@ -63,14 +62,14 @@ public class Equipment {
 	 * @return the name
 	 */
 	public String getName() {
-		return Name;
+		return this.name;
 	}
 
 	/**
 	 * @param name the name to set
 	 */
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
 	/**
