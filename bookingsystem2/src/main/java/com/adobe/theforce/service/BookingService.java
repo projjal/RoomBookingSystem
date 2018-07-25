@@ -119,6 +119,7 @@ public class BookingService {
 	    
 //	    System.out.println(date1);
 
+
 	    try {
 	       date = readFormat.parse( date1 );
 	    } catch ( Exception e ) {
