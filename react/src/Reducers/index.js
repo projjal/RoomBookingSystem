@@ -5,7 +5,6 @@ import EquipmentReducer from '../admin/equipments/equipmentsReducers';
 import FoodReducer from '../admin/food/foodsReducers';
 import layoutReducer from '../admin/layouts/layoutReducer';
 import UserReducer from '../admin/users/usersReducers';
-
 const rootReducer= combineReducers({
     rooms:RoomReducer,
     layouts:layoutReducer,
@@ -13,7 +12,7 @@ const rootReducer= combineReducers({
     equipments:EquipmentReducer,
     foods:FoodReducer,
     users:UserReducer
-    
+
 
 });
 

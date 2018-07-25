@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Tabs, Tab} from 'react-bootstrap';
+import MeetingRooms from './meetingRooms.js';
 
 class UserMainTab extends Component{
   render(){
@@ -7,7 +8,7 @@ class UserMainTab extends Component{
       <div className='col-md-9'>
       <Tabs className='tab' defaultActiveKey={1} id="1">
       <Tab eventKey={1} title="Step-1 Meeting Rooms">
-
+      <MeetingRooms />
       </Tab>
 
       <Tab eventKey={2} title="Step-2 Book Room">
