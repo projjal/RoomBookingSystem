@@ -1,12 +1,7 @@
 import React,{Component} from 'react';
-import {Link } from 'react-router-dom'
 import AddFood from './AddFood';
 import FormModal from '../../utils/formModal';
 
-import {addFoods} from './foodsAction';
-import {connect} from 'react-redux';
-import { bindActionCreators } from 'redux';
-import ModalNew from './Modal';
 export class FoodPanel extends Component{
     constructor(props){
         super(props);

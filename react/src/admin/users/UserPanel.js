@@ -1,10 +1,4 @@
 import React,{Component} from 'react';
-import {Link } from 'react-router-dom'
-import AddRoom from './AddUser';
-import {addRoom} from './usersAction';
-import {connect} from 'react-redux';
-import { bindActionCreators } from 'redux';
-import ModalNew from './Modal';
 import AddUser from './AddUser';
 import FormModal from '../../utils/formModal';
 
