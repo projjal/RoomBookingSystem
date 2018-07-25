@@ -28,8 +28,8 @@ class AddRoom extends Component{
         if(target.type==='checkbox'){
             console.log(target.checked);
             if(target.checked){
-                this.setState({layoutId: [...this.state.layoutId, this.props.layouts.layouts[target.value]]});
-                this.setState({layoutName: [...this.state.layoutName, target.value]});  
+                this.setState({layoutId: [...this.state.layoutId, target.value.split('-')[0]]});
+                this.setState({layoutName: [...this.state.layoutName, target.value.split('-')[1]]});  
             }
             else{
                 var tId=target.value.split('-')[0];
@@ -61,9 +61,8 @@ class AddRoom extends Component{
     handleSubmit(e){
         e.preventDefault();
         var self=this;
-        console.log(this.state);
-
-        //this.props.updateFormData(this.state);
+        console.log(this.image);
+        this.props.updateFormData(this.state);
     }
     handleFile(e) {
         var self = this;
@@ -125,7 +124,7 @@ class AddRoom extends Component{
                         return(
                             <div className="checkbox" key={i}>
                                 <label>
-                                <input type="checkbox" name={layout.name}  value={i} onChange={(evt)=>this.handleInputChange(evt)} /> {layout.name}</label>
+                                <input type="checkbox" name={layout.name}  value={layout.id+"-"+layout.name} onChange={(evt)=>this.handleInputChange(evt)} /> {layout.name}</label>
                             </div>
                         );
 
