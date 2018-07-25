@@ -112,16 +112,20 @@ public class BookingService {
 	    DateFormat readFormat = new SimpleDateFormat( "MMM dd yyyy");
 
 	    Date date = null;
+//	    System.out.println(date1);
+	    date1 = date1.replace("\"", "");
+//	    System.out.println(date1);
+
 	    try {
 	       date = readFormat.parse( date1 );
 	    } catch ( Exception e ) {
 	        e.printStackTrace();
 	        throw e;
 	    }
-	    System.out.println(date.getYear() + "  " + date.getMonth() + " " + date.getDate());
+//	    System.out.println(date.getYear() + "  " + date.getMonth() + " " + date.getDate());
 		for(Booking i : b){
 //			System.out.println(date);
-			System.out.println(i.getBookingDate().getYear() + " " + i.getBookingDate().getMonth() + " " + i.getBookingDate().getDate());
+//			System.out.println(i.getBookingDate().getYear() + " " + i.getBookingDate().getMonth() + " " + i.getBookingDate().getDate());
 			if((date.getYear() == i.getBookingDate().getYear())&&(date.getMonth() == i.getBookingDate().getMonth())&&(date.getDate() == i.getBookingDate().getDate()))
 				result.add(i);
 		}

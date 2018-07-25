@@ -114,15 +114,15 @@ public class BookingController {
 		return result;
 	}
 	
-	@RequestMapping(value = "/api/bookings/todays",method = RequestMethod.POST)
+	@RequestMapping(value = "/api/bookings/givenDate",method = RequestMethod.POST)
 	public @ResponseBody List<Booking> getTodayBookingList(@RequestBody String date)  throws DaoException {
 		List<Booking> result = new ArrayList<Booking>();
-		System.out.println(date);
+//		System.out.println(date);
 		try{
 		result = (bookingService.getTodayBookingList(date));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+//			e.printStackTrace();
 			throw new DaoException("Unable to get the Bookings");
 		}
 		return result;
