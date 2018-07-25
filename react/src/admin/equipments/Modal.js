@@ -34,9 +34,6 @@ class ModalNew extends Component{
                                 this.postEquipmentData(formData);
                             }}/>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button onClick={this.handleHide}>Cancel</Button>
-                </Modal.Footer>
                 </Modal>
            </div>
             

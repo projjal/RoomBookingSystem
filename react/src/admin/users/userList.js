@@ -14,8 +14,7 @@ class UserList extends Component{
           console.log('users',this.props.users.users.length);
           if(this.props.users.users.length>0){
             var arr = Object.keys(this.props.users.users[0]);
-            console.log("slice me");
-            console.log(arr);
+            arr.push("button");
             return(
               <div>
               <TableView heading={arr} data={this.props.users.users}/>

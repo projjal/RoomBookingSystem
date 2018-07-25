@@ -25,7 +25,6 @@ export function addUser(data){
                 }
             }).catch((error)=>{
                 throw error;
-                //dispatch({type : "ROOMS_LIST_FAILED", error : error});
             });
         }
 

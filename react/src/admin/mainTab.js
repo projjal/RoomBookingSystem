@@ -22,6 +22,7 @@ class AdminMainTab extends Component{
                         <Route path='/admin/equipments' component={AdminEquipments}/>
                         <Route path='/admin/foods' component={AdminFoods}/>
                         <Route path='/admin/roomLayouts' component={AdminLayout}/>
+                        <Route path='/admin/users' component={AdminUsers}/>
                         <Route path='/admin/logout' component={Logout}/>
 
                     </Switch>

@@ -13,8 +13,8 @@ class EquipmentList extends Component{
           console.log("Yahoo");
           console.log('equipments',this.props.equipments.equipments.length);
           if(this.props.equipments.equipments.length>0){
-            var arr = Object.keys(this.props.equipments.equipments[0]);
-            console.log(arr);
+            var arrActual = Object.keys(this.props.equipments.equipments[0]);
+            var arr=["id","name","quantity","price","button"];
             return(
               <div>
               <TableView heading={arr} data={this.props.equipments.equipments}/>

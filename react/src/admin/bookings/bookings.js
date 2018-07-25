@@ -93,7 +93,7 @@ class BookingTable extends Component{
 		<th>Name</th>
 		<th>Total</th>
 		<th>Status</th>
-		<th> </th>
+		<th>Action</th>
 		</tr>
 		
 

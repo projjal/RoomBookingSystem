@@ -1,39 +1,36 @@
 import React, { Component } from 'react';
 import TableCell from './tableCell';
+
 class TableHeading extends Component{
+  constructor(props){
+    super(props);
+    this.state={
+      headings:{
+        "id":"ID",
+        "emailID":"Email Address",
+        "mobileNumber":"Mobile",
+        "address":"Address",
+        "button":"Action",
+        "image":"Image",
+        "type":"Name",
+        "capacity":"Capacity",
+        "description":"Description",
+        "name":"Name",
+        "price":"Price",
+        "quantity":"Quantity",
+        "multiunits":"Multi Units"
+      }
+    }
+  }
   render(){
     return (
       <thead>
-        {this.props.data.map((ply, i) => <th key={i}>{ply}</th>)}
+        {this.props.data.map((ply, i) => <th key={i}>{(this.state.headings[ply])?this.state.headings[ply]:ply}</th>)}
       </thead>
     )
   }
 }
 
-/* class TableCell extends Component{
-  deleteEntity=(entity, record)=>{
-    switch(entity){
-      case "rooms":{ 
-        //console.log(record);
-        this.props.deleteRoom(record);
-        break;
-      }
-      case "layouts":{ this.props.deleteLayout(record);
-        break;
-      }
-    }
-  }
-  render(){
-    if(this.props.type==="image")
-      return(<td><img src={this.props.data}/></td>);
-    if(this.props.type==="button")
-      return(<td><button className="btn btn-primary" onClick={evt=>this.deleteEntity(this.props.entity,this.props.record)}>Delete</button> </td>);
-    return (  
-      <td>{this.props.data}</td>
-    )
-  }
-}
- */
 class TableRow extends Component{
   render(){
     return (

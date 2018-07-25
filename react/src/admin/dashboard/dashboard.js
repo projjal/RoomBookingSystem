@@ -26,21 +26,48 @@ class BookingsOfADate extends Component{
             bookingsList:null,
             bookingDate:null
         }
+        
     }
-    getBookingDetails(){
-        axios.get('/api/bookings/todays')
+    getBookingDetails(dateString){
+        var months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+        var newDateString=months[parseInt(dateString.slice(5,7))-1]+' '+dateString.slice(8)+' '+dateString.slice(0,4);
+        console.log('New Date: ',newDateString)
+        axios.post('/api/bookings/givenDate',newDateString,{"Content-Type":"text/plain"})
         .then(response=>{
             console.log('response from bookings for a date', response);
-
+            this.setState({bookingsList:response.data})
         })
         .catch(error=>{
             throw error;
         })
     }
+    componentWillReceiveProps(nextProps){
+        if(nextProps.bookingDate ){
+            this.getBookingDetails(nextProps.bookingDate)
+        }
+    }
     render(){
+        
+        if(this.state.bookingsList){
+            if(this.state.bookingsList.length>0){
+                return(
+                    <div>
+                        <ul className="list-group">
+                            {this.state.bookingsList.map((booking,i)=><BookingRecord data={booking} key={i}/>)}
+                        </ul>
+                    </div>
+                ) 
+            }
+            else{
+                return(<div>
+                    No bookings done for this date.
+                </div>);
+            }
+            
+        }
         return(<div>
-            {(this.props.bookingDate)?this.props.bookingDate:"Hi"}
-        </div>);
+            reservations of a particular given date are shown here. 
+            </div>);
     }
 }
 export default class AdminDashboard extends Component{
