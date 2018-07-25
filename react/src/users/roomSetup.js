@@ -78,7 +78,8 @@ function mapStateToProps(state){
 function mapPropsToDispatch(dispatch){
     return bindActionCreators({
         fetchLayouts:fetchLayouts,
-        fetchEquipments:fetchEquipments
+        fetchEquipments:fetchEquipments,
+        selectLayout:selectLayout
     },dispatch);
 }
 

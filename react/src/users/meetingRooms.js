@@ -8,12 +8,17 @@ class SubMeetingRooms extends Component{
 
   render(){
     return(
-        <div>
-        <h3 className='cat'>{this.props.data.type}</h3>
-        <img height="180px" width="250px" src={this.props.data.image}/>
-        {/*console.log(this.props.data.image)*/}
-        {this.props.data.description}
-        <button className="btn btn-primary" style={{"padding":"15px 32px"}} onClick={evt=>this.props.selectRoom(this.props.data)}>Book this room</button>
+        <div className="container-fluid">
+          <div className="col-md-4">
+            <h3 className='cat'>{this.props.data.type}</h3>
+            <img height="180px" width="250px" src={this.props.data.image}/>
+          </div>
+          <div className="col-md-4">
+            <p>{this.props.data.description}</p>
+          </div>
+          <div className="col-md-4">
+            <button className="btn btn-primary" style={{"padding":"15px 32px"}} onClick={evt=>this.props.selectRoom(this.props.data)}>Book this room</button>
+            </div>
         </div>
     )
   }
