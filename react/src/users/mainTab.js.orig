@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import {Tabs, Tab} from 'react-bootstrap';
+<<<<<<< Updated upstream
 import MeetingRooms from './meetingRooms.js';
+=======
 import BookingFood from './bookingFood';
-import BookingEquipments from './bookingEquipment';
-import BookingClientDetails from './bookingClient';
+import BookingEquipments from './bookingEquipment'
+>>>>>>> Stashed changes
 
 class UserMainTab extends Component{
 
@@ -24,7 +26,7 @@ class UserMainTab extends Component{
       </Tab>
 
       <Tab eventKey={3} title="Step-3 Room Setup">
-     <BookingEquipments/>
+     
       </Tab>
 
       <Tab eventKey={4} title="Step-4 Food and Drinks">
@@ -32,7 +34,7 @@ class UserMainTab extends Component{
       </Tab>
 
       <Tab eventKey={5} title="Step-5 Checkout">
-      <BookingClientDetails/>
+
       </Tab>
 
       <Tab eventKey={6} title="Step-6 Confirmation">

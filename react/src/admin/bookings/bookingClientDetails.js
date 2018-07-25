@@ -106,7 +106,7 @@ render(){
 
 		<tr>
 		<td></td>
-		<td><input type="submit" value="Save"/></td>
+		<td><input  className="btn btn-primary button" type="submit" value="Save"/></td>
 		</tr>
 
 		</tbody>

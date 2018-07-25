@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-
+import {selectFoods} from './endUserAction';
+import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 class BookingFood extends Component{
 
@@ -37,7 +39,7 @@ func1(res)
 
 	func2(food)
 	{
-	
+	//console.log("hii");
        var updatedState={};
        updatedState[food.name]={
        		"foodItemName":food.name,
@@ -68,11 +70,12 @@ func1(res)
 		
 		return(
 			<tr key={key}>
+			<td><input name={food.name} type="checkbox" onChange={this.handleChange}/></td>
 			<td>{food.name}</td>
 			<td><input name={food.name} type="number" 
 			defaultValue="1" min="1" onChange={this.handleChange1}/></td>
 			<td>{food.price}</td>
-			<td><input name={food.name} type="checkbox" onChange={this.handleChange}/></td>
+			
 			</tr>
 			);
 		}
@@ -112,8 +115,8 @@ func1(res)
 					fform.push(fooform[x]);
 				}
 			}
-			this.props.addFoodData(fform);
-			this.props.setFoodPrice(price1);
+			this.props.selectFoods(fform);
+			
 
 		}
 
@@ -127,16 +130,8 @@ render(){
 
 
 			<form onSubmit={this.submit} className="forms">
-			<table className="table-bordered col-md-12">
-			<thead>
-
-			<tr>
-			<td>Title</td>
-			<td>People</td>
-			<td>Price</td>
-			<td></td>
-			</tr>
-			</thead>
+			<table className=" col-md-12">
+		
 
 			<tbody>
 
@@ -161,5 +156,10 @@ render(){
 
 
 }
+function mapPropsToDispatch(dispatch){
+    return bindActionCreators({
+        selectFoods:selectFoods
+    },dispatch);
+}
 
-export default BookingFood;
+export default connect(null,mapPropsToDispatch)(BookingFood);

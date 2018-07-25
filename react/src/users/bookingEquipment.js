@@ -75,21 +75,23 @@ class BookingEquipments extends Component{
 		{
 		return(
 			<tr key={key}>
-			<td>{equip.name}</td>
-			<td>{equip.quantity}</td>
-			<td>{equip.price}</td>
 			<td><input name={equip.name} type="checkbox" onChange={this.handleChange}/></td>
+			<td>{equip.name}</td>
+			<td>{equip.quantity} Units</td>
+			<td>{equip.price} per booking</td>
+			
 			</tr>
 			);}
 		else
 		{
 			return(
 			<tr key={key}>
+			<td><input name={equip.name} type="checkbox" onChange={this.handleChange}/></td>
 			<td>{equip.name}</td>
 			<td><input name={equip.name} type="number" 
-			defaultValue="1" min="1" onChange={this.handleChange1}/></td>
-			<td>{equip.price}</td>
-			<td><input name={equip.name} type="checkbox" onChange={this.handleChange}/></td>
+			defaultValue="1" min="1" onChange={this.handleChange1}/> people</td>
+			<td>{equip.price} per person</td>
+			
 			</tr>
 			);}
 		}
@@ -129,8 +131,8 @@ class BookingEquipments extends Component{
 					fform.push(equiform[x]);
 				}
 			}
-			this.props.addEquipData(fform);
-			this.props.setEquipPrice(price1);
+			//this.props.addEquipData(fform);
+			//this.props.setEquipPrice(price1);
 
 		}
 	
@@ -147,16 +149,8 @@ class BookingEquipments extends Component{
 			
 
 			<form onSubmit={this.submit} className="forms1">
-			<table className="table-bordered col-md-12">
-			<thead>
-
-			<tr>
-			<td>Title</td>
-			<td>Unit(s)</td>
-			<td>Price</td>
-			<td></td>
-			</tr>
-			</thead>
+			<table className=" col-md-12">
+			
 
 			<tbody>
 

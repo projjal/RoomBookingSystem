@@ -105,7 +105,7 @@ class BookingDateRoom extends Component{
 
 
 			<div className="container-fluid">
-			{console.log(this.state.roomsList)}
+			
 			
 
 			<form onSubmit={this.submitForm} className="forms">
@@ -118,10 +118,7 @@ class BookingDateRoom extends Component{
 			 <td><label ref="currentDate"><DateAndTime/></label></td>
 			 </tr>
 
-			 <tr>
-			 <td><label>IP Address</label></td>
-			 <td>000.000.000.000</td>
-			 </tr>
+			
 
 			 <tr>
 			 <td><label>Date</label></td>
@@ -171,8 +168,18 @@ class BookingDateRoom extends Component{
 			 </tr>
 
 			 <tr>
+			 <td> </td>
+			 <td> <br/></td>
+			 </tr>
+
+			  <tr>
+			 <td> </td>
+			 <td> <br/></td>
+			 </tr>
+
+			 <tr>
 			 <td></td>
-			 <td><input type="submit" value="Save"/></td>
+			 <td><input className="btn btn-primary button"   type="submit" value="Save"/></td>
 			 
 			 <td></td>
 			 </tr>
