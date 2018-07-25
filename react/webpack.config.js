@@ -25,7 +25,7 @@ module.exports = {
     devServer: {
       before: function(app) {
         var proxy = proxyMiddleware('/api', {
-          target: 'http://10.41.116.172:8080'
+          target: 'http://localhost:8080'
        });
         app.use(proxy);
         app.use(bodyParser.json());
@@ -54,7 +54,7 @@ module.exports = {
                   .contentType("application/json")
                   .json({"imgData":null});
           }
-          
+
         });
         app.post(
           "/upload/img",
@@ -79,13 +79,13 @@ module.exports = {
                   .json({"imgUrl":filePath});
               }
             })
-            
+
           }
         );
       },
       proxy: {
         '/api':{
-          target:'http://10.41.116.172:8080',
+          target:'http://localhost:8080',
           changeOrigin: true
         }
       },

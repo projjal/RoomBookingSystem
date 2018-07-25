@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Tabs, Tab} from 'react-bootstrap';
 import MeetingRooms from './meetingRooms.js';
+import RoomSetup from './roomSetup.js';
 import BookingFood from './bookingFood';
 import BookingEquipments from './bookingEquipment';
 import BookingClientDetails from './bookingClient';
@@ -24,7 +25,7 @@ class UserMainTab extends Component{
       </Tab>
 
       <Tab eventKey={3} title="Step-3 Room Setup">
-     <BookingEquipments/>
+     <RoomSetup/>
       </Tab>
 
       <Tab eventKey={4} title="Step-4 Food and Drinks">
