@@ -15,14 +15,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-
-
 
 /**
  * @author vvashish
@@ -52,19 +50,20 @@ public class Booking {
 	private String paymentMethod;
 	
 	
-//	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-//	@JoinColumn(name="room_id")
-//	private Room room;
-	private String roomType;
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name="room_id")
+	private Room room;
+//	private String roomType;
 	
 	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="client_id")
 	private Client client;
 	
-//	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-//	@JoinColumn(name="layout_id")
-//	private Layout layout;
-	private String layoutName;
+	
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name="layout_id")
+	private Layout layout;
+//	private String layoutName;
 	
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="equipmentline_id")
@@ -76,12 +75,8 @@ public class Booking {
 	private List<FoodLineItem> foodItems = new ArrayList<FoodLineItem>();
 
 	
-	
-	
 	/* Total cost of booking*/
 	private double total;
-
-
 
 
 	/**
@@ -91,8 +86,6 @@ public class Booking {
 	}
 
 
-
-
 	/**
 	 * @param id
 	 * @param bookingDate
@@ -100,15 +93,16 @@ public class Booking {
 	 * @param duration
 	 * @param status
 	 * @param paymentMethod
-	 * @param roomType
+	 * @param room
 	 * @param client
-	 * @param layoutName
+	 * @param layout
 	 * @param equipmentItems
 	 * @param foodItems
 	 * @param total
 	 */
+
 	public Booking(int id, Date bookingDate, Date bookedForDate, String duration, String status, String paymentMethod,
-			String roomType, Client client, String layoutName, List<EquipmentLineItem> equipmentItems,
+			Room room, Client client, Layout layout, List<EquipmentLineItem> equipmentItems,
 			List<FoodLineItem> foodItems, double total) {
 		this.id = id;
 		this.bookingDate = bookingDate;
@@ -116,15 +110,13 @@ public class Booking {
 		this.duration = duration;
 		this.status = status;
 		this.paymentMethod = paymentMethod;
-		this.roomType = roomType;
+		this.room = room;
 		this.client = client;
-		this.layoutName = layoutName;
+		this.layout = layout;
 		this.equipmentItems = equipmentItems;
 		this.foodItems = foodItems;
 		this.total = total;
 	}
-
-
 
 
 	/**
@@ -135,16 +127,12 @@ public class Booking {
 	}
 
 
-
-
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
-
-
 
 
 	/**
@@ -155,16 +143,12 @@ public class Booking {
 	}
 
 
-
-
 	/**
 	 * @param bookingDate the bookingDate to set
 	 */
 	public void setBookingDate(Date bookingDate) {
 		this.bookingDate = bookingDate;
 	}
-
-
 
 
 	/**
@@ -175,16 +159,12 @@ public class Booking {
 	}
 
 
-
-
 	/**
 	 * @param bookedForDate the bookedForDate to set
 	 */
 	public void setBookedForDate(Date bookedForDate) {
 		this.bookedForDate = bookedForDate;
 	}
-
-
 
 
 	/**
@@ -195,16 +175,12 @@ public class Booking {
 	}
 
 
-
-
 	/**
 	 * @param duration the duration to set
 	 */
 	public void setDuration(String duration) {
 		this.duration = duration;
 	}
-
-
 
 
 	/**
@@ -215,16 +191,12 @@ public class Booking {
 	}
 
 
-
-
 	/**
 	 * @param status the status to set
 	 */
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
-
 
 
 	/**
@@ -235,8 +207,6 @@ public class Booking {
 	}
 
 
-
-
 	/**
 	 * @param paymentMethod the paymentMethod to set
 	 */
@@ -245,26 +215,20 @@ public class Booking {
 	}
 
 
-
-
 	/**
-	 * @return the roomType
+	 * @return the room
 	 */
-	public String getRoomType() {
-		return roomType;
+	public Room getRoom() {
+		return room;
 	}
 
 
-
-
 	/**
-	 * @param roomType the roomType to set
+	 * @param room the room to set
 	 */
-	public void setRoomType(String roomType) {
-		this.roomType = roomType;
+	public void setRoom(Room room) {
+		this.room = room;
 	}
-
-
 
 
 	/**
@@ -275,8 +239,6 @@ public class Booking {
 	}
 
 
-
-
 	/**
 	 * @param client the client to set
 	 */
@@ -285,26 +247,20 @@ public class Booking {
 	}
 
 
-
-
 	/**
-	 * @return the layoutName
+	 * @return the layout
 	 */
-	public String getLayoutName() {
-		return layoutName;
+	public Layout getLayout() {
+		return layout;
 	}
 
 
-
-
 	/**
-	 * @param layoutName the layoutName to set
+	 * @param layout the layout to set
 	 */
-	public void setLayoutName(String layoutName) {
-		this.layoutName = layoutName;
+	public void setLayout(Layout layout) {
+		this.layout = layout;
 	}
-
-
 
 
 	/**
@@ -315,16 +271,12 @@ public class Booking {
 	}
 
 
-
-
 	/**
 	 * @param equipmentItems the equipmentItems to set
 	 */
-	public void setEquipmentItems(ArrayList<EquipmentLineItem> equipmentItems) {
+	public void setEquipmentItems(List<EquipmentLineItem> equipmentItems) {
 		this.equipmentItems = equipmentItems;
 	}
-
-
 
 
 	/**
@@ -335,16 +287,12 @@ public class Booking {
 	}
 
 
-
-
 	/**
 	 * @param foodItems the foodItems to set
 	 */
-	public void setFoodItems(ArrayList<FoodLineItem> foodItems) {
+	public void setFoodItems(List<FoodLineItem> foodItems) {
 		this.foodItems = foodItems;
 	}
-
-
 
 
 	/**
@@ -355,18 +303,12 @@ public class Booking {
 	}
 
 
-
-
 	/**
 	 * @param total the total to set
 	 */
 	public void setTotal(double total) {
 		this.total = total;
 	}
-
-	
-	
-
 
 
 	

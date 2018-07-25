@@ -18,7 +18,7 @@ public class BookingDaoImpl implements BookingDao {
 
 	@Override
 	public void addBooking(Booking booking)  throws Exception{
-		em.persist(booking);
+		em.merge(booking);
 	}
 
 	@Override

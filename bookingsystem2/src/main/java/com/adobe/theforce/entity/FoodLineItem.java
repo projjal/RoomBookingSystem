@@ -15,16 +15,20 @@ public class FoodLineItem {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-//	@ManyToOne
-//	@JoinColumn(name="fid")
-//	private Food food;
-	private String foodItemName;
+	@ManyToOne
+	@JoinColumn(name="fid")
+	private Food food;
+//	private String foodItemName;
 	
-	private double pricePerUnit;
+//	private double pricePerUnit;
+//	
+//	private int quantity;
+//
+//	private double totalPrice;
+	
+	private double price;
 	
 	private int quantity;
-
-	private double totalPrice;
 
 	/**
 	 * 
@@ -34,17 +38,15 @@ public class FoodLineItem {
 
 	/**
 	 * @param id
-	 * @param foodItemName
-	 * @param pricePerUnit
+	 * @param food
+	 * @param price
 	 * @param quantity
-	 * @param totalPrice
 	 */
-	public FoodLineItem(int id, String foodItemName, double pricePerUnit, int quantity, double totalPrice) {
+	public FoodLineItem(int id, Food food, double price, int quantity) {
 		this.id = id;
-		this.foodItemName = foodItemName;
-		this.pricePerUnit = pricePerUnit;
+		this.food = food;
+		this.price = price;
 		this.quantity = quantity;
-		this.totalPrice = totalPrice;
 	}
 
 	/**
@@ -62,31 +64,31 @@ public class FoodLineItem {
 	}
 
 	/**
-	 * @return the foodItemName
+	 * @return the food
 	 */
-	public String getFoodItemName() {
-		return foodItemName;
+	public Food getFood() {
+		return food;
 	}
 
 	/**
-	 * @param foodItemName the foodItemName to set
+	 * @param food the food to set
 	 */
-	public void setFoodItemName(String foodItemName) {
-		this.foodItemName = foodItemName;
+	public void setFood(Food food) {
+		this.food = food;
 	}
 
 	/**
-	 * @return the pricePerUnit
+	 * @return the price
 	 */
-	public double getPricePerUnit() {
-		return pricePerUnit;
+	public double getPrice() {
+		return price;
 	}
 
 	/**
-	 * @param pricePerUnit the pricePerUnit to set
+	 * @param price the price to set
 	 */
-	public void setPricePerUnit(double pricePerUnit) {
-		this.pricePerUnit = pricePerUnit;
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
 	/**
@@ -103,19 +105,7 @@ public class FoodLineItem {
 		this.quantity = quantity;
 	}
 
-	/**
-	 * @return the totalPrice
-	 */
-	public double getTotalPrice() {
-		return totalPrice;
-	}
-
-	/**
-	 * @param totalPrice the totalPrice to set
-	 */
-	public void setTotalPrice(double totalPrice) {
-		this.totalPrice = totalPrice;
-	}
+	
 	
 	
 

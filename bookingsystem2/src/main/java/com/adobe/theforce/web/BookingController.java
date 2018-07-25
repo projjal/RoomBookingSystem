@@ -56,6 +56,7 @@ public class BookingController {
 		return r.getId();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
 			throw new DaoException("Unable to Add Booking");
 		}
 	}

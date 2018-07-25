@@ -16,17 +16,24 @@ public class EquipmentLineItem {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-//	@ManyToOne
-//	@JoinColumn(name="eid")
-//	private Equipment equipment;
+	@ManyToOne
+	@JoinColumn(name="eid")
+	private Equipment equipment;
 	
-	private String equipmentName;
-	
-	private double pricePerUnit;
+	private double price;
 	
 	private int quantity;
+
 	
-	private double totalPrice;
+
+	
+//	private String equipmentName;
+//	
+//	private double pricePerUnit;
+//	
+//	private int quantity;
+//	
+//	private double totalPrice;
 
 	/**
 	 * 
@@ -34,20 +41,24 @@ public class EquipmentLineItem {
 	public EquipmentLineItem() {
 	}
 
+
+
+
 	/**
 	 * @param id
-	 * @param equipmentName
-	 * @param pricePerUnit
+	 * @param equipment
+	 * @param price
 	 * @param quantity
-	 * @param totalPrice
 	 */
-	public EquipmentLineItem(int id, String equipmentName, double pricePerUnit, int quantity, double totalPrice) {
+	public EquipmentLineItem(int id, Equipment equipment, double price, int quantity) {
 		this.id = id;
-		this.equipmentName = equipmentName;
-		this.pricePerUnit = pricePerUnit;
+		this.equipment = equipment;
+		this.price = price;
 		this.quantity = quantity;
-		this.totalPrice = totalPrice;
 	}
+
+
+
 
 	/**
 	 * @return the id
@@ -56,6 +67,9 @@ public class EquipmentLineItem {
 		return id;
 	}
 
+
+
+
 	/**
 	 * @param id the id to set
 	 */
@@ -63,33 +77,48 @@ public class EquipmentLineItem {
 		this.id = id;
 	}
 
-	/**
-	 * @return the equipmentName
-	 */
-	public String getEquipmentName() {
-		return equipmentName;
-	}
+
+
 
 	/**
-	 * @param equipmentName the equipmentName to set
+	 * @return the equipment
 	 */
-	public void setEquipmentName(String equipmentName) {
-		this.equipmentName = equipmentName;
+	public Equipment getEquipment() {
+		return equipment;
 	}
 
-	/**
-	 * @return the pricePerUnit
-	 */
-	public double getPricePerUnit() {
-		return pricePerUnit;
-	}
+
+
 
 	/**
-	 * @param pricePerUnit the pricePerUnit to set
+	 * @param equipment the equipment to set
 	 */
-	public void setPricePerUnit(double pricePerUnit) {
-		this.pricePerUnit = pricePerUnit;
+	public void setEquipment(Equipment equipment) {
+		this.equipment = equipment;
 	}
+
+
+
+
+	/**
+	 * @return the price
+	 */
+	public double getPrice() {
+		return price;
+	}
+
+
+
+
+	/**
+	 * @param price the price to set
+	 */
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+
+
 
 	/**
 	 * @return the quantity
@@ -98,27 +127,17 @@ public class EquipmentLineItem {
 		return quantity;
 	}
 
+
+
+
 	/**
 	 * @param quantity the quantity to set
 	 */
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-
-	/**
-	 * @return the totalPrice
-	 */
-	public double getTotalPrice() {
-		return totalPrice;
-	}
-
-	/**
-	 * @param totalPrice the totalPrice to set
-	 */
-	public void setTotalPrice(double totalPrice) {
-		this.totalPrice = totalPrice;
-	}
-
+	
+	
 	
 	
 	

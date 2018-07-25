@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.adobe.theforce.entity;
 
 import javax.persistence.Entity;
@@ -23,6 +20,7 @@ public class Layout {
 	private int id;
 	
 	private String image;
+	
 	private String name;
 	
 	public Layout() {

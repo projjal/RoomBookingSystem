@@ -26,14 +26,6 @@ public class LayoutLineItem {
 	@JoinColumn(name="lid")
 	private Layout layout;
 
-	
-	//@ManyToOne(fetch = FetchType.LAZY)
-	@ManyToOne
-    @JoinColumn(name = "room_id")
-    private Room room;
-	
-	
-
 	/**
 	 * 
 	 */
@@ -43,12 +35,10 @@ public class LayoutLineItem {
 	/**
 	 * @param id
 	 * @param layout
-	 * @param room
 	 */
-	public LayoutLineItem(int id, Layout layout, Room room) {
+	public LayoutLineItem(int id, Layout layout) {
 		this.id = id;
 		this.layout = layout;
-		this.room = room;
 	}
 
 	/**
@@ -79,19 +69,10 @@ public class LayoutLineItem {
 		this.layout = layout;
 	}
 
-	/**
-	 * @return the room
-	 */
-	public Room getRoom() {
-		return room;
-	}
-
-	/**
-	 * @param room the room to set
-	 */
-	public void setRoom(Room room) {
-		this.room = room;
-	}
+	
+	
+	
+	
 	
 	
 	
