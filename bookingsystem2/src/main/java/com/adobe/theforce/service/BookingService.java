@@ -114,6 +114,9 @@ public class BookingService {
 	    Date date = null;
 //	    System.out.println(date1);
 	    date1 = date1.replace("\"", "");
+	    date1 = date1.replace("+", " ");
+	    date1 = date1.replace("=", "");
+	    
 //	    System.out.println(date1);
 
 	    try {

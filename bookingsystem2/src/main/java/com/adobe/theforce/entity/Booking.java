@@ -45,7 +45,7 @@ public class Booking {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date bookedForDate;
 	
-	private double duration;
+	private String duration;
 	
 	private String status;
 	
@@ -107,7 +107,7 @@ public class Booking {
 	 * @param foodItems
 	 * @param total
 	 */
-	public Booking(int id, Date bookingDate, Date bookedForDate, double duration, String status, String paymentMethod,
+	public Booking(int id, Date bookingDate, Date bookedForDate, String duration, String status, String paymentMethod,
 			String roomType, Client client, String layoutName, List<EquipmentLineItem> equipmentItems,
 			List<FoodLineItem> foodItems, double total) {
 		this.id = id;
@@ -190,7 +190,7 @@ public class Booking {
 	/**
 	 * @return the duration
 	 */
-	public double getDuration() {
+	public String getDuration() {
 		return duration;
 	}
 
@@ -200,7 +200,7 @@ public class Booking {
 	/**
 	 * @param duration the duration to set
 	 */
-	public void setDuration(double duration) {
+	public void setDuration(String duration) {
 		this.duration = duration;
 	}
 
