@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import {selectEquipments} from './endUserAction';
 
 
 class BookingEquipments extends Component{
@@ -131,8 +134,8 @@ class BookingEquipments extends Component{
 					fform.push(equiform[x]);
 				}
 			}
-			//this.props.addEquipData(fform);
-			//this.props.setEquipPrice(price1);
+			this.props.selectEquipments(fform);
+		
 
 		}
 	
@@ -172,4 +175,10 @@ class BookingEquipments extends Component{
 
 }
 
-export default BookingEquipments
+function mapPropsToDispatch(dispatch){
+    return bindActionCreators({
+        selectEquipments:selectEquipments
+    },dispatch);
+}
+
+export default connect(null,mapPropsToDispatch)(BookingEquipments);

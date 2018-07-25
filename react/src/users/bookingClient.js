@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {addUserDetails} from './endUserAction';
+import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 
 class BookingClientDetails extends Component{
@@ -26,14 +29,18 @@ class BookingClientDetails extends Component{
 
   submit(e)
   {
+  	console.log("hii");
   	e.preventDefault();
-  	this.props.addClientData(this.state.clientDetails);
+  	this.props.addUserDetails(this.state.clientDetails);
   }
 
 
 render(){
 
 	return(
+		<div>
+
+		<form onSubmit={this.submit} className="forms">
 
 	<div>
 
@@ -45,7 +52,7 @@ render(){
 			<div className="col-md-4">
 
 				<div><label>Title</label></div>
-				<div><select name="title" onChange={this.handleChange}>
+				<div><select name="title" required onChange={this.handleChange}>
 					<option value="select">Select</option>
 					<option value="Mr.">Mr.</option>
 					<option value="Mrs.">Mrs.</option>
@@ -142,7 +149,7 @@ render(){
 			<div className="col-md-4">
 
 				<div><label>Country</label></div>
-				<div><select name="country" onChange={this.handleChange}>
+				<div><select name="country" required onChange={this.handleChange}>
 					<option value="select">select</option>
 					<option value="India">India</option>
 					</select></div>
@@ -159,23 +166,40 @@ render(){
 		<div className="col-md-4">
 
 				<div><label>Payment Method</label></div>
-				<div><select name="payment" onChange={this.handleChange}>
+				<div><select name="payment" required onChange={this.handleChange}>
 					<option value="select">select</option>
 					<option value="Cash">Cash</option>
 					</select></div>
 
 			</div>
 
+			<div className="col-md-8">
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			</div>
+
+
 
 
 
 
 	</div>
+
+	<div className="col-md-12">
+
+	<input  className="btn btn-primary button" type="submit" value="Save"/>
+
+
+	</div>
+
+
+	</form>
+	</div>
 	
 
 	
-
-
 
 
 		);
@@ -184,5 +208,11 @@ render(){
 
 }
 
-export default BookingClientDetails;
+function mapPropsToDispatch(dispatch){
+    return bindActionCreators({
+        addUserDetails:addUserDetails
+    },dispatch);
+}
+
+export default connect(null,mapPropsToDispatch)(BookingClientDetails);
 
