@@ -42,7 +42,7 @@ public class BookingController {
 		}
 		else
 			try{
-			return bookingService.getBookings();
+				return bookingService.getBookings();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				throw new DaoException("Unable to get Bookings");

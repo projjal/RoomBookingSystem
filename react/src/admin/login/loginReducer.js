@@ -1,35 +1,40 @@
 import axios from 'axios';
+// import {Authenticated} from '../../security/privateRoute'; 
+
 
 var querystring = require('querystring');
 import history from '../../history'
 
-const SET_LOGIN_PENDING = 'SET_LOGIN_PENDING';
 const SET_LOGIN_SUCCESS = 'SET_LOGIN_SUCCESS';
 const SET_LOGIN_ERROR = 'SET_LOGIN_ERROR';
 
 export function login(email, password) {
   return dispatch => {
+    console.log(email);
+    console.log(password);
 
     
-    // dispatch(setLoginPending(true));
     // dispatch(setLoginSuccess(false));
     // dispatch(setLoginError(null));
-    
     axios.post("/api/login",querystring.stringify({
       username: email, //gave the values directly for testing
       password: password
     }),{
       headers: { 
-      "Content-Type": "application/x-www-form-urlencoded"
-    }})
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      withCredentials: true  
+    })
         .then((response)=>{
+          console.log("responseis")
             if(response.status===200){
-              history.push('/dashboard')
+              // console.log("200")
+              history.push('/admin')
               // dispatch(setLoginSuccess(true));
             }
         }).catch((error)=>{
-            console.log("error maybe :P")
-            throw error;
+          console.log(error);
+          throw error;
         }); 
 
 
@@ -44,12 +49,6 @@ export function login(email, password) {
   };
 }
 
-function setLoginPending(isLoginPending) {
-  return {
-    type: SET_LOGIN_PENDING,
-    isLoginPending
-  };
-}
 
 function setLoginSuccess(isLoginSuccess) {
   return {
@@ -66,29 +65,26 @@ function setLoginError(loginError) {
 }
 
 function callLoginApi(email, password, callback) {
-  setTimeout(() => {
-    if (email === 'admin@example.com' && password === 'admin') {
-      return callback(null);
-    } else {
-      return callback(new Error('Invalid email and password'));
-    }
-  }, 1000);
+  // setTimeout(() => {
+  //   if (email === 'admin@example.com' && password === 'admin') {
+  //     return callback(null);
+  //   } else {
+  //     return callback(new Error('Invalid email and password'));
+  //   }
+  // }, 1000);
+
+
 }
 
 export default function loginReducer(state = {
   isLoginSuccess: false,
-  isLoginPending: false,
-  loginError: null
+  loginError: null,
+  redirectToReferrer : false
 }, action) {
   switch (action.type) {
-    case SET_LOGIN_PENDING:
-      return Object.assign({}, state, {
-        isLoginPending: action.isLoginPending
-      });
-
     case SET_LOGIN_SUCCESS:
       return Object.assign({}, state, {
-        isLoginSuccess: action.isLoginSuccess
+        redirectToReferrer: action.isLoginSuccess
       });
 
     case SET_LOGIN_ERROR:

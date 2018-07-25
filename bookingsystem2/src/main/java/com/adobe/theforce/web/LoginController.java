@@ -23,4 +23,5 @@ public class LoginController {
 	public ResponseEntity logoutSuccess() throws DaoException{
 		return new ResponseEntity(HttpStatus.OK);
 	}
+	
 }

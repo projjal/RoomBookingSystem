@@ -1,6 +1,7 @@
 const bodyParser = require("body-parser");
 const fs= require('fs');
 const proxyMiddleware= require("http-proxy-middleware");
+const cookieParser = require("cookie-parser")
 module.exports = {
     entry: [
       './src/index.js'
@@ -29,6 +30,13 @@ module.exports = {
        });
         app.use(proxy);
         app.use(bodyParser.json());
+        app.use(cookieParser())
+        app.use('/admin/',(req,res,next)=>{
+          if (req.cookies['JSESSIONID'] === undefined)
+            res.redirect('/login');
+          next();
+          
+        })
         app.post("/download/img",(req,res)=>{
           var filePath= req.body.filePath;
           console.log(filePath);

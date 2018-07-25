@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { login } from './loginReducer';
 import {bindActionCreators} from 'redux';
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import {Redirect} from 'react-router-dom'
 
 class LoginForm extends Component {
 
@@ -11,13 +12,21 @@ class LoginForm extends Component {
     this.state = {
       email : "",
       password : ""
+      // redirectToReferrer : false
     };
     this.onSubmit = this.onSubmit.bind(this);
   }
 
   render() {
     let {email, password} = this.state;
-    let {isLoginPending, isLoginSuccess, loginError} = this.props;
+    // let {isLoginPending, isLoginSuccess, loginError} = this.props;
+    // let{redirectToReferrer} = this.props.
+
+    console.log("redirecttorefererrer : " + this.props.redirectToReferrer);
+
+    if (this.props.redirectToReferrer === true) {
+      return <Redirect to="/admin/dashboard" />
+    }
     return (
       <div>
       <div className="loginbody"></div>
@@ -25,24 +34,10 @@ class LoginForm extends Component {
       <div className="loginheader">
         <div>Room<span>Booking</span></div>
       </div>
-      {/* <br/> */}
       <div className="login">
-      {/* <form onSubmit={this.onSubmit}>
-            <input type="text" placeholder="email" name="email" onChange={e => this.setState({email: e.target.value})} value={email}/>
-            <br/>
-            <input type="password" placeholder="password" name="password" onChange={e => this.setState({password: e.target.value})} value={password}/>
-            <br/>
-            <input type="button" value="Login" />
-
-        <div className="message">
-          { isLoginPending && <div>Please wait...</div> }
-          { isLoginSuccess && <div>Success.</div> }
-          { loginError && <div>{loginError.message}</div> }
-        </div>
-      </form> */}
+      
       <form onSubmit={this.onSubmit}>
         <FormGroup controlId="email" bsSize="large">
-          {/* <ControlLabel>Email</ControlLabel> */}
           <FormControl
             autoFocus
             type="email"
@@ -52,7 +47,6 @@ class LoginForm extends Component {
           />
         </FormGroup>
         <FormGroup controlId="password" bsSize="large">
-          {/* <ControlLabel>Password</ControlLabel> */}
           <FormControl
             value={this.state.password}
             placeholder="password"
@@ -69,40 +63,14 @@ class LoginForm extends Component {
         >
           Login
         </Button>
+        {/* <div className="message">
+          { isLoginPending && <div>Please wait...</div> }
+          { loginError && <div>{loginError.message}</div> }
+        </div> */}
       </form>
 
       </div>
       </div>
-
-    //   <div className="Login">
-    //   <form onSubmit={this.onSubmit}>
-    //     <FormGroup controlId="email" bsSize="large">
-    //       <ControlLabel>Email</ControlLabel>
-    //       <FormControl
-    //         autoFocus
-    //         type="email"
-    //         value={this.state.email}
-    //         onChange={e => this.setState({email: e.target.value})}
-    //       />
-    //     </FormGroup>
-    //     <FormGroup controlId="password" bsSize="large">
-    //       <ControlLabel>Password</ControlLabel>
-    //       <FormControl
-    //         value={this.state.password}
-    //         onChange={e => this.setState({password: e.target.value})}
-    //         type="password"
-    //       />
-    //     </FormGroup>
-    //     <Button
-    //       block
-    //       bsSize="large"
-    //       disabled={!this.validateForm()}
-    //       type="submit"
-    //     >
-    //       Login
-    //     </Button>
-    //   </form>
-    // </div>
     );
   }
 
@@ -112,20 +80,23 @@ class LoginForm extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+    console.log("submit here")
     let { email, password } = this.state;
     this.props.login(email, password);
     this.setState({
       email: '',
       password: ''
+      // redirectToReferrer : true
     });
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    isLoginPending: state.isLoginPending,
-    isLoginSuccess: state.isLoginSuccess,
-    loginError: state.loginError
+    isLoginPending: state.login.isLoginPending,
+    isLoginSuccess: state.login.isLoginSuccess,
+    loginError: state.login.loginError,
+    redirectToReferrer : state.login.redirectToReferrer
   };
 }
 
