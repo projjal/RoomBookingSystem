@@ -1,6 +1,8 @@
 package com.adobe.theforce.web;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -104,6 +106,7 @@ public class BookingController {
 		try{
 		result.add(bookingService.getTodaysBookings());
 		result.add(bookingService.getTotalBookings());
+		result.add(bookingService.getBookingsMadeToday());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			throw new DaoException("Unable to get todays Bookings");
@@ -111,14 +114,16 @@ public class BookingController {
 		return result;
 	}
 	
-	@RequestMapping(value = "/api/bookings/todays",method = RequestMethod.GET)
-	public @ResponseBody List<Booking> getTodayBookingList()  throws DaoException {
+	@RequestMapping(value = "/api/bookings/todays",method = RequestMethod.POST)
+	public @ResponseBody List<Booking> getTodayBookingList(@RequestBody String date)  throws DaoException {
 		List<Booking> result = new ArrayList<Booking>();
+		System.out.println(date);
 		try{
-		result = (bookingService.getTodayBookingList());
+		result = (bookingService.getTodayBookingList(date));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			throw new DaoException("Unable to get todays Bookings");
+			e.printStackTrace();
+			throw new DaoException("Unable to get the Bookings");
 		}
 		return result;
 	}
