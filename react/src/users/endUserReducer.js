@@ -24,6 +24,9 @@ export default function(state={}, action){
             state={ ...state,finalBooking: action.payload}
             break;
         }
+        case "ROOM_BOOKING_DETAILS_ADDED":{
+            state={ ...state,roomBookingDetails: action.payload}
+        }
     }
 
     return state;

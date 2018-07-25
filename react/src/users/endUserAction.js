@@ -17,6 +17,9 @@ export function selectFoods(foods){
 export function addUserDetails(userDetails){
     return {type:"USER_DETAILS_ADDED", payload:userDetails};
 }
+export function addRoomBookingDetails(roomBookingDetails){
+    return {type:"ROOM_BOOKING_DETAILS_ADDED", payload:roomBookingDetails};
+}
 export function postBookingDetails(booking){
     return(dispatch)=>{
         axios.post('/api/bookings',booking,{"Content-Type":"application/json"})

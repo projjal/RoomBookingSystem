@@ -5,6 +5,7 @@ import RoomSetup from './roomSetup.js';
 import BookingFood from './bookingFood';
 import BookingEquipments from './bookingEquipment';
 import BookingClientDetails from './bookingClient';
+import BookRoom from './bookRoom.js';
 
 class UserMainTab extends Component{
 
@@ -21,7 +22,7 @@ class UserMainTab extends Component{
       </Tab>
 
       <Tab eventKey={2} title="Step-2 Book Room">
-
+      <BookRoom/>
       </Tab>
 
       <Tab eventKey={3} title="Step-3 Room Setup">
@@ -29,6 +30,7 @@ class UserMainTab extends Component{
       </Tab>
 
       <Tab eventKey={4} title="Step-4 Food and Drinks">
+      <h3>Foods and Drinks</h3>
      <BookingFood/>
       </Tab>
 
