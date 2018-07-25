@@ -1,9 +1,4 @@
 import React,{Component} from 'react';
-import {Link } from 'react-router-dom'
-import {addRoom} from './equipmentsAction';
-import {connect} from 'react-redux';
-import { bindActionCreators } from 'redux';
-import ModalNew from './Modal';
 import FormModal from '../../utils/formModal';
 import AddEquipment from './AddEquipment';
 export class EquipmentPanel extends Component{

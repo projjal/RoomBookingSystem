@@ -1,5 +1,4 @@
 import React,{Component} from 'react';
-import LayoutModal from './layoutModal';
 import AddLayout from './addLayout';
 import FormModal from '../../utils/formModal';
 class LayoutPanel extends Component{

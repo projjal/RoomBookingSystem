@@ -1,10 +1,5 @@
 import React,{Component} from 'react';
-import {Link } from 'react-router-dom'
 import AddRoom from './AddRoom';
-import {addRoom} from './roomsAction';
-import {connect} from 'react-redux';
-import { bindActionCreators } from 'redux';
-import ModalNew from './Modal';
 import FormModal from '../../utils/formModal';
 
 export class RoomPanel extends Component{
