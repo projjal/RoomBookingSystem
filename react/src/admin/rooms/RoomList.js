@@ -33,7 +33,7 @@ class RoomList extends Component{
             if(this.props.rooms.rooms.length>0){
                 var arr = Object.keys(this.props.rooms.rooms[0]);
                 console.log(arr);
-                var arr1=["id","type","capacity","image","button"];
+                var arr1=["id","image","type","capacity","description","button"];
                 return(
                 <div>
                     {console.log("In here")}

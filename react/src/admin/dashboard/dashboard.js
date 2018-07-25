@@ -7,20 +7,48 @@ class BookingRecord extends Component{
         super(props);
     }
     render(){
-        <li className="list-group-item">
+        return(
+            <li className="list-group-item">
             <div>
-                {this.props.booking.roomType}
-                Date: {this.props.booking.bookingForDate}
-                {this.props.booking.client.name}
+                {this.props.data.roomType}<br/>
+                Date: {new Date(this.props.data.bookedForDate).toUTCString()}<br/>
+                {this.props.data.client.name}
             </div>  
         </li>
+        );
+        
+    }
+}
+class BookingsOfADate extends Component{
+    constructor(props){
+        super(props);
+        this.state={
+            bookingsList:null,
+            bookingDate:null
+        }
+    }
+    getBookingDetails(){
+        axios.get('/api/bookings/todays')
+        .then(response=>{
+            console.log('response from bookings for a date', response);
+
+        })
+        .catch(error=>{
+            throw error;
+        })
+    }
+    render(){
+        return(<div>
+            {(this.props.bookingDate)?this.props.bookingDate:"Hi"}
+        </div>);
     }
 }
 export default class AdminDashboard extends Component{
     constructor(props){
         super(props);
         this.state={
-            latestBookings:null
+            latestBookings:null,
+            bookingDate:null
         }
         axios.get('/api/bookings/latest')
         .then(response=>{
@@ -41,13 +69,19 @@ export default class AdminDashboard extends Component{
                 )
             }
             else{
-                return(<div> most recent booking info is displayed here</div>
+                return(<div> most recent booking info is displayed here
+  
+
+                </div>
                 );
             }
             
         }
         else{
-            return(<div> most recent booking info is displayed here</div>
+            return(<div> 
+                most recent booking info is displayed here
+                
+            </div>
             );
         }
     }
@@ -76,8 +110,9 @@ export default class AdminDashboard extends Component{
                                  Reservations
                             </div>
                             <div className="div-content">
-                                <div> reservation info is displayed here</div>
-                            </div>
+                                Select Date: <input type="date" onChange={evt=>this.setState({bookingDate:evt.target.value})} />
+                                
+                                <BookingsOfADate bookingDate={this.state.bookingDate}/>                            </div>
                         </div>
                     </div>
                     <div className="col-md-4">

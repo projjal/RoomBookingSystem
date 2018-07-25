@@ -1,21 +1,21 @@
 import axios from 'axios';
 
 export function selectRoom(room){
-    dispatch({type:"ROOM_SELECTED", payload:room})
+   return {type:"ROOM_SELECTED", payload:room};
 }
 
 export function selectLayout(layout){
-    dispatch({type:"LAYOUT_SELECTED", payload:layout})
+    return {type:"LAYOUT_SELECTED", payload:layout};
 }
 
 export function selectEquipments(equipments){
-    dispatch({type:"EQUIPMENTS_SELECTED", payload:equipments})
+    return {type:"EQUIPMENTS_SELECTED", payload:equipments};
 }
 export function selectFoods(foods){
-    dispatch({type:"FOODS_SELECTED", payload:food})
+    return {type:"FOODS_SELECTED", payload:foods};
 }
 export function addUserDetails(userDetails){
-    dispatch({type:"USER_DETAILS_ADDED", payload:userDetails})
+    return {type:"USER_DETAILS_ADDED", payload:userDetails};
 }
 export function postBookingDetails(booking){
     return(dispatch)=>{
