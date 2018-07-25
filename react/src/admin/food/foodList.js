@@ -18,7 +18,7 @@ class FoodList extends Component{
             console.log(arr);
                 return(
                 <div>
-                <TableView heading={arr} data={this.props.foods.foods}/>
+                <TableView heading={arr} data={this.props.foods.foods} entity="foods"/>
                 </div>
                 )
           }

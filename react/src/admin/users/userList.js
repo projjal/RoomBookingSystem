@@ -17,7 +17,7 @@ class UserList extends Component{
             arr.push("button");
             return(
               <div>
-              <TableView heading={arr} data={this.props.users.users}/>
+              <TableView heading={arr} data={this.props.users.users} entity="users"/>
               </div>
             )
           }

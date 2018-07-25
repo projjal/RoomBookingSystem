@@ -1,11 +1,11 @@
 import React,{Component} from 'react';
 import {Link } from 'react-router-dom'
-import AddRoom from './AddEquipment';
 import {addRoom} from './equipmentsAction';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ModalNew from './Modal';
-
+import FormModal from '../../utils/formModal';
+import AddEquipment from './AddEquipment';
 export class EquipmentPanel extends Component{
     constructor(props){
         super(props);
@@ -21,7 +21,8 @@ export class EquipmentPanel extends Component{
             <div className="panel panel-default">
             <button onClick={(evt)=>{this.toggleModal()}} className="btn btn-primary btn-sm" >+ Add Equipment</button>
             </div>
-            <ModalNew show={this.state.showModal} closeModal={this.toggleModal}/>
+            <FormModal show={this.state.showModal} closeModal={this.toggleModal} FormComponent={AddEquipment} entity="equipments" />
+            {/* <ModalNew show={this.state.showModal} closeModal={this.toggleModal}/> */}
             </div>
         );
     }

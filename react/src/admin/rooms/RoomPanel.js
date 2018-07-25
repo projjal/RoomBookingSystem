@@ -5,6 +5,8 @@ import {addRoom} from './roomsAction';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ModalNew from './Modal';
+import FormModal from '../../utils/formModal';
+
 export class RoomPanel extends Component{
     constructor(props){
         super(props);
@@ -20,8 +22,10 @@ export class RoomPanel extends Component{
             <div className="panel panel-default">
             <button onClick={(evt)=>{this.toggleModal()}} className="btn btn-primary btn-sm" >+ Add Room</button>
             </div>
-            <ModalNew show={this.state.showModal} closeModal={this.toggleModal}/>
-            </div>
+            <FormModal show={this.state.showModal} closeModal={this.toggleModal} FormComponent={AddRoom} entity="rooms" />
+
+{/*             <ModalNew show={this.state.showModal} closeModal={this.toggleModal}/>
+ */}            </div>
         );
     }
 }

@@ -19,7 +19,7 @@ export default function(state={}, action){
                     continue;
                 newLayoutList.push(layoutsList[i]);
             }
-            console.log('updated layout list',newlayoutList);
+            console.log('updated layout list',newLayoutList);
             state={ ...state,layouts: newLayoutList}
             break;
         }

@@ -64,7 +64,7 @@ export function addLayout(data){
 export function deleteLayout(selectedLayout){
 
     return (dispatch, getState) => {
-        axios.delete("/api/layouts/"+selectedlayout.id)
+        axios.delete("/api/layouts/"+selectedLayout.id)
         .then((response)=>{
             console.log(response);
             if(response.status===200)

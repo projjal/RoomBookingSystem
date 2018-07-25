@@ -5,6 +5,7 @@ import {deleteRoom} from '../admin/rooms/roomsAction';
 import {deleteLayout} from '../admin/layouts/layoutAction';
 import {deleteFood} from '../admin/food/foodsAction';
 import {deleteEquipment} from '../admin/equipments/equipmentsAction';
+import {deleteUser} from '../admin/users/usersAction';
 class TableCell extends Component{
     deleteEntity=(entity, record)=>{
       switch(entity){
@@ -26,6 +27,10 @@ class TableCell extends Component{
             break;
 
         }
+        case "users":{
+          this.props.deleteUser(record);
+          break;
+        }
       }
     }
     render(){
@@ -45,7 +50,8 @@ function mapDispatchToProps(dispatch){
       deleteLayout:deleteLayout,
       deleteRoom:deleteRoom,
       deleteEquipment:deleteEquipment,
-      deleteFood:deleteFood
+      deleteFood:deleteFood,
+      deleteUser:deleteUser
     },dispatch);
   }
 export default connect(null, mapDispatchToProps)(TableCell);

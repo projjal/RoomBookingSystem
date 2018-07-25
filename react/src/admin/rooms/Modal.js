@@ -1,5 +1,4 @@
 import React,{Component} from 'react';
-import {Link } from 'react-router-dom'
 import AddRoom from './AddRoom';
 import {addRoom} from './roomsAction';
 import {connect} from 'react-redux';
@@ -9,7 +8,6 @@ class ModalNew extends Component{
     constructor(props){
         super(props);
         this.state={
-            imgFile:null,
             formData:null
         }
     }

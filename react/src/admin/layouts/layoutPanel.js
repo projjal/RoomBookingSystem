@@ -1,5 +1,7 @@
 import React,{Component} from 'react';
 import LayoutModal from './layoutModal';
+import AddLayout from './addLayout';
+import FormModal from '../../utils/formModal';
 class LayoutPanel extends Component{
     constructor(props){
         super(props);
@@ -15,7 +17,7 @@ class LayoutPanel extends Component{
             <div className="panel panel-default">
             <button onClick={(evt)=>{this.toggleModal()}} className="btn btn-primary btn-sm" >+ Add Layout</button>
             </div>
-            <LayoutModal show={this.state.showModal} closeModal={this.toggleModal}/>
+            <FormModal show={this.state.showModal} closeModal={this.toggleModal} FormComponent={AddLayout} entity="layouts" />
             </div>
         );
     }

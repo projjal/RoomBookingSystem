@@ -5,6 +5,8 @@ import {addRoom} from './usersAction';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ModalNew from './Modal';
+import AddUser from './AddUser';
+import FormModal from '../../utils/formModal';
 
 export class UserPanel extends Component{
     constructor(props){
@@ -21,7 +23,7 @@ export class UserPanel extends Component{
             <div className="panel panel-default">
             <button onClick={(evt)=>{this.toggleModal()}} className="btn btn-primary btn-sm" >+ Add User</button>
             </div>
-            <ModalNew show={this.state.showModal} closeModal={this.toggleModal}/>
+            <FormModal show={this.state.showModal} closeModal={this.toggleModal} FormComponent={AddUser} entity="users" />
             </div>
         );
     }

@@ -17,7 +17,7 @@ class EquipmentList extends Component{
             var arr=["id","name","quantity","price","button"];
             return(
               <div>
-              <TableView heading={arr} data={this.props.equipments.equipments}/>
+              <TableView heading={arr} data={this.props.equipments.equipments} entity="equipments"/>
               </div>
             )
           }

@@ -1,6 +1,8 @@
 import React,{Component} from 'react';
 import {Link } from 'react-router-dom'
 import AddFood from './AddFood';
+import FormModal from '../../utils/formModal';
+
 import {addFoods} from './foodsAction';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -20,8 +22,8 @@ export class FoodPanel extends Component{
             <div className="panel panel-default">
             <button onClick={(evt)=>{this.toggleModal()}} className="btn btn-primary btn-sm" >+ Add Food items</button>
             </div>
-            <ModalNew show={this.state.showModal} closeModal={this.toggleModal}/>
-            </div>
+            <FormModal show={this.state.showModal} closeModal={this.toggleModal} FormComponent={AddFood} entity="foods" />
+           </div>
         );
     }
 }
