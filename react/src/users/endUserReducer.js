@@ -42,6 +42,10 @@ export default function(state={}, action){
         case "LAYOUT_FAILED":{
             break;
         }
+        case "BOOKING_DETAILS_POSTED":{
+            state={...state,successfulBooking:action.paylo}
+            break;
+        }
     }
 
     return state;

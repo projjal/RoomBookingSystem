@@ -133,6 +133,13 @@ class Confirmation extends Component{
     this.props.postBookingDetails(finalBooking);
   }
 
+  onSuccessfulBooking(){
+    if(this.props){
+      if(this.props.successfulBooking){
+        return(<h4>Booking Successful!!!</h4>);
+      }
+    }
+  }
   render(){
     return(
 
@@ -148,7 +155,7 @@ class Confirmation extends Component{
         <div className="div-content">
         {this.showClientDetails()}
         </div>
-
+        <div>{this.onSuccessfulBooking()}</div>
         <button className="btn btn-primary btn-small" onClick={evt=>this.postBooking()}>Confirm Booking</button>
       </div>
 
@@ -165,7 +172,8 @@ return{
   roomBookingDetails:state.endUsers.roomBookingDetails,
   clientDetails:state.endUsers.userDetails,
   fetchRoom:state.endUsers.fetchRoom,
-  fetchLayout:state.endUsers.fetchLayout
+  fetchLayout:state.endUsers.fetchLayout,
+  successfulBooking:state.endUsers.successfulBooking
 }
 }
 function mapPropsToDispatch(dispatch){
