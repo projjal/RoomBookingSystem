@@ -100,14 +100,13 @@ public class BookingService {
 		}
 		return count;
 	}
-	public List<Booking> getTodayBookingList(String date1) throws Exception {
+	public List<Booking> getTodayBookingList(Date date) throws Exception {
 		List<Booking> result = new ArrayList<Booking>();
-		Calendar today = Calendar.getInstance();
-		today.set(Calendar.HOUR_OF_DAY, 0);
 		List<Booking> b = bookingDao.getBookings();
 		//////////////////////////////////////////////
 		
 		
+<<<<<<< Updated upstream
 	    DateFormat readFormat = new SimpleDateFormat( "MMM dd yyyy");
 
 	    Date date = null;
@@ -125,6 +124,8 @@ public class BookingService {
 	        e.printStackTrace();
 	        throw e;
 	    }
+=======
+>>>>>>> Stashed changes
 //	    System.out.println(date.getYear() + "  " + date.getMonth() + " " + date.getDate());
 		for(Booking i : b){
 //			System.out.println(date);
@@ -148,4 +149,59 @@ public class BookingService {
 		return bookingDao.getBookings().size();
 	}
 	
+	public List<String> getFreeSlots(int roomId,Date date,String slot) throws Exception{
+		List<Booking> bookings = this.getTodayBookingList(date);
+		List<String> bookedSlots = new ArrayList<String>();
+		String[] allSlots = {"8:00-9:00","9:00-10:00","10:00-11:00","11:00-12:00","12:00-13:00","13:00-14:00","14:00-15:00","15:00-16:00","16:00-17:00","17:00-18:00","18:00-19:00","19:00-20:00","20:00-21:00","21:00-22:00","22:00-23:00"};
+		String[] halfDaySlots = {"8:00-12:00","13:00-17:00","19:00-23:00"};
+		for(Booking b:bookings){
+			if(b.getRoomType().equals(roomId)){
+				bookedSlots.add(b.getDuration());
+			}
+		}
+		
+		List<String> freeSlots = new ArrayList<String>();
+		if(slot.equals("allDay"))
+		{	
+			for(String slots:allSlots){
+				int flag = 1;
+				String[] start = slots.split("-");
+					for(String booked:bookedSlots){
+						String[] bookedStart = booked.split("-");
+						if(start[0].equals(bookedStart[0])){
+							flag = 0;
+						}
+					}
+					if(flag == 1){
+						freeSlots.add(slots);
+					}
+			}
+		}
+		else{
+			for(String slots:halfDaySlots){
+				int flag = 1;
+				String[] start = slots.split("-");
+				int startIndex = 0;
+				if(start[0].equals("13:00")){
+					startIndex = 5;
+				}
+				else if(start[0].equals("19:00")){
+					startIndex = 11;
+				}
+				for(int i=startIndex;i<startIndex+4;++i){
+					String[] betweenSlot = allSlots[i].split("-");
+					for(String booked:bookedSlots){
+						 String[] bookedStart = booked.split("-");
+						 if(betweenSlot[0].equals(bookedStart[0])){
+							 flag = 0;
+						 }
+					}
+				}
+				if(flag == 1){
+					freeSlots.add(slots);
+				}
+			}
+		}
+		return freeSlots;	
+	}
 }

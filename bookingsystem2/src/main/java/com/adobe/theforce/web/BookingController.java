@@ -1,5 +1,7 @@
 package com.adobe.theforce.web;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -119,12 +121,41 @@ public class BookingController {
 	public @ResponseBody List<Booking> getTodayBookingList(@RequestBody String date)  throws DaoException {
 		List<Booking> result = new ArrayList<Booking>();
 //		System.out.println(date);
+		
+		DateFormat readFormat = new SimpleDateFormat( "MMM dd yyyy");
+
+	    Date date1 = null;
+//	    System.out.println(date1);
+	    date = date.replace("\"", "");
+	    date = date.replace("+", " ");
+	    date = date.replace("=", "");
+	    
+//	    System.out.println(date1);
+
+	    try {
+	       date1 = readFormat.parse( date );
+	    } catch ( Exception e ) {
+	        throw new DaoException("Unable to parse Date");
+	    }
+
 		try{
-		result = (bookingService.getTodayBookingList(date));
+			
+		result = (bookingService.getTodayBookingList(date1));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 //			e.printStackTrace();
 			throw new DaoException("Unable to get the Bookings");
+		}
+		return result;
+	}
+	
+	@RequestMapping(value = "/api/bookings/getSlots",method = RequestMethod.POST)
+	public @ResponseBody List<String> getFreeSlots(@RequestParam("roomId") int roomId,@RequestParam("bookingDate") Date date,@RequestParam("slot") String slot)  throws DaoException {
+		List<String> result = null;
+		try{
+		result = bookingService.getFreeSlots(roomId,date,slot);
+		}catch(Exception ex){
+			throw new DaoException("Unable to get Slots");
 		}
 		return result;
 	}
