@@ -6,10 +6,9 @@ import BookingFood from './bookingFood';
 import BookingEquipments from './bookingEquipment';
 import BookingClientDetails from './bookingClient';
 import BookRoom from './bookRoom.js';
+import Confirmation from './confirmation.js';
 
 class UserMainTab extends Component{
-
-
 
   render(){
 
@@ -26,12 +25,12 @@ class UserMainTab extends Component{
       </Tab>
 
       <Tab eventKey={3} title="Step-3 Room Setup">
-     <RoomSetup/>
+      <RoomSetup/>
       </Tab>
 
       <Tab eventKey={4} title="Step-4 Food and Drinks">
       <h3>Foods and Drinks</h3>
-     <BookingFood/>
+      <BookingFood/>
       </Tab>
 
       <Tab eventKey={5} title="Step-5 Checkout">
@@ -39,7 +38,7 @@ class UserMainTab extends Component{
       </Tab>
 
       <Tab eventKey={6} title="Step-6 Confirmation">
-
+      <Confirmation/>
       </Tab>
 
       </Tabs>

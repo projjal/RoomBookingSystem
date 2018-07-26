@@ -11,7 +11,8 @@ class BookingClientDetails extends Component{
 	{
 		super(props)
 		this.state={
-			clientDetails:{}
+			clientDetails:{},
+			payment:null
 		}
 
 		this.handleChange=this.handleChange.bind(this);
@@ -22,16 +23,22 @@ class BookingClientDetails extends Component{
 
   handleChange(event)
   {
-  			var prev=this.state.clientDetails;
+		if(event.target.name==="payment"){
+			this.setState({payment:event.target.value})
+		}
+		else{
+			var prev=this.state.clientDetails;
 			prev[event.target.name]=event.target.value;
 			this.setState({clientDetails:prev});
+		}
+
   }
 
   submit(e)
   {
   	console.log("hii");
   	e.preventDefault();
-  	this.props.addUserDetails(this.state.clientDetails);
+  	this.props.addUserDetails(this.state);
   }
 
 
@@ -46,7 +53,7 @@ render(){
 
 		<h5>PERSONAL DETAILS</h5>
 
-		
+
 		<div className="col-md-12">
 
 			<div className="col-md-4">
@@ -94,7 +101,7 @@ render(){
 
 			</div>
 
-		
+
 		</div>
 
 
@@ -197,9 +204,9 @@ render(){
 
 	</form>
 	</div>
-	
 
-	
+
+
 
 
 		);
@@ -215,4 +222,3 @@ function mapPropsToDispatch(dispatch){
 }
 
 export default connect(null,mapPropsToDispatch)(BookingClientDetails);
-
