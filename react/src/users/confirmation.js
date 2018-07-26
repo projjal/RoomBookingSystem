@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {postBookingDetails} from './endUserAction';
-
+import { bindActionCreators } from 'redux';
+import axios from 'axios';
 
 class Confirmation extends Component{
 
@@ -110,11 +111,21 @@ class Confirmation extends Component{
   postBooking(){
     var finalBooking = {};
     finalBooking["id"] = 0;
-    finalBooking["client"] = this.props.clientDetails;
+    finalBooking["client"] = this.props.clientDetails.clientDetails;
     finalBooking["foodItems"] = this.props.foods;
     finalBooking["equipmentItems"] = this.props.equipments;
-    finalBooking["duration"] = this.props.bookRoomDetails.duration;
+    finalBooking["duration"] = "08:00-09:00";
     finalBooking["room"] = this.props.room;
+    finalBooking["room"].image = null;
+    finalBooking["status"] = 1;
+    finalBooking["bookedForDate"] = this.props.roomBookingDetails.date;
+    finalBooking["bookingDate"] = Date.now();
+    finalBooking["payment"] = this.props.clientDetails.payment;
+    finalBooking["total"] = 0;
+    finalBooking["layout"] = this.props.layout;
+    finalBooking["layout"].image = null;
+    console.log(finalBooking);
+    this.props.postBookingDetails(finalBooking);
   }
 
   render(){
@@ -133,7 +144,7 @@ class Confirmation extends Component{
         {this.showClientDetails()}
         </div>
 
-        <button className="btn btn-primary btn-small" onClick={evt=>this.props.postBooking()}>Confirm Booking</button>
+        <button className="btn btn-primary btn-small" onClick={evt=>this.postBooking()}>Confirm Booking</button>
       </div>
 
     )
@@ -147,7 +158,13 @@ return{
   equipments:state.endUsers.equipments,
   foods:state.endUsers.foods,
   roomBookingDetails:state.endUsers.roomBookingDetails,
-  clientDetails:state.endUsers.userDetails
+  clientDetails:state.endUsers.userDetails,
 }
 }
-export default connect(mapStateToProps)(Confirmation);
+function mapPropsToDispatch(dispatch){
+    return bindActionCreators({
+        postBookingDetails:postBookingDetails
+    },dispatch);
+}
+
+export default connect(mapStateToProps,mapPropsToDispatch)(Confirmation);

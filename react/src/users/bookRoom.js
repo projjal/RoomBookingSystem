@@ -10,7 +10,7 @@ class BookRoomForm extends Component{
       this.state={
         date:"",
         duration:"",
-        tofrom:[],
+        tofrom1:[],
         attendees:0
       }
 
@@ -20,7 +20,7 @@ class BookRoomForm extends Component{
 
   func2(res)
   {
-    this.setState({tofrom:res});
+    this.setState({tofrom1:res});
   }
 
   handleChange(event) {
@@ -85,7 +85,7 @@ class BookRoomForm extends Component{
         <td><label>To-From</label></td>
         <td><select name="tofrom" ref="tofrom" className="form-control" required onChange={(evt)=>this.handleChange(evt)}>
           <option value="select">Select</option>
-          {this.state.tofrom.map((tim,key)=><option key={key} value={tim}>{tim}</option>)}
+          {this.state.tofrom1 && this.state.tofrom1.map((tim,key)=><option key={key} value={tim}>{tim}</option>)}
         </select></td>
       </tr>
 
@@ -95,7 +95,7 @@ class BookRoomForm extends Component{
       </tr>
 
       <tr className="form-group">
-      <input className="btn btn-primary button"  type="submit" value="Next" onClick={(evt)=>this.handleSubmit(evt)}/>
+      <input className="btn btn-primary button"  type="submit" value="Save" onClick={(evt)=>this.handleSubmit(evt)}/>
       </tr>
 
       </table>
@@ -111,8 +111,7 @@ render(){
     if(this.props.room){
       return(
         <div>
-        <h1>Book Page</h1>
-        <h3>{this.props.room.type}</h3>
+        <h4>{this.props.room.type}</h4>
         <p>Capacity: {this.props.room.capacity} people</p>
         <BookRoomForm bookRoomDetails={(formData)=>this.props.addRoomBookingDetails(formData)} room={this.props.room}/>
         </div>

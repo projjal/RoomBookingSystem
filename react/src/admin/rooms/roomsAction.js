@@ -13,7 +13,7 @@ function asyncLoop(count,roomsList,dispatch){
                         roomsList[count].image=null;
                     }
                     count++;
-                    asyncLoop(count, roomsList,dispatch); 
+                    asyncLoop(count, roomsList,dispatch);
                 })
                 .catch((err)=>{throw err;});
     }
@@ -24,16 +24,16 @@ function asyncLoop(count,roomsList,dispatch){
 export function fetchRooms(){
 
     return (dispatch, getState) => {
-        axios.get("/api/rooms") 
+        axios.get("/api/rooms")
         .then((response)=>{
             console.log(response.data);
             var roomsList=response.data;
             asyncLoop(0,roomsList,dispatch);
         }).catch((error)=>{
             dispatch({type : "ROOMS_LIST_FAILED", error : error});
-        });   
+        });
     };
-    
+
 }
 export function addRoom(data){
 
@@ -58,9 +58,9 @@ export function addRoom(data){
                 dispatch({type:"ROOMS_LIST_ADD_FAILED", payload:data});
             });
         })
-        .catch((err)=>console.log(err)); 
+        .catch((err)=>console.log(err));
     };
-    
+
 }
 
 export function deleteRoom(selectedRoom){
@@ -73,7 +73,7 @@ export function deleteRoom(selectedRoom){
                 dispatch({type:"ROOMS_LIST_DELETE", payload:selectedRoom});
         }).catch((error)=>{
             throw error;
-        });   
+        });
     };
-    
+
 }

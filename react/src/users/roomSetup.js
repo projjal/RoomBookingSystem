@@ -6,17 +6,6 @@ import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import BookingEquipments from './bookingEquipment.js';
 
-/*This component uses redux to fetch equipments. This may replace the BookingEquipments component in this file*/
-class EquipmentList extends Component{
-  render(){
-    return(
-      <div>
-        <h5>Equipments</h5>
-      </div>
-    )
-  }
-}
-
 class LayoutList extends Component{
   render(){
     return(
@@ -37,14 +26,13 @@ class RoomSetup extends Component{
     this.props.fetchEquipments();
   }
   render(){
+    if(this.props.room){
       if(JSON.stringify(this.props.layouts) !== JSON.stringify({})){
-          console.log('user tab layouts');
           if(this.props.layouts.layouts.length>0){
               var arr = Object.keys(this.props.layouts.layouts[0]);
               console.log(arr);
               return(
               <div>
-                <h2>Room Setup</h2>
                   <div style={{"display":"block"}}>
                     <h3>Layouts</h3>
                     {this.props.layouts.layouts.map((layouts, i)=><LayoutList data={layouts} key={i} selectLayout={(data)=>this.props.selectLayout(data)}/>)}
@@ -68,11 +56,18 @@ class RoomSetup extends Component{
           );
       }
   }
+  else{
+    return(
+      <div>Please select a room and come back</div>
+    )
+  }
+}
 }
 function mapStateToProps(state){
     return{
         layouts:state.layouts,
-        equipments:state.equipments
+        equipments:state.equipments,
+        room:state.endUsers.room
     }
 }
 function mapPropsToDispatch(dispatch){

@@ -21,10 +21,12 @@ class UserMainTab extends Component{
       </Tab>
 
       <Tab eventKey={2} title="Step-2 Book Room">
+      <h3>Book Room</h3>
       <BookRoom/>
       </Tab>
 
       <Tab eventKey={3} title="Step-3 Room Setup">
+      <h3>Room Setup</h3>
       <RoomSetup/>
       </Tab>
 

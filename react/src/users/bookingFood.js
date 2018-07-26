@@ -122,8 +122,9 @@ func1(res)
 
 
 render(){
-
-	return(
+	if(this.props){
+		if(this.props.room){
+				return(
 
 		<div>
 
@@ -149,16 +150,27 @@ render(){
 
 		);
 
+		}
+		else{
+			return(
+				<div>Please select a room and come back</div>
+			)
+		}
+	}
 }
 
-
-
-
 }
+
+function mapStateToProps(state){
+    return{
+        room:state.endUsers.room
+    }
+}
+
 function mapPropsToDispatch(dispatch){
     return bindActionCreators({
         selectFoods:selectFoods
     },dispatch);
 }
 
-export default connect(null,mapPropsToDispatch)(BookingFood);
+export default connect(mapStateToProps,mapPropsToDispatch)(BookingFood);
