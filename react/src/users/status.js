@@ -35,7 +35,7 @@ class UserStatus extends Component{
         return(
           <div>
             <p>Equipments Selected:</p>
-            {this.props.equipments.map((equipment, i)=><p key={i}>Total cost of {equipment.equipmentName} : {equipment.totalPrice}</p>)}
+            {this.props.equipments.map((equipment, i)=><p key={i}>Total cost of {equipment.equipment.name} : {equipment.price}</p>)}
           </div>
         )
       }
@@ -45,11 +45,10 @@ class UserStatus extends Component{
   showFoodStatus(){
     if(this.props){
       if(this.props.foods){
-        console.log("helloji", this.props.foods);
         return(
           <div>
             <p>Food Items Selected:</p>
-            {this.props.foods.map((food, i)=><p key={i}>Total cost of {food.foodItemName} : {food.totalPrice}</p>)}
+            {this.props.foods.map((food, i)=><p key={i}>Total cost of {food.food.name} : {food.price}</p>)}
           </div>
         )
       }

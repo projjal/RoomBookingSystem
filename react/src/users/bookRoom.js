@@ -10,12 +10,17 @@ class BookRoomForm extends Component{
       this.state={
         date:"",
         duration:"",
-        tofrom:"",
+        tofrom:[],
         attendees:0
       }
 
       this.handleChange=this.handleChange.bind(this);
       this.handleSubmit=this.handleSubmit.bind(this);
+  }
+
+  func2(res)
+  {
+    this.setState({tofrom:res});
   }
 
   handleChange(event) {
@@ -37,7 +42,7 @@ class BookRoomForm extends Component{
         console.log("HAIII", this.props.room);
         console.log("Date here ", dat);
         axios.get("/api/bookings/getSlots?roomId="+this.props.room.id+"&bookingDate="+dat
-         		+"&slot="+target.value).then((res)=>{this.setState({tofrom:res.data})});
+         		+"&slot="+target.value).then((res)=>{this.func2(res.data)});
       }
     }
     else if(target.name === 'tofrom'){
@@ -80,6 +85,7 @@ class BookRoomForm extends Component{
         <td><label>To-From</label></td>
         <td><select name="tofrom" ref="tofrom" className="form-control" required onChange={(evt)=>this.handleChange(evt)}>
           <option value="select">Select</option>
+          {this.state.tofrom.map((tim,key)=><option key={key} value={tim}>{tim}</option>)}
         </select></td>
       </tr>
 

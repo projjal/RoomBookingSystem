@@ -15,7 +15,7 @@ class BookingFood extends Component{
 			foodform:{},
 			check:{}
 		}
-	
+
 		this.func1=this.func1.bind(this);
 		this.func2=this.func2.bind(this);
 		this.funcrender=this.funcrender.bind(this);
@@ -45,7 +45,7 @@ func1(res)
        		"food":food,
 			"id":0,
 			"quantity":1,
-			"totalPrice":0
+			"price":0
 		}
 		  var prev=this.state.foodform;
        var obj2=Object.assign(prev,updatedState);
@@ -65,16 +65,16 @@ func1(res)
 
 		funcrender(food,key)
 	{
-		
-		
+
+
 		return(
 			<tr key={key}>
 			<td><input name={food.name} type="checkbox" onChange={this.handleChange}/></td>
 			<td>{food.name}</td>
-			<td><input name={food.name} type="number" 
+			<td><input name={food.name} type="number"
 			defaultValue="1" min="1" onChange={this.handleChange1}/></td>
 			<td>{food.price}</td>
-			
+
 			</tr>
 			);
 		}
@@ -95,7 +95,7 @@ func1(res)
 			this.setState({foodform:prev});
 		}
 
-	
+
 
 		submit(e)
 		{
@@ -115,7 +115,7 @@ func1(res)
 				}
 			}
 			this.props.selectFoods(fform);
-			
+
 
 		}
 
@@ -130,7 +130,7 @@ render(){
 
 			<form onSubmit={this.submit} className="forms">
 			<table className=" col-md-12">
-		
+
 
 			<tbody>
 
