@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --port 8081",
-    "test": "mocha --compilers js:babel-core/register --require ./tests/test_helper.js --recursive ./tests/rooms.js",
+    "test": "mocha --require babel-core/register --require babel-polyfill --require ignore-styles --require ./tests/test_helper.js ./tests/",
     "test:watch": "npm run test -- --watch"
   },
   "author": "",
@@ -19,10 +19,13 @@
     "babel-preset-stage-0": "^6.24.1",
     "chai": "^4.1.2",
     "chai-jquery": "^2.0.0",
+    "enzyme-adapter-react-15": "^1.0.6",
+    "ignore-styles": "^5.0.1",
     "jquery": "^3.2.1",
     "jsdom": "^11.2.0",
     "mocha": "^5.2.0",
     "react-addons-test-utils": "^15.6.0",
+    "react-test-renderer": "^15.5.4",
     "webpack": "^3.5.6",
     "webpack-dev-server": "^2.7.1"
   },
