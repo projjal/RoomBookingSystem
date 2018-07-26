@@ -20,17 +20,19 @@ export default class StatusPanel extends Component{
     render(){
         return (
             <div>
-                <div className="panel panel-default status-panel-bar shadow-lg p-3 mb-5 bg-white rounded">
-                    <div className="panel-body container-fluid">
-                        <div className="col-md-4 booking-details">
+                <div className="status-panel-bar shadow-lg p-3 mb-5 bg-white rounded">
+                    <div className="container-fluid">
+                        <div className="col-md-3 booking-details">
                             <h4>Bookings For Today</h4>
                             <h3>{this.state.bookingsForToday}</h3>
                         </div>
+                        <div className="col-md-1"></div>
                         <div className="col-md-4 booking-details">
                             <h4>Bookings Done Today</h4>
                             <h3>{this.state.todaysBookings}</h3>
                         </div>
-                        <div className="col-md-4 booking-details">
+                        <div className="col-md-1"></div>
+                        <div className="col-md-3 booking-details">
                             <h4>Total Bookings</h4>
                             <h3>{this.state.totalBookings}</h3>
                         </div>

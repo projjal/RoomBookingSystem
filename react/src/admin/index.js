@@ -19,7 +19,8 @@ class AdminApp extends Component{
         return(
             <BrowserRouter>
             <div className='container-fluid'>
-                <div className="col-md-12 panel-bar" ><h4>Admin Panel</h4></div>
+                <div className="col-md-12 panel-bar" ><h3>Admin Panel</h3></div>
+                <hr/>
                 <AdminNavigationTab/>
                 <AdminMainTab/>
             </div>

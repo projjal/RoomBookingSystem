@@ -57,7 +57,8 @@ class UserStatus extends Component{
 
   render(){
     return(
-      <div className='col-md-3'><h4>Status bar here</h4>
+      
+      <div className='col-md-3'><h4>{(this.props)?"Status bar here":""}</h4>
       {this.showRoomStatus()}
       {this.showLayoutStatus()}
       {this.showEquipmentStatus()}
