@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.adobe.theforce.web;
 
 import java.util.List;
@@ -23,70 +20,67 @@ import com.adobe.theforce.exceptions.DaoException;
 import com.adobe.theforce.service.FoodService;
 
 /**
- * @author pchanda
+ * 
+ * Controller class corresponding to food entity
  *
  */
 @RestController
 public class FoodController {
 	@Autowired
 	private FoodService foodService;
-	
-	
+
+
 	@RequestMapping(value = "/api/foods",method = RequestMethod.GET)
 	public @ResponseBody List<Food> getFoods()  throws DaoException{
 		try{
-		return foodService.getFoods();
+			return foodService.getFoods();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to Get Foods");
 		}
 	}
-	
+
 	@RequestMapping(value = "/api/foods",method = RequestMethod.POST)
 	public int addFood(@RequestBody Food r)  throws DaoException{
 		try{
-		foodService.addFood(r);
-		return r.getId();
+			foodService.addFood(r);
+			return r.getId();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to Add Food");
 		}
 	}
-	
+
 	@RequestMapping(value = "/api/foods/{id}",method = RequestMethod.DELETE)
 	public void deleteFood(@PathVariable("id") int id)  throws DaoException{
 		try{
-		foodService.deleteFood(id);
+			foodService.deleteFood(id);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to Delete Food");
 		}
 	}
-	
+
 	@RequestMapping(value = "/api/foods/{id}",method = RequestMethod.PUT)
 	public void updateFood(@PathVariable("id") int id,@RequestBody Food r)  throws DaoException{
 		try{
-		foodService.updateFood(r);
+			foodService.updateFood(r);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to Update Food with Id = " + id);
 		}
 	}
-	
+
 	@RequestMapping(value = "/api/foods/{id}",method = RequestMethod.GET)
 	public @ResponseBody Food getFood(@PathVariable("id") int id)  throws DaoException {
 		try{
-		return foodService.getFood(id);
+			return foodService.getFood(id);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to get Food with Id " + id);
 		}
 	}
-	
+
 	@ExceptionHandler(DaoException.class)
 	@ResponseBody
 	public ResponseEntity handleDaoException(HttpServletRequest request, DaoException ex){
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
+
 	}
 
 }

@@ -4,6 +4,11 @@ import java.util.List;
 
 import com.adobe.theforce.entity.Admin;
 
+/**
+ * 
+ * DAO interface corresponding to admin entity
+ *
+ */
 public interface AdminDao {
 
 	List<Admin> getAdmins() throws Exception;

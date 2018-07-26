@@ -9,7 +9,8 @@ import com.adobe.theforce.entity.Client;
 
 
 /**
- * @author pchanda
+ * 
+ * DAO interface corresponding to client entity
  *
  */
 public interface ClientDao {

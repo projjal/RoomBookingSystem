@@ -5,6 +5,12 @@ import java.util.List;
 import com.adobe.theforce.entity.Room;
 import com.adobe.theforce.exceptions.DaoException;
 
+
+/**
+ * 
+ * DAO interface corresponding to room entity
+ *
+ */
 public interface RoomDao {
 	List<Room> getRooms() ;
 	Room getRoom(int id);

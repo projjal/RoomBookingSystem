@@ -8,6 +8,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 
+/**
+ * 
+ * @author lohumi
+ * Equipment entity specification
+ * Stores the available equipments
+ *
+ */
 @Entity
 @Table(name ="equipments")
 public class Equipment {
@@ -19,7 +26,6 @@ public class Equipment {
 	
 	private double price;
 	
-	//private int quantity;
 	
 	private boolean multiunits;
 
@@ -99,11 +105,4 @@ public class Equipment {
 		this.multiunits = multiunits;
 	}
 	
-	
-	
-	
-	
-	
-	
-
 }

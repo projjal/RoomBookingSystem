@@ -24,6 +24,8 @@ import javax.persistence.TemporalType;
 
 /**
  * @author vvashish
+ * Booking entity specification
+ * Stores the information regarding the bookings present in the system
  *
  */
 

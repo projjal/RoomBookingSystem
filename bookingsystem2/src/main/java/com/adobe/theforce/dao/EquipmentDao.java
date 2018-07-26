@@ -5,6 +5,11 @@ import java.util.List;
 import com.adobe.theforce.entity.Equipment;
 
 
+/**
+ * 
+ * DAO interface corresponding to equipment entity
+ *
+ */
 public interface EquipmentDao {
 	List<Equipment> getEquipments() throws Exception;
 	Equipment getEquipment(int id) throws Exception;

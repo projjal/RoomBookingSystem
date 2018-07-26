@@ -20,62 +20,62 @@ import com.adobe.theforce.entity.Layout;
 import com.adobe.theforce.exceptions.DaoException;
 import com.adobe.theforce.service.LayoutService;
 
+/**
+ * 
+ * Controller class corresponding to layout entity
+ *
+ */
 @RestController
 public class LayoutController {
-	
+
 	@Autowired
 	private LayoutService layoutService;
-	
-	
-	
+
+
+
 	@RequestMapping(value = "/api/layouts",method = RequestMethod.GET)
 	public @ResponseBody List<Layout> getLayouts() throws DaoException{
-		
+
 		try {
 			return layoutService.getLayouts();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to get Layouts");
 		}
 	}
-	
+
 	@RequestMapping(value = "/api/layouts",method = RequestMethod.POST)
 	public int addLayout(@RequestBody Layout r) throws DaoException{
 		try {
 			layoutService.addLayout(r);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to Add Layouts");
 		}
 		return r.getId();
 	}
-	
+
 	@RequestMapping(value = "/api/layouts/{id}",method = RequestMethod.DELETE)
 	public void deleteLayout(@PathVariable("id") int id) throws DaoException{
 		try {
 			layoutService.deleteLayout(id);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to Delete Layout with Id = "+  id);
 		}
 	}
-	
+
 	@RequestMapping(value = "/api/layouts/{id}",method = RequestMethod.PUT)
 	public void updateLayout(@PathVariable("id") int id,@RequestBody Layout r) throws DaoException{
 		try {
 			layoutService.updateLayout(r);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to Update Layout with Id = "+  id);
 		}
 	}
-	
+
 	@RequestMapping(value = "/api/layouts/{id}",method = RequestMethod.GET)
 	public @ResponseBody Layout getLayout(@PathVariable("id") int id) throws DaoException{
 		try {
 			return layoutService.getLayout(id);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to get Layout with Id = "+  id);
 		}
 	}
@@ -84,6 +84,7 @@ public class LayoutController {
 	@ResponseBody
 	public ResponseEntity handleDaoException(HttpServletRequest request, DaoException ex){
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
+
 	}
 
 }

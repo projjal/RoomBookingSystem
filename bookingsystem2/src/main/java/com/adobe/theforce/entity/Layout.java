@@ -6,11 +6,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 /**
  * @author vvashish
- *
+ * Layout entity specification
+ * Stores the available layouts
  */
-
 @Entity
 @Table(name="layouts")
 public class Layout {

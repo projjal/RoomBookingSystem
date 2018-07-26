@@ -1,5 +1,6 @@
 package com.adobe.theforce.exceptions;
 
+
 public class DaoException extends Exception {
 
 	private String url;

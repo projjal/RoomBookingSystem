@@ -4,6 +4,11 @@ import java.util.List;
 
 import com.adobe.theforce.entity.Layout;
 
+/**
+ * 
+ * DAO interface corresponding to layout entity
+ *
+ */
 public interface LayoutDao {
 	List<Layout> getLayouts() throws Exception;
 	Layout getLayout(int id) throws Exception;

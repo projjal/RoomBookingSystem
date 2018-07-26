@@ -8,6 +8,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+
+/**
+ * 
+ * @author lohumi
+ * This entity stores the mapping between booking entity and the equipment entity 
+ * It tells which equipments are booked for a booking.
+ *
+ */
 @Entity
 @Table(name="equipment_line_items")
 public class EquipmentLineItem {
@@ -24,19 +32,9 @@ public class EquipmentLineItem {
 	
 	private int quantity;
 
-	
-
-	
-//	private String equipmentName;
-//	
-//	private double pricePerUnit;
-//	
-//	private int quantity;
-//	
-//	private double totalPrice;
 
 	/**
-	 * 
+	 * Default constructor
 	 */
 	public EquipmentLineItem() {
 	}

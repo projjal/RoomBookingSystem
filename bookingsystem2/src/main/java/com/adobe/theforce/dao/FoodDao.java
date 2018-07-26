@@ -8,7 +8,8 @@ import java.util.List;
 import com.adobe.theforce.entity.Food;
 
 /**
- * @author pchanda
+ * 
+ * DAO interface corresponding to food entity
  *
  */
 public interface FoodDao {

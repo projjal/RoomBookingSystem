@@ -24,7 +24,7 @@ public class AppConfig {
 		DriverManagerDataSource ds = new DriverManagerDataSource();
 		ds.setDriverClassName("com.mysql.jdbc.Driver");
 		ds.setUsername("root");
-		ds.setPassword("password");
+		ds.setPassword("Calibration@6321");
 		ds.setUrl("jdbc:mysql://localhost:3306/adobe_trg_db?createDatabaseIfNotExist=true");
 		return  ds;
 	}

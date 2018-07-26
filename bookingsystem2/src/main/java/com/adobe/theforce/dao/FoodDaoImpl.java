@@ -14,12 +14,13 @@ import org.springframework.stereotype.Repository;
 import com.adobe.theforce.entity.Food;
 
 /**
- * @author pchanda
+ * 
+ * DAO implementation class for the interface corresponding to food entity
  *
  */
 @Repository
 public class FoodDaoImpl implements FoodDao {
-	
+
 	@PersistenceContext
 	private EntityManager em;
 
@@ -30,11 +31,11 @@ public class FoodDaoImpl implements FoodDao {
 	public List<Food> getFoods()  throws Exception{
 		TypedQuery<Food> query = em.createQuery("SELECT r FROM Food r", Food.class);
 		try{
-		return query.getResultList();
+			return query.getResultList();
 		} catch (Exception e){
 			throw e;
 		}
-		
+
 	}
 
 	/* (non-Javadoc)
@@ -43,7 +44,7 @@ public class FoodDaoImpl implements FoodDao {
 	@Override
 	public Food getFood(int id)  throws Exception{
 		try{
-		return em.find(Food.class, id);
+			return em.find(Food.class, id);
 		} catch (Exception e){
 			throw e;
 		}
@@ -55,7 +56,7 @@ public class FoodDaoImpl implements FoodDao {
 	@Override
 	public void addFood(Food food)  throws Exception{
 		try{
-		em.persist(food);
+			em.persist(food);
 		} catch (Exception e){
 			throw e;
 		}
@@ -67,8 +68,8 @@ public class FoodDaoImpl implements FoodDao {
 	@Override
 	public void deleteFood(int id)  throws Exception{
 		try{
-		Food r = em.find(Food.class, id);
-		em.remove(r);
+			Food r = em.find(Food.class, id);
+			em.remove(r);
 		} catch (Exception e){
 			throw e;
 		}
@@ -80,7 +81,7 @@ public class FoodDaoImpl implements FoodDao {
 	@Override
 	public void updateFood(Food food)  throws Exception {
 		try{
-		em.merge(food);
+			em.merge(food);
 		} catch (Exception e){
 			throw e;
 		}

@@ -14,6 +14,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
+/**
+ * 
+ * rooms entity specification
+ * It store the info about the all rooms in the system.
+ *
+ */
 @Entity
 @Table(name ="rooms")
 public class Room {
@@ -29,8 +36,7 @@ public class Room {
 	@Column(name = "room_description")
 	private String description; 
 	
-	//private ArrayList<Integer> layoutId = new ArrayList<Integer>();
-    //private ArrayList<String> layoutName = new ArrayList<String>();
+
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="layoutline_id")
 	private List<LayoutLineItem> layoutItems = new ArrayList<LayoutLineItem>(); 

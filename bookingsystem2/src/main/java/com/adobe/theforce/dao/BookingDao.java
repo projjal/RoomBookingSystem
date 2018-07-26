@@ -4,6 +4,11 @@ import java.util.List;
 
 import com.adobe.theforce.entity.Booking;
 
+/**
+ * 
+ * DAO interface corresponding to booking entity
+ *
+ */
 public interface BookingDao {
 	void addBooking(Booking booking) throws Exception;
 	List<Booking> getBookings() throws Exception;

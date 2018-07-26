@@ -24,6 +24,11 @@ import com.adobe.theforce.entity.Booking;
 import com.adobe.theforce.exceptions.DaoException;
 import com.adobe.theforce.service.BookingService;
 
+/**
+ * 
+ * Controller class corresponding to booking entity
+ *
+ */
 @RestController
 public class BookingController {
 
@@ -59,8 +64,6 @@ public class BookingController {
 			bookingService.addBooking(r);
 			return r.getId();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 			throw new DaoException("Unable to Add Booking");
 		}
 	}
@@ -80,7 +83,6 @@ public class BookingController {
 		try{
 			bookingService.updateBooking(r);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to update Booking with Id = " + id);
 		}
 	}
@@ -90,7 +92,6 @@ public class BookingController {
 		try{
 			return bookingService.getBooking(id);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to get Booking with Id = " + id);
 		}
 	}
@@ -100,7 +101,6 @@ public class BookingController {
 		try{
 			return bookingService.getLatestBookings();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to get Latest Bookings");
 		}
 	}
@@ -113,7 +113,6 @@ public class BookingController {
 			result.add(bookingService.getTotalBookings());
 			result.add(bookingService.getBookingsMadeToday());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to get todays Bookings");
 		}
 		return result;
@@ -122,17 +121,16 @@ public class BookingController {
 	@RequestMapping(value = "/api/bookings/givenDate",method = RequestMethod.POST)
 	public @ResponseBody List<Booking> getTodayBookingList(@RequestBody String date)  throws DaoException {
 		List<Booking> result = new ArrayList<Booking>();
-		//		System.out.println(date);
+
 
 		DateFormat readFormat = new SimpleDateFormat( "MMM dd yyyy");
 
 		Date date1 = null;
-		//	    System.out.println(date1);
+
+
 		date = date.replace("\"", "");
 		date = date.replace("+", " ");
 		date = date.replace("=", "");
-
-		//	    System.out.println(date1);
 
 		try {
 			date1 = readFormat.parse( date );
@@ -144,15 +142,15 @@ public class BookingController {
 
 			result = (bookingService.getTodayBookingList(date1));
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			//			e.printStackTrace();
 			throw new DaoException("Unable to get the Bookings");
 		}
 		return result;
 	}
 
+
 	@RequestMapping(value = "/api/bookings/getSlots",method = RequestMethod.GET)
 	public @ResponseBody List<String> getFreeSlots(@RequestParam("roomId") String Id,@RequestParam("bookingDate") String date1,@RequestParam("slot") String slot)  throws DaoException {
+	
 		List<String> result = null;
 
 
@@ -189,10 +187,11 @@ public class BookingController {
 		return result;
 	}
 
-	@ExceptionHandler(DaoException.class)
-	@ResponseBody
-	public ResponseEntity handleDaoException(HttpServletRequest request, DaoException ex){
-		return new ResponseEntity(HttpStatus.BAD_REQUEST);
-	}
+@ExceptionHandler(DaoException.class)
+@ResponseBody
+public ResponseEntity handleDaoException(HttpServletRequest request, DaoException ex){
+	return new ResponseEntity(HttpStatus.BAD_REQUEST);
+
+}
 
 }

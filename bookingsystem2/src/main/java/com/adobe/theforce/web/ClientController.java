@@ -23,70 +23,67 @@ import com.adobe.theforce.exceptions.DaoException;
 import com.adobe.theforce.service.ClientService;
 
 /**
- * @author pchanda
+ * 
+ * Controller class corresponding to client entity
  *
  */
 @RestController
 public class ClientController {
 	@Autowired
 	private ClientService clientService;
-	
-	
+
+
 	@RequestMapping(value = "/api/clients",method = RequestMethod.GET)
 	public @ResponseBody List<Client> getClients()  throws DaoException{
 		try{
-		return clientService.getClients();
+			return clientService.getClients();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to get Clients");
 		}
 	}
-	
+
 	@RequestMapping(value = "/api/clients",method = RequestMethod.POST)
 	public int addClient(@RequestBody Client r)  throws DaoException{
 		try{
-		clientService.addClient(r);
-		return r.getId();
+			clientService.addClient(r);
+			return r.getId();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to Add Clients");
 		}
 	}
-	
+
 	@RequestMapping(value = "/api/clients/{id}",method = RequestMethod.DELETE)
 	public void deleteClient(@PathVariable("id") int id)  throws DaoException{
 		try{
-		clientService.deleteClient(id);
+			clientService.deleteClient(id);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to Delete clients");
 		}
 	}
-	
+
 	@RequestMapping(value = "/api/clients/{id}",method = RequestMethod.PUT)
 	public void updateClient(@PathVariable("id") int id,@RequestBody Client r)  throws DaoException{
 		try{
-		clientService.updateClient(r);
+			clientService.updateClient(r);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to Update Clients");
 		}
 	}
-	
+
 	@RequestMapping(value = "/api/clients/{id}",method = RequestMethod.GET)
 	public @ResponseBody Client getClient(@PathVariable("id") int id)  throws DaoException{
 		try{
-		return clientService.getClient(id);
+			return clientService.getClient(id);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to get Client with Id = " + id);
 		}
 	}
-	
+
 	@ExceptionHandler(DaoException.class)
 	@ResponseBody
 	public ResponseEntity handleDaoException(HttpServletRequest request, DaoException ex){
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
+
 	}
 
 }

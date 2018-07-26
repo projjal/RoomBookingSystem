@@ -10,9 +10,15 @@ import org.springframework.stereotype.Repository;
 
 import com.adobe.theforce.entity.Layout;
 
+
+/**
+ * 
+ * DAO implementation class for the interface corresponding to layout entity
+ *
+ */
 @Repository
 public class LayoutDaoImpl implements LayoutDao {
-	
+
 	@PersistenceContext
 	private EntityManager em;
 
@@ -20,7 +26,7 @@ public class LayoutDaoImpl implements LayoutDao {
 	public List<Layout> getLayouts() throws Exception {
 		TypedQuery<Layout> query = em.createQuery("SELECT r FROM Layout r", Layout.class);
 		try{
-		return query.getResultList();
+			return query.getResultList();
 		} catch (Exception e){
 			throw e;
 		}
@@ -29,7 +35,7 @@ public class LayoutDaoImpl implements LayoutDao {
 	@Override
 	public Layout getLayout(int id) throws Exception {
 		try{
-		return em.find(Layout.class, id);
+			return em.find(Layout.class, id);
 		} catch (Exception e){
 			throw e;
 		}
@@ -38,7 +44,7 @@ public class LayoutDaoImpl implements LayoutDao {
 	@Override
 	public void addLayout(Layout layout) throws Exception {
 		try{
-		em.persist(layout);
+			em.persist(layout);
 		} catch (Exception e){
 			throw e;
 		}
@@ -47,8 +53,8 @@ public class LayoutDaoImpl implements LayoutDao {
 	@Override
 	public void deleteLayout(int id) throws Exception {
 		try{
-		Layout l = em.find(Layout.class, id);
-		em.remove(l);
+			Layout l = em.find(Layout.class, id);
+			em.remove(l);
 		} catch (Exception e){
 			throw e;
 		}
@@ -57,7 +63,7 @@ public class LayoutDaoImpl implements LayoutDao {
 	@Override
 	public void updateLayout(Layout layout) throws Exception {
 		try{
-		em.merge(layout);
+			em.merge(layout);
 		} catch (Exception e){
 			throw e;
 		}

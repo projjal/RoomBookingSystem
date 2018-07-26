@@ -10,12 +10,18 @@ import org.springframework.stereotype.Repository;
 
 import com.adobe.theforce.entity.Client;
 
+
+/**
+ * 
+ * DAO implementation class for the interface corresponding to client entity
+ *
+ */
 @Repository
 public class ClientDaoImpl implements ClientDao {
 
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	@Override
 	public List<Client> getClients()  throws Exception{
 		TypedQuery<Client> query = em.createQuery("SELECT e FROM Client e", Client.class);

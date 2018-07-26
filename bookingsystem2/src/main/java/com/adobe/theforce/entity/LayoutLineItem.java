@@ -15,6 +15,15 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+
+
+/**
+ * 
+ * @author lohumi
+ * This entity stores the mapping between room entity and the layout entity.
+ * It tells which layouts are available in a room.
+ *
+ */
 @Entity
 @Table(name = "layout_line_items")
 public class LayoutLineItem {

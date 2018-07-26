@@ -11,6 +11,8 @@ import javax.persistence.Table;
 
 /**
  * @author pchanda
+ * Client entity specification
+ * Stores the info regarding the clients, who have booked the rooms.
  *
  */
 @Entity

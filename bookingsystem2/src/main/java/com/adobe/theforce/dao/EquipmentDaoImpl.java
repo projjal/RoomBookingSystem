@@ -11,6 +11,12 @@ import org.springframework.stereotype.Repository;
 import com.adobe.theforce.entity.Equipment;
 import com.adobe.theforce.entity.Room;
 
+
+/**
+ * 
+ * DAO implementation class for the interface corresponding to equipment entity
+ *
+ */
 @Repository
 public class EquipmentDaoImpl implements EquipmentDao {
 

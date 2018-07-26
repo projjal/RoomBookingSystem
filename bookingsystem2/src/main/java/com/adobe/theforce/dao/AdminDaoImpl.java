@@ -10,14 +10,20 @@ import org.springframework.stereotype.Repository;
 
 import com.adobe.theforce.entity.Admin;
 
+
+/**
+ * 
+ * DAO implementation class for the interface corresponding to admin entity
+ *
+ */
 @Repository
 public class AdminDaoImpl implements AdminDao {
 
-	
+
 	@PersistenceContext
 	private EntityManager em;
-	
-	
+
+
 	@Override
 	public List<Admin> getAdmins()  throws Exception{
 		TypedQuery<Admin> query = em.createQuery("SELECT a FROM Admin a", Admin.class);
@@ -37,7 +43,7 @@ public class AdminDaoImpl implements AdminDao {
 
 	}
 
-	
+
 	public void deleteAdmin(int id)  throws Exception{
 		Admin a = em.find(Admin.class, id);
 		em.remove(a);
@@ -48,7 +54,7 @@ public class AdminDaoImpl implements AdminDao {
 	public void updateAdmin(Admin admin)  throws Exception{
 		em.merge(admin);
 	}
-	
+
 	@Override
 	public Admin getAdmin(String emailID) throws Exception{
 		TypedQuery<Admin> query = em.createQuery("SELECT a FROM Admin a WHERE a.emailID = :emailID", Admin.class);

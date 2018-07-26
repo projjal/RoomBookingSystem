@@ -19,63 +19,63 @@ import com.adobe.theforce.entity.Equipment;
 import com.adobe.theforce.exceptions.DaoException;
 import com.adobe.theforce.service.EquipmentService;
 
+/**
+ * 
+ * Controller class corresponding to equipment entity
+ *
+ */
 @RestController
 public class EquipmentController {
 	@Autowired
 	private EquipmentService equipmentService;
-	
-	
+
+
 	@RequestMapping(value = "/api/equipments",method = RequestMethod.GET)
 	public @ResponseBody List<Equipment> getEquipments()  throws DaoException{
 		try{
-		return equipmentService.getEquipments();
+			return equipmentService.getEquipments();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to Get Equipments");
 		}
 	}
-	
+
 	@RequestMapping(value = "/api/equipments",method = RequestMethod.POST)
 	public int addEquipment(@RequestBody Equipment e) throws DaoException{
 		try{
-		equipmentService.addEquipment(e);
+			equipmentService.addEquipment(e);
 		} catch (Exception ex) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to add Equipment");
 		}
 		return e.getId();
 	}
-	
+
 	@RequestMapping(value = "/api/equipments/{id}",method = RequestMethod.DELETE)
 	public void deleteEquipment(@PathVariable("id") int id) throws DaoException{
 		try{
-		equipmentService.deleteEquipment(id);
+			equipmentService.deleteEquipment(id);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to Delete Equipment with Id = " + id);
 		}
 	}
-	
+
 	@RequestMapping(value = "/api/equipments/{id}",method = RequestMethod.PUT)
 	public void updateEquipment(@PathVariable("id") int id,@RequestBody Equipment e) throws DaoException{
 		try{
-		equipmentService.updateEquipment(e);
+			equipmentService.updateEquipment(e);
 		} catch (Exception ex) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to update Equipment with Id = " + id);
 		}
 	}
-	
+
 	@RequestMapping(value = "/api/equipments/{id}",method = RequestMethod.GET)
 	public @ResponseBody Equipment getEquipment(@PathVariable("id") int id) throws DaoException{
 		try{
-		return equipmentService.getEquipment(id);
+			return equipmentService.getEquipment(id);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to get Equipment with Id = " + id);
 		}
 	}
-	
+
 	@ExceptionHandler(DaoException.class)
 	@ResponseBody
 	public ResponseEntity handleDaoException(HttpServletRequest request, DaoException ex){

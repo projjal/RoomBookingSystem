@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.adobe.theforce.dao.BookingComparator;
 import com.adobe.theforce.dao.BookingDao;
 import com.adobe.theforce.entity.Booking;
 import com.adobe.theforce.exceptions.DaoException;
+import com.adobe.theforce.util.BookingComparator;
 
 
 @Service

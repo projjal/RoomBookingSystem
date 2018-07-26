@@ -6,6 +6,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
+ /**
+  * 
+  * Admin entity specification
+  * To store the information regarding the administrators
+  *
+  */
 @Entity
 @Table(name ="admins")
 public class Admin {

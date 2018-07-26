@@ -10,9 +10,15 @@ import org.springframework.stereotype.Repository;
 
 import com.adobe.theforce.entity.Booking;
 
+
+/**
+ * 
+ * DAO implementation class for the interface corresponding to booking entity
+ *
+ */
 @Repository
 public class BookingDaoImpl implements BookingDao {
-	
+
 	@PersistenceContext
 	private EntityManager em;
 

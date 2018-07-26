@@ -17,46 +17,50 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.adobe.theforce.entity.Admin;
-import com.adobe.theforce.entity.PublicAdmin;
 import com.adobe.theforce.exceptions.DaoException;
 import com.adobe.theforce.service.AdminService;
 import com.adobe.theforce.service.PublicAdminService;
+import com.adobe.theforce.util.PublicAdmin;
 
-
+/**
+ * 
+ * Controller class corresponding to admin entity
+ *
+ */
 @RestController
 public class AdminController {
-	
+
 	@Autowired
 	private AdminService adminService;
-	
+
 	@Autowired
 	private PublicAdminService publicAdminService;
-	
+
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
-	
+
 	@RequestMapping(value = "/api/admins/signup",method = RequestMethod.POST)
 	public void signUp(@RequestBody Admin user) throws DaoException {
 
 		String emailId = user.getEmailID();
 		Admin temp = null;
 		try{
-		temp = adminService.getAdmin(emailId);
+			temp = adminService.getAdmin(emailId);
 		}catch(Exception e){
-			
+
 		}
 		if(temp != null){
 			throw new DaoException("Admin EmailId Already Exist");
 		}
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		try{
-		adminService.addAdmin(user);
+			adminService.addAdmin(user);
 		} catch (Exception e) {
-		// TODO Auto-generated catch block
-		throw new DaoException("Unable to get Admins");
+			// TODO Auto-generated catch block
+			throw new DaoException("Unable to get Admins");
 		}
 	}
-	
+
 	@RequestMapping(value = "/api/admins",method = RequestMethod.GET)
 	public @ResponseBody List<PublicAdmin> getAdmins()  throws DaoException{
 		try{
@@ -65,40 +69,40 @@ public class AdminController {
 			// TODO Auto-generated catch block
 			throw new DaoException("Unable to get Admins");
 		}
-		
+
 	}
-	
+
 	@RequestMapping(value = "/api/admins",method = RequestMethod.POST)
 	public void addAdmin(@RequestBody Admin a) throws DaoException{
 		try{
-		adminService.addAdmin(a);
+			adminService.addAdmin(a);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			throw new DaoException("Unable to Add Admin");
 		}
 	}
-	
+
 	@RequestMapping(value = "/api/admins/{id}",method = RequestMethod.DELETE)
 
 	public void deleteAdmin(@PathVariable("id") int id) throws DaoException{
 		try{
-		adminService.deleteAdmin(id);
+			adminService.deleteAdmin(id);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			throw new DaoException("Unable to Delete Admin with Id = "+ id);
 		}
 	}
-	
+
 	@RequestMapping(value = "/api/admins/{id}",method = RequestMethod.PUT)
 	public void updateAdmin(@PathVariable("id") int id,@RequestBody Admin a) throws DaoException{
 		try{
-		adminService.updateAdmin(a);
+			adminService.updateAdmin(a);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			throw new DaoException("Unable to update Admin with Id = " + id);
 		}
 	}
-	
+
 	@RequestMapping(value = "/api/admins/{id}",method = RequestMethod.GET)
 	public @ResponseBody PublicAdmin getAdmin(@PathVariable("id") int id) throws DaoException{
 		try{
@@ -108,10 +112,11 @@ public class AdminController {
 			throw new DaoException("Unable to get Admin with Id = " + id);
 		}
 	}
-	
+
 	@ExceptionHandler(DaoException.class)
 	@ResponseBody
 	public ResponseEntity handleDaoException(HttpServletRequest request, DaoException ex){
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
+
 	}
 }

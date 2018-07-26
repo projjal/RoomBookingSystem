@@ -8,6 +8,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+
+/**
+ * 
+ * @author lohumi
+ * This entity stores the mapping between booking entity and the food entity.
+ * It tells which food items are booked for a booking.
+ *
+ */
 @Entity
 @Table(name="food_line_items")
 public class FoodLineItem {
