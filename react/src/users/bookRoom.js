@@ -1,15 +1,85 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
+import {addRoomBookingDetails} from './endUserAction';
 
 class BookRoomForm extends Component{
+  constructor(props){
+      super(props);
+      this.state={
+        date:"",
+        duration:"",
+        tofrom:"",
+        attendees:0
+      }
+
+      this.handleChange=this.handleChange.bind(this);
+      this.handleSubmit=this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
+    if(target.type === 'date'){
+      this.setState({date:value})
+    }
+    else if(target.name === 'duration'){
+      this.setState({duration:value})
+    }
+    else if(target.name === 'tofrom'){
+      this.setState({tofrom:value})
+    }
+    else if(target.name === 'attendees'){
+      this.setState({attendees:value})
+    }
+
+  }
+  handleSubmit(e){
+    e.preventDefault();
+    var self=this;
+    console.log(this.state);
+    this.props.bookRoomDetails(this.state);
+}
+
   render(){
     return(
       <div>
-      <form>
-      <label>Date</label>
-      <input type="date" name="date" required/>
-      <label>Duration</label>
+      <form className="forms">
+
+      <table>
+      <tr className="form-group">
+        <td> <label>Date</label> </td>
+        <td> <input type="date" name="date" className="form-control" required onChange={(evt)=>this.handleChange(evt)}/> </td>
+      </tr>
+
+      <tr className="form-group">
+      <td><label>Duration</label></td>
+      <td><select type="duration" name="duration" className="form-control" required onChange={(evt)=>this.handleChange(evt)}>
+          <option value="select">Select</option>
+          <option value="halfDay">Half-day</option>
+          <option value="fullDay">Full Day</option>
+          <option value="hourly">Hourly</option>
+        </select></td>
+      </tr>
+
+      <tr className="form-group">
+        <td><label>To-From</label></td>
+        <td><select name="tofrom" ref="tofrom" className="form-control" required onChange={(evt)=>this.handleChange(evt)}>
+          <option value="select">Select</option>
+        </select></td>
+      </tr>
+
+      <tr className="form-group">
+        <td><label>Attendees</label></td>
+        <td><input type="number" name="attendees" className="form-control" required ref="attendees" onChange={(evt)=>this.handleChange(evt)}/></td>
+      </tr>
+
+      <tr className="form-group">
+      <input className="btn btn-primary button"  type="submit" value="Next" onClick={(evt)=>this.handleSubmit(evt)}/>
+      </tr>
+
+      </table>
       </form>
       </div>
     )
@@ -25,7 +95,7 @@ render(){
         <h1>Book Page</h1>
         <h3>{this.props.room.type}</h3>
         <p>Capacity: {this.props.room.capacity} people</p>
-        <BookRoomForm/>
+        <BookRoomForm bookRoomDetails={(formData)=>this.props.addRoomBookingDetails(formData)}/>
         </div>
       )
     }
@@ -52,6 +122,7 @@ function mapStateToProps(state){
 }
 function mapPropsToDispatch(dispatch){
     return bindActionCreators({
+      addRoomBookingDetails:addRoomBookingDetails
     },dispatch);
 }
 

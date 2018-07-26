@@ -7,6 +7,7 @@ class UserStatus extends Component{
       if(this.props.room){
         return(
         <div>
+        <p>Room selected: {this.props.room.type}</p>
         <img height="180px" width="250px" src={this.props.room.image}/>
         <p>Price Per Day: {this.props.room.pricePerDay}</p>
         <p>Price Per Hour: {this.props.room.pricePerHour}</p>
@@ -55,15 +56,31 @@ class UserStatus extends Component{
     }
   }
 
+  showBookingDetails(){
+    if(this.props){
+      if(this.props.roomBookingDetails){
+        console.log("yoiyoi", this.props.roomBookingDetails);
+        return(
+          <div>
+          <p>Room Booking Time Details</p>
+          <p>Date of Booking: {this.props.roomBookingDetails.date}</p>
+          <p>Number of Attendees: {this.props.roomBookingDetails.attendees}</p>
+          </div>
+        )
+      }
+    }
+  }
+
   render(){
     return(
-      
+
       <div className='col-md-3 status-sidebar'>
         <h4>{(this.props)?"Booking Details: ":""}</h4>
         {this.showRoomStatus()}
         {this.showLayoutStatus()}
         {this.showEquipmentStatus()}
         {this.showFoodStatus()}
+        {this.showBookingDetails()}
       </div>
 
     )
@@ -74,7 +91,8 @@ function mapStateToProps(state){
     room:state.endUsers.room,
     layout:state.endUsers.layout,
     equipments:state.endUsers.equipments,
-    foods:state.endUsers.foods
+    foods:state.endUsers.foods,
+    roomBookingDetails:state.endUsers.roomBookingDetails
   }
 }
 export default connect(mapStateToProps)(UserStatus);
