@@ -6,18 +6,21 @@ import { bindActionCreators } from 'redux';
 
 class SubMeetingRooms extends Component{
 
+    renderImage(){
+        
+    }
   render(){
     return(
-        <div className="container-fluid">
+        <div className="container-fluid room-record">
           <div className="col-md-4">
-            <h3 className='cat'>{this.props.data.type}</h3>
+            <h4 className='cat'>{this.props.data.type}</h4>
             <img height="180px" width="250px" src={this.props.data.image}/>
           </div>
-          <div className="col-md-4">
+          <div className="col-md-4 room-description">
             <p>{this.props.data.description}</p>
           </div>
-          <div className="col-md-4">
-            <button className="btn btn-primary" style={{"padding":"15px 32px"}} onClick={evt=>this.props.selectRoom(this.props.data)}>Book this room</button>
+          <div className="col-md-4 book-button">
+            <button className="btn btn-primary btn-small" onClick={evt=>this.props.selectRoom(this.props.data)}>Book this room</button>
             </div>
         </div>
     )
@@ -36,7 +39,7 @@ class MeetingRooms extends Component{
               var arr1=["id","type","capacity","image","button"];
               return(
               <div>
-                  <ul>
+                  <ul className="ul-room">
                   {this.props.rooms.rooms.map((rooms, i)=><li key={i}><SubMeetingRooms data={rooms} selectRoom={(data)=>this.props.selectRoom(data)}/></li>)}
                   </ul>
               </div>

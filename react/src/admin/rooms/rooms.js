@@ -9,7 +9,6 @@ export default class AdminRooms extends Component{
     render(){   
         return(
             <div>
-
                 <RoomPanel/>
                 <RoomList/>
             </div>

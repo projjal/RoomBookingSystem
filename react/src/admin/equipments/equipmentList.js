@@ -10,11 +10,10 @@ class EquipmentList extends Component{
     }
     render(){
         if(JSON.stringify(this.props.equipments) !== JSON.stringify({})){
-          console.log("Yahoo");
           console.log('equipments',this.props.equipments.equipments.length);
           if(this.props.equipments.equipments.length>0){
             var arrActual = Object.keys(this.props.equipments.equipments[0]);
-            var arr=["id","name","quantity","price","button"];
+            var arr=["id","name","multiunits","price","button"];
             return(
               <div>
               <TableView heading={arr} data={this.props.equipments.equipments} entity="equipments"/>
@@ -24,7 +23,7 @@ class EquipmentList extends Component{
           else{
            // console.log('equipments',this.props.equipments);
             return(
-                <div>Loading...</div>
+                <div>No Equipments present. </div>
             );
           }  
           

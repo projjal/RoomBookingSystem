@@ -10,7 +10,6 @@ class UserList extends Component{
     }
     render(){
         if(JSON.stringify(this.props.users) !== JSON.stringify({})){
-          console.log("Yahoo");
           console.log('users',this.props.users.users.length);
           if(this.props.users.users.length>0){
             var arr = Object.keys(this.props.users.users[0]);
@@ -22,15 +21,13 @@ class UserList extends Component{
             )
           }
           else{
-           // console.log('equipments',this.props.equipments);
             return(
-                <div>Loading...</div>
+                <div>No user record present.</div>
             );
           }  
           
         }
         else{
-            //console.log('equipments',this.props.equipments);
             return(
                 <div>Loading...</div>
             );

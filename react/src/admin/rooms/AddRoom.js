@@ -6,7 +6,6 @@ class AddRoom extends Component{
     constructor(props){
         super(props);
         this.props.fetchLayouts();
-        this.image=""
         this.state={
             id:0,
             image:"",
@@ -27,7 +26,7 @@ class AddRoom extends Component{
         if(target.type==='checkbox'){
             console.log(target.checked);
             if(target.checked){
-                this.setState({layoutItems:[...this.state.layoutItems, this.props.layouts.layouts[target.value]]})  
+                this.setState({layoutItems:[...this.state.layoutItems, {"id":0,"layout":this.props.layouts.layouts[target.value]}]})  
             }
             else{
                 var newLayoutItems=[];
@@ -53,7 +52,7 @@ class AddRoom extends Component{
     handleSubmit(e){
         e.preventDefault();
         var self=this;
-        console.log(this.image);
+        console.log(this.state);
         this.props.updateFormData(this.state);
     }
     handleFile(e) {
@@ -112,6 +111,8 @@ class AddRoom extends Component{
                     <div>
                         <img src={this.state.image}/>
                     </div>
+                    <div>
+                        Layouts: <br/>
                     {this.props.layouts.layouts.map((layout,i)=>{
                         return(
                             <div className="checkbox" key={i}>
@@ -121,6 +122,7 @@ class AddRoom extends Component{
                         );
 
                     })}
+                    </div>
 
                     <button type="submit" className="btn btn-primary">Add Room</button>
                 </form>

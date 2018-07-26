@@ -18,7 +18,7 @@ class LayoutsList extends Component{
         }
         else if(this.props.layouts.layouts.length<=0){
             return (
-                <div>Loading....</div>
+                <div>No layout present</div>
             );
         }
         else{

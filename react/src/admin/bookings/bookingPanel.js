@@ -16,7 +16,7 @@ class BookingPanel extends Component{
     render(){
         return(
             <div>
-            <div className="panel panel-default">
+            <div className="div-heading">
             <button onClick={(evt)=>{this.toggleModal()}} className="btn btn-primary btn-sm" >+ Add Booking</button>
             </div>
             <ModalNew show={this.state.showModal} closeModal={this.toggleModal}/>

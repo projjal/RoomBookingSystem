@@ -10,18 +10,13 @@ class AddEquipment extends Component{
             name:"",
             price:"",
             quantity:"",
-            multiunits:true
+            multiunits:false
         }
     }
     handleInputChange(event) {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-        // if(target.type==='checkbox'){
-        //     console.log(target.checked);
-        //     this.setState({layoutId: [...this.state.layoutId, target.value.split('-')[0]]});
-        //     this.setState({layoutName: [...this.state.layoutName, target.value.split('-')[1]]});           
-        // }
        
         this.setState({
                 [name]: value
@@ -50,10 +45,6 @@ class AddEquipment extends Component{
                     <div className="form-group">
                         <label htmlFor="price">Price</label>
                         <input type="number" name="price" className="form-control" onChange={(evt)=>this.handleInputChange(evt)}/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="quantity">Quantity</label>
-                        <input type="number" name="quantity" className="form-control" onChange={(evt)=>this.handleInputChange(evt)}/>
                     </div>
                     
                     <div className="checkbox">

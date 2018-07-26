@@ -22,10 +22,14 @@ class FoodList extends Component{
                 </div>
                 )
           }
+          else{
+            return(
+                <div>No food items present. </div>
+            );
+          }
            
         }
         else{
-            console.log('foods',this.props.foods);
             return(
                 <div>Loading...</div>
             );

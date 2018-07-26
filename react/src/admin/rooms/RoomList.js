@@ -29,7 +29,6 @@ class RoomList extends Component{
     render(){
         if(JSON.stringify(this.props.rooms) !== JSON.stringify({})){
             console.log('rooms',this.props.rooms.rooms.length);
-            /*Commented changes use the general table*/
             if(this.props.rooms.rooms.length>0){
                 var arr = Object.keys(this.props.rooms.rooms[0]);
                 console.log(arr);
@@ -43,23 +42,12 @@ class RoomList extends Component{
              );
             }
             else{
-                //console.log('rooms',this.props.rooms);
+                
                 return(
-                    <div>Loading...</div>
+                    <div>No room record present. </div>
                 );
             }
              
-            /* return(
-                <div>
-                    <ul className='list-group col-md-12'>
-                    {
-                        this.props.rooms.rooms.map((room, i)=>{
-                               return this.renderRoomList(room,i);
-                        })
-                    }
-                    </ul>
-                </div>
-            ); */
         }
         else{
            // console.log('rooms',this.props.rooms);

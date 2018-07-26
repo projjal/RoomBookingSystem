@@ -34,8 +34,17 @@ class TableCell extends Component{
       }
     }
     render(){
-      if(this.props.type==="image")
-        return(<td><img height="80px" width="80px" src={this.props.data}/></td>);
+      if(this.props.type==="multiunits")
+        return(<td>{(this.props.data)?"Yes":"No"}</td>)
+      if(this.props.type==="image"){
+        if(this.props.data){
+          return(<td><img height="80px" width="80px" src={this.props.data}/></td>);
+        }
+        else{
+          return(<td>Image currently not available</td>);
+        }
+      }
+        
       if(this.props.type==="button")
         return(<td><button className="btn btn-primary" onClick={evt=>this.deleteEntity(this.props.entity,this.props.record)}>Delete</button> </td>);
       return (  

@@ -107,3 +107,28 @@ h4{
     width: 20%;
     padding: 10px;
 }
+.status-sidebar{
+    border: 3px inset lavender;
+    background-color: rgb(255, 255, 255);
+    padding:5px;
+}
+.room-record{
+    border: 2px groove lavender;
+    padding:10px;
+}
+.room-description{
+    top:75px;
+    color:darkblue;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size:15px;
+    display: inline;
+}
+.book-button{
+    top:150px;
+    left:15%;
+    padding: 15px 32px;
+    float:right;
+}
+.ul-room {
+    list-style-type: none;
+  }

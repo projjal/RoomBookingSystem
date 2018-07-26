@@ -58,11 +58,12 @@ class UserStatus extends Component{
   render(){
     return(
       
-      <div className='col-md-3'><h4>{(this.props)?"Status bar here":""}</h4>
-      {this.showRoomStatus()}
-      {this.showLayoutStatus()}
-      {this.showEquipmentStatus()}
-      {this.showFoodStatus()}
+      <div className='col-md-3 status-sidebar'>
+        <h4>{(this.props)?"Booking Details: ":""}</h4>
+        {this.showRoomStatus()}
+        {this.showLayoutStatus()}
+        {this.showEquipmentStatus()}
+        {this.showFoodStatus()}
       </div>
 
     )
