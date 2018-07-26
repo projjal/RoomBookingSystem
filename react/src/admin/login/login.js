@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { login } from './loginReducer';
 import {bindActionCreators} from 'redux';
-import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import {Alert, Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import {Redirect} from 'react-router-dom'
+import axios from 'axios';
+import history from '../../history'
+
+
+
+var querystring = require('querystring');
 
 class LoginForm extends Component {
 
@@ -11,22 +16,15 @@ class LoginForm extends Component {
     super(props);
     this.state = {
       email : "",
-      password : ""
-      // redirectToReferrer : false
+      password : "",
+      loginFailed : false
     };
     this.onSubmit = this.onSubmit.bind(this);
   }
 
   render() {
-    let {email, password} = this.state;
-    // let {isLoginPending, isLoginSuccess, loginError} = this.props;
-    // let{redirectToReferrer} = this.props.
+    let {email, password, loginFailed} = this.state;
 
-    console.log("redirecttorefererrer : " + this.props.redirectToReferrer);
-
-    if (this.props.redirectToReferrer === true) {
-      return <Redirect to="/admin/dashboard" />
-    }
     return (
       <div>
       <div className="loginbody"></div>
@@ -63,10 +61,10 @@ class LoginForm extends Component {
         >
           Login
         </Button>
-        {/* <div className="message">
-          { isLoginPending && <div>Please wait...</div> }
-          { loginError && <div>{loginError.message}</div> }
-        </div> */}
+        <div className="message">
+          <br/>
+          { loginFailed && <Alert bsStyle="danger"> LOGIN FAILED. Please Try Again</Alert>}
+        </div>
       </form>
 
       </div>
@@ -82,29 +80,31 @@ class LoginForm extends Component {
     e.preventDefault();
     console.log("submit here")
     let { email, password } = this.state;
-    this.props.login(email, password);
-    this.setState({
-      email: '',
-      password: ''
-      // redirectToReferrer : true
-    });
+    this.login(email, password);
+  }
+
+  login(email, password) {
+    axios.post("/api/login",querystring.stringify({
+      username: email,
+      password: password
+    }),{
+      headers: { 
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      withCredentials: true  
+    })
+        .then((response)=>{
+            if(response.status===200){
+              history.push('/admin/')
+            }
+        }).catch((error)=>{
+          this.setState({
+            email: '',
+            password: '',
+            loginFailed:true
+          });
+
+        }); 
   }
 }
-
-const mapStateToProps = (state) => {
-  return {
-    isLoginPending: state.login.isLoginPending,
-    isLoginSuccess: state.login.isLoginSuccess,
-    loginError: state.login.loginError,
-    redirectToReferrer : state.login.redirectToReferrer
-  };
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    login:login
-},dispatch);
-    
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+export default LoginForm;
