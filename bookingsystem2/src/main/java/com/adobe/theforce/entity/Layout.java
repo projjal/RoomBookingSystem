@@ -15,15 +15,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name="layouts")
 public class Layout {
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String image;
-	
+
 	private String name;
-	
+
 	public Layout() {
 	}
 
@@ -74,7 +74,7 @@ public class Layout {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
-	
+
+
+
 }

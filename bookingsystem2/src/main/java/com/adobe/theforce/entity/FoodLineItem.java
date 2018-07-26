@@ -22,20 +22,13 @@ public class FoodLineItem {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	
+
 	@ManyToOne
 	@JoinColumn(name="fid")
 	private Food food;
-//	private String foodItemName;
-	
-//	private double pricePerUnit;
-//	
-//	private int quantity;
-//
-//	private double totalPrice;
-	
+
 	private double price;
-	
+
 	private int quantity;
 
 	/**
@@ -113,8 +106,8 @@ public class FoodLineItem {
 		this.quantity = quantity;
 	}
 
-	
-	
-	
+
+
+
 
 }

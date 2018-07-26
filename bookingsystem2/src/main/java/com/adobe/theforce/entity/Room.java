@@ -24,31 +24,31 @@ import javax.persistence.Table;
 @Entity
 @Table(name ="rooms")
 public class Room {
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String type;
-	
+
 	private int capacity;
-	
+
 	@Column(name = "room_description")
 	private String description; 
-	
+
 
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="layoutline_id")
 	private List<LayoutLineItem> layoutItems = new ArrayList<LayoutLineItem>(); 
-	
+
 	private String image;
-	
+
 	private Boolean status;
-	
-	
+
+
 	@Column(name = "price_day")
 	private Double pricePerDay;
-	
+
 	@Column(name = "price_hour")
 	private Double pricePerHour;
 
@@ -207,9 +207,9 @@ public class Room {
 	public void setPricePerHour(Double pricePerHour) {
 		this.pricePerHour = pricePerHour;
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 }

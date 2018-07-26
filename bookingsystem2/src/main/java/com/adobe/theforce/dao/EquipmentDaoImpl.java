@@ -22,7 +22,7 @@ public class EquipmentDaoImpl implements EquipmentDao {
 
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	@Override
 	public List<Equipment> getEquipments()  throws Exception {
 		TypedQuery<Equipment> query = em.createQuery("SELECT e FROM Equipment e", Equipment.class);

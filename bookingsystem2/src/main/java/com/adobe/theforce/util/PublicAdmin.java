@@ -14,8 +14,8 @@ public class PublicAdmin {
 	private String name;
 	private String mobileNumber;
 	private String address;
-	
-	
+
+
 	public PublicAdmin(Admin a) {
 		this.id = a.getId();
 		this.emailID = a.getEmailID();
@@ -23,8 +23,8 @@ public class PublicAdmin {
 		this.mobileNumber = a.getMobileNumber();
 		this.address = a.getAddress();
 	}
-	
-	
+
+
 	/**
 	 * @return the id
 	 */
@@ -89,7 +89,7 @@ public class PublicAdmin {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
-	
-		
+
+
+
 }

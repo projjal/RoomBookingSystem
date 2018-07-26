@@ -32,51 +32,51 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name="bookings")
 public class Booking {
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column(name="booking_date")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date bookingDate;
-	
+
 	@Column(name="booking_for_date")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date bookedForDate;
-	
+
 	private String duration;
-	
+
 	private String status;
-	
+
 	private String paymentMethod;
-	
-	
+
+
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
 	@JoinColumn(name="room_id")
 	private Room room;
-//	private String roomType;
-	
+	//	private String roomType;
+
 	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="client_id")
 	private Client client;
-	
-	
+
+
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
 	@JoinColumn(name="layout_id")
 	private Layout layout;
-//	private String layoutName;
-	
+	//	private String layoutName;
+
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="equipmentline_id")
 	private List<EquipmentLineItem> equipmentItems = new ArrayList<EquipmentLineItem>();
-	
-	
+
+
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="foodline_id")
 	private List<FoodLineItem> foodItems = new ArrayList<FoodLineItem>();
 
-	
+
 	/* Total cost of booking*/
 	private double total;
 
@@ -313,9 +313,9 @@ public class Booking {
 	}
 
 
-	
-	
-	
 
-	
+
+
+
+
 }

@@ -16,21 +16,21 @@ import javax.persistence.Table;
 @Entity
 @Table(name ="foods")
 public class Food {
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
 	private String name;
 	private Double price;	
-	
+
 	public Food(int id, String name, Double price) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
 	}
-	
-	
+
+
 	public Food() {
 	}
 
@@ -71,6 +71,6 @@ public class Food {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
-	
-	
+
+
 }

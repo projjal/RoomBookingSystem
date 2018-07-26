@@ -23,48 +23,49 @@ import com.adobe.theforce.entity.Layout;
 import com.adobe.theforce.entity.Room;
 
 /**
- * @author pchanda
+ * 
+ * Service class to perform user operations
  *
  */
 
 @Service
 public class UserService {
-	
+
 	@Autowired
 	private RoomDao roomDao;
-	
+
 	public List<Room> getRooms(){
 		return roomDao.getRooms();
 	}
 	public Room getRoom(int id){
 		return roomDao.getRoom(id);
 	}
-	
-	
-	
+
+
+
 	@Autowired
 	private EquipmentDao equipmentDao;
-	
+
 	public List<Equipment> getEquipments()  throws Exception{
 		return equipmentDao.getEquipments();
 	}
 	public Equipment getEquipment(int id)  throws Exception{
 		return equipmentDao.getEquipment(id);
 	}
-	
+
 	@Autowired
 	private FoodDao foodDao;
-	
+
 	public List<Food> getFoods() throws Exception{
 		return foodDao.getFoods();
 	}
 	public Food getFood(int id)  throws Exception{
 		return foodDao.getFood(id);
 	}
-	
+
 	@Autowired
 	private LayoutDao layoutDao;
-	
+
 	public List<Layout> getLayouts() throws Exception{
 		return layoutDao.getLayouts();
 	}
@@ -75,15 +76,15 @@ public class UserService {
 
 	@Autowired
 	private ClientDao clientDao;
-	
+
 	@Transactional
 	public void addClient(Client client)  throws Exception{
 		clientDao.addClient(client);
 	}
-	
+
 	@Autowired
 	private BookingDao bookingDao;
-	
+
 	@Transactional
 	public void addBooking(Booking booking)  throws Exception{
 		bookingDao.addBooking(booking);

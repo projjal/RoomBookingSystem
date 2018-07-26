@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.adobe.theforce.dao;
 
 import java.util.List;

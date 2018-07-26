@@ -7,30 +7,30 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 
- /**
-  * 
-  * Admin entity specification
-  * To store the information regarding the administrators
-  *
-  */
+/**
+ * 
+ * Admin entity specification
+ * To store the information regarding the administrators
+ *
+ */
 @Entity
 @Table(name ="admins")
 public class Admin {
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	
-	
-	
+
+
+
 	private String emailID;
-	
+
 	private String name;
-	
+
 	private String mobileNumber;
-	
+
 	private String address;
-	
+
 	private String password;
 
 	public String getName() {
@@ -72,12 +72,12 @@ public class Admin {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
+
+
 	public Admin() {
 		super();
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -94,5 +94,5 @@ public class Admin {
 		this.address = address;
 		this.password = password;
 	}
-	
+
 }

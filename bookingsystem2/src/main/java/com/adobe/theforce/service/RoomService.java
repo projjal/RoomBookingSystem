@@ -14,39 +14,38 @@ import com.adobe.theforce.exceptions.DaoException;
 public class RoomService {
 	@Autowired
 	private RoomDao roomDao;
-	
+
 	public List<Room> getRooms(){
 		return roomDao.getRooms();
 	}
 	public Room getRoom(int id){
 		return roomDao.getRoom(id);
 	}
-	
+
 	@Transactional
 	public void addRoom(Room r) throws Exception {
-		
+
 		try {
 			roomDao.addRoom(r);
 		} catch (DaoException e) {
-			// TODO Auto-generated catch block
 			System.out.println("In Service" + e.getMessage());
 			throw e;
 		}
 	}
-	
+
 	@Transactional
 	public void deleteRoom(int id) throws Exception{
-		
+
 		try{
-		roomDao.deleteRoom(id);
+			roomDao.deleteRoom(id);
 		} catch(Exception e){
 			throw e;
 		}
 	}
-	
+
 	@Transactional
 	public void updateRoom(Room room) throws Exception {
-		
+
 		try {
 			roomDao.updateRoom(room);
 		} catch (Exception e) {

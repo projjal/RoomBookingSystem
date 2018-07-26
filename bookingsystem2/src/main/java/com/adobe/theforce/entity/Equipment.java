@@ -21,12 +21,12 @@ public class Equipment {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String name;
-	
+
 	private double price;
-	
-	
+
+
 	private boolean multiunits;
 
 	/**
@@ -104,5 +104,5 @@ public class Equipment {
 	public void setMultiunits(boolean multiunits) {
 		this.multiunits = multiunits;
 	}
-	
+
 }

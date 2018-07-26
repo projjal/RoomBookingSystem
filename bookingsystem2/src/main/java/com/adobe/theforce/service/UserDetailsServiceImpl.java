@@ -13,25 +13,30 @@ import com.adobe.theforce.exceptions.DaoException;
 
 import static java.util.Collections.emptyList;
 
+/**
+ * 
+ * Service class for handling authentication
+ *
+ */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
 	AdminDao adminDao;
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String username) {
 		Admin admin = null;
 		try{
 			admin = adminDao.getAdmin(username);
 		} catch (Exception e) {
-				System.out.println("in UserDetailsService");
-			}
+			System.out.println("in UserDetailsService");
+		}
 		System.out.println("check " + username);
 		if (admin == null) {
-            throw new UsernameNotFoundException(username);
-        }
-        return new User(admin.getEmailID(), admin.getPassword(),emptyList());
+			throw new UsernameNotFoundException(username);
+		}
+		return new User(admin.getEmailID(), admin.getPassword(),emptyList());
 	}
 
 }

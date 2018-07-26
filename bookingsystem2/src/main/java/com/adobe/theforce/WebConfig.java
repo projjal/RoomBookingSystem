@@ -22,24 +22,24 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		favorParameter(true).
 		parameterName("mediaType"). 
 		ignoreAcceptHeader(true).useJaf(false)
-				.defaultContentType(MediaType.APPLICATION_JSON)
-				.mediaType("xml", MediaType.APPLICATION_XML)
-				.mediaType("json", MediaType.APPLICATION_JSON);
+		.defaultContentType(MediaType.APPLICATION_JSON)
+		.mediaType("xml", MediaType.APPLICATION_XML)
+		.mediaType("json", MediaType.APPLICATION_JSON);
 	}
-	
+
 	@Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH");
-    }
-	
+	public void addCorsMappings(CorsRegistry registry) {
+		registry.addMapping("/**")
+		.allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH");
+	}
+
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-	    registry.addResourceHandler("swagger-ui.html")
-	      .addResourceLocations("classpath:/META-INF/resources/");
-	 
-	    registry.addResourceHandler("/webjars/**")
-	      .addResourceLocations("classpath:/META-INF/resources/webjars/");
+		registry.addResourceHandler("swagger-ui.html")
+		.addResourceLocations("classpath:/META-INF/resources/");
+
+		registry.addResourceHandler("/webjars/**")
+		.addResourceLocations("classpath:/META-INF/resources/webjars/");
 	}
 
 }

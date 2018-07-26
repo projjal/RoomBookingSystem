@@ -56,7 +56,6 @@ public class AdminController {
 		try{
 			adminService.addAdmin(user);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to get Admins");
 		}
 	}
@@ -66,7 +65,6 @@ public class AdminController {
 		try{
 			return publicAdminService.getPublicAdminListFromAdmins(adminService.getAdmins());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to get Admins");
 		}
 
@@ -77,7 +75,6 @@ public class AdminController {
 		try{
 			adminService.addAdmin(a);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to Add Admin");
 		}
 	}
@@ -88,7 +85,6 @@ public class AdminController {
 		try{
 			adminService.deleteAdmin(id);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to Delete Admin with Id = "+ id);
 		}
 	}
@@ -98,7 +94,6 @@ public class AdminController {
 		try{
 			adminService.updateAdmin(a);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to update Admin with Id = " + id);
 		}
 	}
@@ -108,7 +103,6 @@ public class AdminController {
 		try{
 			return publicAdminService.getPublicAdminFromAdmin(adminService.getAdmin(id));
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			throw new DaoException("Unable to get Admin with Id = " + id);
 		}
 	}

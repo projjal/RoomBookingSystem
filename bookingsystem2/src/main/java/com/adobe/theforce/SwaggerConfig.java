@@ -25,16 +25,16 @@ public class SwaggerConfig {
 				.build()
 				.apiInfo(apiInfo());
 	}
-	
+
 	private ApiInfo apiInfo() {
-	     return new ApiInfo(
-	       "My REST API", 
-	       "Some custom description of API.", 
-	       "API v1", 
-	       "Terms of service", 
-	       new Contact("Projjal Chanda", "www.projjal.com", "pchanda@adobe.com"), 
-	       "License of API", "API license URL");
+		return new ApiInfo(
+				"My REST API", 
+				"Some custom description of API.", 
+				"API v1", 
+				"Terms of service", 
+				new Contact("Projjal Chanda", "www.projjal.com", "pchanda@adobe.com"), 
+				"License of API", "API license URL");
 	}
-	
-	
+
+
 }

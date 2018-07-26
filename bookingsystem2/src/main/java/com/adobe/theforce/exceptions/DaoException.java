@@ -5,7 +5,7 @@ public class DaoException extends Exception {
 
 	private String url;
 	private String message;
-	
+
 	public String getUrl() {
 		return url;
 	}
@@ -18,7 +18,7 @@ public class DaoException extends Exception {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	
+
 	public DaoException(String message){
 		this.url = "";
 		this.message = message;

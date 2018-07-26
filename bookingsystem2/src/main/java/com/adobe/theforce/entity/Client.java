@@ -18,11 +18,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "clients")
 public class Client {
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String title;
 	private String name;
 	private String email;
@@ -34,7 +34,7 @@ public class Client {
 	private String state;
 	private String zip;
 	private String country;
-	
+
 	public Client(int id, String title, String name, String email, String phone, String notes, String company, String address,
 			String city, String state, String zip, String country) {
 		this.id = id;
@@ -81,8 +81,8 @@ public class Client {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
-	
+
+
 
 	/**
 	 * @return the name
@@ -223,8 +223,8 @@ public class Client {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-	
-	
-	
+
+
+
 
 }

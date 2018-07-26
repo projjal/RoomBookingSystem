@@ -30,7 +30,7 @@ public class LayoutLineItem {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	
+
 	@ManyToOne
 	@JoinColumn(name="lid")
 	private Layout layout;
@@ -78,13 +78,13 @@ public class LayoutLineItem {
 		this.layout = layout;
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
 
 }

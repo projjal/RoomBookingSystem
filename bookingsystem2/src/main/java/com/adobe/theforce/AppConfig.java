@@ -18,9 +18,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 public class AppConfig {
-	
+
 	@Bean
-	public DataSource getDataSource (){ //pool of database connection unlike the jdbc
+	public DataSource getDataSource (){ 
 		DriverManagerDataSource ds = new DriverManagerDataSource();
 		ds.setDriverClassName("com.mysql.jdbc.Driver");
 		ds.setUsername("root");
@@ -41,7 +41,7 @@ public class AppConfig {
 		emf.setJpaProperties(props);
 		return emf;
 	}
-	
+
 	@Bean
 	public PlatformTransactionManager transactionManager(EntityManagerFactory emf){
 		return new JpaTransactionManager(emf);

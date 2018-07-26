@@ -150,7 +150,7 @@ public class BookingController {
 
 	@RequestMapping(value = "/api/bookings/getSlots",method = RequestMethod.GET)
 	public @ResponseBody List<String> getFreeSlots(@RequestParam("roomId") String Id,@RequestParam("bookingDate") String date1,@RequestParam("slot") String slot)  throws DaoException {
-	
+
 		List<String> result = null;
 
 
@@ -160,13 +160,9 @@ public class BookingController {
 		int roomId = Integer.parseInt(Id);
 
 		DateFormat readFormat = new SimpleDateFormat( "MMM dd yyyy");
-
-		//	    System.out.println(date1);
 		date1 = date1.replace("\"", "");
 		date1 = date1.replace("+", " ");
 		date1 = date1.replace("=", "");
-
-		//	    System.out.println(date1);
 
 		Date date;
 		try {
@@ -187,11 +183,11 @@ public class BookingController {
 		return result;
 	}
 
-@ExceptionHandler(DaoException.class)
-@ResponseBody
-public ResponseEntity handleDaoException(HttpServletRequest request, DaoException ex){
-	return new ResponseEntity(HttpStatus.BAD_REQUEST);
+	@ExceptionHandler(DaoException.class)
+	@ResponseBody
+	public ResponseEntity handleDaoException(HttpServletRequest request, DaoException ex){
+		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 
-}
+	}
 
 }

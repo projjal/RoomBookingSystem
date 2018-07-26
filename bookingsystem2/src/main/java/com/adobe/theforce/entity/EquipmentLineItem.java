@@ -19,17 +19,17 @@ import javax.persistence.Table;
 @Entity
 @Table(name="equipment_line_items")
 public class EquipmentLineItem {
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	
+
 	@ManyToOne
 	@JoinColumn(name="eid")
 	private Equipment equipment;
-	
+
 	private double price;
-	
+
 	private int quantity;
 
 
@@ -134,10 +134,10 @@ public class EquipmentLineItem {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 
 }
