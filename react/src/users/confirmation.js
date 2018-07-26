@@ -126,7 +126,7 @@ class Confirmation extends Component{
     finalBooking["payment"] = this.props.clientDetails.payment;
     finalBooking["total"] = 0;
     finalBooking["layout"] = this.props.layout;
-    finalBooking["layout"].image = null;
+    finalBooking["layout"].image = this.props.fetchLayout.image;
     console.log(finalBooking);
     this.props.postBookingDetails(finalBooking);
   }
@@ -162,7 +162,8 @@ return{
   foods:state.endUsers.foods,
   roomBookingDetails:state.endUsers.roomBookingDetails,
   clientDetails:state.endUsers.userDetails,
-  fetchRoom:state.endUsers.fetchRoom
+  fetchRoom:state.endUsers.fetchRoom,
+  fetchLayout:state.endUsers.fetchLayout
 }
 }
 function mapPropsToDispatch(dispatch){
