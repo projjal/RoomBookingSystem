@@ -3,6 +3,7 @@ package com.adobe.theforce.dao;
 import java.util.List;
 
 import com.adobe.theforce.entity.Room;
+import com.adobe.theforce.exceptions.DaoException;
 
 public interface RoomDao {
 	List<Room> getRooms() ;

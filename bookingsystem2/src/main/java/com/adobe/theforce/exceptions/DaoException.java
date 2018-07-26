@@ -1,4 +1,4 @@
-package com.adobe.theforce.dao;
+package com.adobe.theforce.exceptions;
 
 public class DaoException extends Exception {
 

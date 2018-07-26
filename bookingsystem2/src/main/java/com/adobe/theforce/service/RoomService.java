@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.adobe.theforce.dao.DaoException;
 import com.adobe.theforce.dao.RoomDao;
 import com.adobe.theforce.entity.Room;
+import com.adobe.theforce.exceptions.DaoException;
 
 @Service
 public class RoomService {

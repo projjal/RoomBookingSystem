@@ -9,6 +9,7 @@ import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
 import com.adobe.theforce.entity.Room;
+import com.adobe.theforce.exceptions.DaoException;
 
 @Repository
 public class RoomDaoImpl implements RoomDao {

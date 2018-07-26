@@ -5,6 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.adobe.theforce.dao.DaoException;
-import com.adobe.theforce.entity.ExceptionJSONInfo;
+
 import com.adobe.theforce.entity.Room;
+import com.adobe.theforce.exceptions.DaoException;
 import com.adobe.theforce.service.RoomService;
 
 
@@ -87,12 +89,9 @@ public class RoomController {
 //	}
 	
 	@ExceptionHandler(DaoException.class)
-	public @ResponseBody ExceptionJSONInfo handleDaoException(HttpServletRequest request, DaoException ex){
-		
-		ExceptionJSONInfo response = new ExceptionJSONInfo();
-		response.setMessage(ex.getMessage());
-		
-		return response;
+	@ResponseBody
+	public ResponseEntity handleDaoException(HttpServletRequest request, DaoException ex){
+		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
 	
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.adobe.theforce.dao.DaoException;
+import com.adobe.theforce.exceptions.DaoException;
 
 @RestController
 public class LoginController {

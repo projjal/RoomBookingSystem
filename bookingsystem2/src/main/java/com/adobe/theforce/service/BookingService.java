@@ -1,7 +1,5 @@
 package com.adobe.theforce.service;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -14,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.adobe.theforce.dao.BookingComparator;
 import com.adobe.theforce.dao.BookingDao;
 import com.adobe.theforce.entity.Booking;
+import com.adobe.theforce.exceptions.DaoException;
 
 
 @Service
@@ -23,7 +22,14 @@ public class BookingService {
 	
 	@Transactional
 	public void addBooking(Booking booking)  throws Exception{
-		bookingDao.addBooking(booking);
+		int roomID = booking.getRoom().getId();
+		Date date = booking.getBookedForDate();
+		String slot = booking.getDuration();
+		if(isAvailable(roomID,date,slot))
+			bookingDao.addBooking(booking);
+		else{
+			throw new DaoException("Room Not Available");
+		}
 	}
 	
 	public List<Booking> getBookings()  throws Exception{
@@ -130,19 +136,53 @@ public class BookingService {
 		return bookingDao.getBookings().size();
 	}
 	
+	public Boolean isAvailable(int roomId,Date date,String slot){
+		Boolean ans = false;
+		String[] time = slot.split("-");
+		String[] begTime = time[0].split(":");
+		String[] endTime = time[1].split(":");
+		String type = "";
+		if(Integer.parseInt(endTime[0]) - Integer.parseInt(begTime[0]) < 3){
+			type = "Hourly";
+		}
+		else
+			if(Integer.parseInt(endTime[0]) - Integer.parseInt(begTime[0]) < 5){
+				type = "Half-day";
+			}
+			else
+				type = "Full-day";
+		
+		List<String> freeSlots = null;
+		try {
+			 freeSlots = getFreeSlots(roomId, date, type);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+//			e.printStackTrace();
+		}
+		for(String freeSlot:freeSlots){
+			if(freeSlot.equals(slot)){
+				ans = true;
+			}
+		}
+		return ans;
+	}
+	
 	public List<String> getFreeSlots(int roomId,Date date,String slot) throws Exception{
 		List<Booking> bookings = this.getTodayBookingList(date);
 		List<String> bookedSlots = new ArrayList<String>();
-		String[] allSlots = {"8:00-9:00","9:00-10:00","10:00-11:00","11:00-12:00","12:00-13:00","13:00-14:00","14:00-15:00","15:00-16:00","16:00-17:00","17:00-18:00","18:00-19:00","19:00-20:00","20:00-21:00","21:00-22:00","22:00-23:00"};
-		String[] halfDaySlots = {"8:00-12:00","13:00-17:00","19:00-23:00"};
+		int allDayFlag = 1;
+		String[] allSlots = {"08:00-09:00","09:00-10:00","10:00-11:00","11:00-12:00","12:00-13:00","13:00-14:00","14:00-15:00","15:00-16:00","16:00-17:00","17:00-18:00","18:00-19:00","19:00-20:00","20:00-21:00","21:00-22:00","22:00-23:00"};
+		String[] halfDaySlots = {"08:00-12:00","13:00-17:00","19:00-23:00"};
+		String[] fullDaySlot = {"08:00-23:00"};
 		for(Booking b:bookings){
 			if(b.getRoom().getId() == roomId){
 				bookedSlots.add(b.getDuration());
+				allDayFlag = 0;
 			}
 		}
 		
 		List<String> freeSlots = new ArrayList<String>();
-		if(slot.equals("allDay"))
+		if(slot.equals("Hourly"))
 		{	
 			for(String slots:allSlots){
 				int flag = 1;
@@ -158,7 +198,8 @@ public class BookingService {
 					}
 			}
 		}
-		else{
+		else
+		if(slot.equals("Half-day")){
 			for(String slots:halfDaySlots){
 				int flag = 1;
 				String[] start = slots.split("-");
@@ -181,6 +222,11 @@ public class BookingService {
 				if(flag == 1){
 					freeSlots.add(slots);
 				}
+			}
+		}
+		else{
+			if(allDayFlag == 1){
+				freeSlots.add(fullDaySlot[0]);
 			}
 		}
 		return freeSlots;	

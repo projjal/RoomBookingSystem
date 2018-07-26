@@ -8,8 +8,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.adobe.theforce.dao.AdminDao;
-import com.adobe.theforce.dao.DaoException;
 import com.adobe.theforce.entity.Admin;
+import com.adobe.theforce.exceptions.DaoException;
 
 import static java.util.Collections.emptyList;
 
