@@ -15,11 +15,12 @@ class BookingDateRoom extends Component{
     		layout:[],
     		duration:[],
     		rprice:0,
-    		obj1:{}
+    		roomsData:{}
     		
 		}
 		this.handleChange1=this.handleChange1.bind(this);
 		this.handleChange2=this.handleChange2.bind(this);
+		this.handleChange3=this.handleChange3.bind(this);
 		this.handleChange=this.handleChange.bind(this);
 		this.submitForm=this.submitForm.bind(this);
 		this.func=this.func.bind(this);
@@ -44,7 +45,7 @@ class BookingDateRoom extends Component{
 	{
 		
 		e.preventDefault();
-		this.props.addData(this.state.obj1);
+		this.props.addData(this.state.roomsData);
 		this.props.setRoomPrice(this.state.rprice);
 	}
 
@@ -52,26 +53,33 @@ class BookingDateRoom extends Component{
 	{
 	   var updatedState={};
        updatedState[event.target.name]=event.target.value;
-       var prev=this.state.obj1;
+       var prev=this.state.roomsData;
        var obj2=Object.assign(prev,updatedState);
-       this.setState({obj1:obj2});
+       this.setState({roomsData:obj2});
        
 	}
 
 	    handleChange1(event)
         {
         	var updatedState={};
-       updatedState[event.target.name]=event.target.value;
-       var prev=this.state.obj1;
+        	
+        	for(var i=0,len=this.state.roomsList.length;i<len;i++)
+        	{
+       			if(this.state.roomsList[i].id==event.target.value)
+       			{
+       				updatedState[event.target.name]=this.state.roomsList[i];
+       			}
+  			 }
+       var prev=this.state.roomsData;
        var obj2=Object.assign(prev,updatedState);
-       this.setState({obj1:obj2});
+       this.setState({roomsData:obj2});
 
         	for(var i=0,len=this.state.roomsList.length;i<len;i++)
         	{
-        		if(event.target.value==this.state.roomsList[i].type)
+        		if(event.target.value==this.state.roomsList[i].id)
         			 {
         			 	this.setState({rprice:this.state.roomsList[i].pricePerHour})
-        			 	 this.setState({layout:this.state.roomsList[i].layoutName});
+        			 	 this.setState({layout:this.state.roomsList[i].layoutItems});
         			 	 break;
         			 }
         	}
@@ -82,9 +90,9 @@ class BookingDateRoom extends Component{
         {
         	var updatedState={};
        updatedState[event.target.name]=event.target.value;
-       var prev=this.state.obj1;
+       var prev=this.state.roomsData;
        var obj2=Object.assign(prev,updatedState);
-       this.setState({obj1:obj2});
+       this.setState({roomsData:obj2});
         	
         	if(event.target.value=="hourly")
         		this.setState({duration:Duration().hourly});
@@ -93,6 +101,24 @@ class BookingDateRoom extends Component{
         	else
 
         		this.setState({duration:["Full Day"]});
+        }
+
+         handleChange3(event)
+        {
+        	var updatedState={};
+        	//console.log("hii");
+        	
+        	for(var i=0,len=this.state.layout.length;i<len;i++)
+        	{
+       			if(this.state.layout[i].id==event.target.value)
+       			{
+       				updatedState[event.target.name]=this.state.layout[i].layout;
+       				//console.log(this.state.layout[i].layout);
+       			}
+  			 }
+       var prev=this.state.roomsData;
+       var obj2=Object.assign(prev,updatedState);
+       this.setState({roomsData:obj2});
         }
 
 
@@ -127,22 +153,22 @@ class BookingDateRoom extends Component{
 
 			 <tr>
 			 <td><label>Attendees</label></td>
-			 <td><input type="number" name="attendees" required ref="attendees" onChange={this.handleChange}/></td>
+			 <td><input type="number" name="attendees" min="0" required ref="attendees" onChange={this.handleChange}/></td>
 			 </tr>
 
 			 <tr>
 			 <td><label>Room</label></td>
 			 <td><select name="room" ref="room" onChange={this.handleChange1}>
 			 <option value="select">Select</option>
-            	{this.state.roomsList.map((room, key)=> <option key={key} value={room.type}>{room.type}</option>)}
+            	{this.state.roomsList.map((room, key)=> <option key={key} value={room.id}>{room.type}</option>)}
          	 </select></td>
 			 </tr>
 
 			  <tr>
 			 <td><label>Layout</label></td>
-			 <td><select name="layout" ref="layout" onChange={this.handleChange}>
+			 <td><select name="layout" ref="layout" onChange={this.handleChange3}>
 			 <option value="select">Select</option>
-            {this.state.layout.map((lout, key)=> <option key={key} value={lout}>{lout}</option>)}
+            {this.state.layout.map((lout, key)=> <option key={key} value={lout.id}>{lout.layout.name}</option>)}
          	 </select></td>
 			 </tr>
 

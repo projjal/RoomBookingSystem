@@ -7,6 +7,11 @@ import BookingFood from './bookingFood';
 import BookingClientDetails from './bookingClientDetails';
 import {Tabs, Tab} from 'react-bootstrap';
 import PostData from './postingBookings';
+import { bindActionCreators } from 'redux';
+import {addBookings, fetchBookings} from './bookingAction';
+import {connect} from 'react-redux';
+
+
 
 
 
@@ -28,7 +33,8 @@ constructor(props)
 		obj:{},
 		equipobj:[],
 		foodobj:[],
-		clientobj:{}
+		clientobj:{},
+	
 		
 	}
 	this.addData=this.addData.bind(this)
@@ -38,6 +44,7 @@ constructor(props)
 	this.addFoodData=this.addFoodData.bind(this)
 	this.setFoodPrice=this.setFoodPrice.bind(this)
 	this.addClientData=this.addClientData.bind(this)
+	this.postingData=this.postingData.bind(this)
 	
 }
 
@@ -84,6 +91,19 @@ setFoodPrice(val){
 	updated.deposit=updated.total/10;
 
 	this.setState({prices:updated});
+
+}
+
+
+
+postingData()
+{
+	console.log("Hello world");
+	var finalObj=PostData(this.state.obj,this.state.equipobj,
+  				this.state.foodobj,this.state.prices,
+  				this.state.clientobj);
+
+	this.props.addBookings(finalObj);
 
 }
 
@@ -142,9 +162,7 @@ render()
 		<BookingClientDetails addClientData={this.addClientData}/>
   		</div>
 
-  		<button onClick={()=>{PostData(this.state.obj,this.state.equipobj,
-  				this.state.foodobj,this.state.prices,
-  				this.state.clientobj)}}>Confirm and Submit</button> 
+  		<button onClick={()=>{this.postingData()}}>Confirm and Submit</button> 
 
   		</Tab>
   		</Tabs>
@@ -160,7 +178,23 @@ render()
 }
 
 
-export default AddBooking;
 
 
-//ReactDOM.render(<App/>, document.querySelector(".container"));
+
+
+
+
+
+function mapStateToProps(state){
+    return{
+        bookings:state.bookings
+    }
+}
+
+function mapPropsToDispatch(dispatch){
+    return bindActionCreators({
+    	addBookings:addBookings,
+    },dispatch);
+}
+
+export default connect(mapStateToProps,mapPropsToDispatch)(AddBooking);

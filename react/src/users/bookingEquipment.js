@@ -45,12 +45,10 @@ class BookingEquipments extends Component{
 		
        var updatedState={};
        updatedState[equip.name]={
-       		"equipmentName":equip.name,
-			"pricePerUnit":equip.price,
+   			"equipment":equip,
 			"quantity":1,
-			
 			"id":0,
-			"totalPrice":0
+			"price":0
 		}
 
        var prev=this.state.equipform;
@@ -129,8 +127,8 @@ class BookingEquipments extends Component{
 			{
 				if(check[x].checked)
 				{
-					price1+=equiform[x].quantity * equiform[x].pricePerUnit;
-					equiform[x].totalPrice=equiform[x].quantity * equiform[x].pricePerUnit;
+					price1+=equiform[x].quantity * equiform[x].equipment.price;
+					equiform[x].price=equiform[x].quantity * equiform[x].equipment.price;
 					fform.push(equiform[x]);
 				}
 			}

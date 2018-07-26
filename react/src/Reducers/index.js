@@ -6,6 +6,8 @@ import FoodReducer from '../admin/food/foodsReducers';
 import layoutReducer from '../admin/layouts/layoutReducer';
 import UserReducer from '../admin/users/usersReducers';
 import EndUserReducer from '../users/endUserReducer';
+import BookingReducers from '../admin/bookings/bookingReducers';
+
 const rootReducer= combineReducers({
     rooms:RoomReducer,
     layouts:layoutReducer,
@@ -13,7 +15,8 @@ const rootReducer= combineReducers({
     equipments:EquipmentReducer,
     foods:FoodReducer,
     users:UserReducer,
-    endUsers:EndUserReducer
+    endUsers:EndUserReducer,
+    bookings:BookingReducers
 
 });
 

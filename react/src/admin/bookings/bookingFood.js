@@ -40,11 +40,10 @@ func1(res)
 	
        var updatedState={};
        updatedState[food.name]={
-       		"foodItemName":food.name,
-			"pricePerUnit":food.price,
+       		"food":food,
 			"id":0,
 			"quantity":1,
-			"totalPrice":0
+			"price":0
 		}
 		  var prev=this.state.foodform;
        var obj2=Object.assign(prev,updatedState);
@@ -107,8 +106,8 @@ func1(res)
 			{
 				if(check[x].checked)
 				{
-					price1+=fooform[x].quantity * fooform[x].pricePerUnit;
-					fooform[x].totalPrice=fooform[x].quantity * fooform[x].pricePerUnit;
+					price1+=fooform[x].quantity * fooform[x].food.price;
+					fooform[x].price=fooform[x].quantity * fooform[x].food.price;
 					fform.push(fooform[x]);
 				}
 			}
