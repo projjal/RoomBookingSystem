@@ -62,7 +62,7 @@ class AddLayout extends Component{
                         <img src={this.state.image}/>
                     </div>
 
-                    <button type="submit" className="btn btn-primary">Add Room</button>
+                    <button type="submit" className="btn btn-primary">Add Layout</button>
                 </form>
             </div>
         );
