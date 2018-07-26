@@ -11,7 +11,7 @@ class EquipmentList extends Component{
   render(){
     return(
       <div>
-        <h5>Equipments Biatches</h5>
+        <h5>Equipments</h5>
       </div>
     )
   }
@@ -49,9 +49,9 @@ class RoomSetup extends Component{
                     <h3>Layouts</h3>
                     {this.props.layouts.layouts.map((layouts, i)=><LayoutList data={layouts} key={i} selectLayout={(data)=>this.props.selectLayout(data)}/>)}
                   </div>
-                  <div style={{"display":"inline-flex", "padding":"100px"}}>
+                  <div style={{"display":"inline-flex", "padding-top":"100px","margin-top":"100px"}}>
                     <div><h3>Equipments</h3></div>
-                    <div className="col-md-12"><BookingEquipments/></div>
+                    <div className="col-md-12" style={{"margin-top":"100px"}}><BookingEquipments/></div>
                   </div>
               </div>
            );

@@ -39,8 +39,9 @@ class FormModal extends Component{
                 this.props.addUser(formData);
             }
           }
-          //this.props.addRoom(formData);
           this.props.closeModal();
+          //this.props.addRoom(formData);
+          
     }
     render(){
         if(!this.props.show)

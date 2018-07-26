@@ -133,7 +133,8 @@ class AddRoom extends Component{
 
 function mapStateToProps(state){
     return{
-        layouts:state.layouts
+        layouts:state.layouts,
+        addRoomsError:state.rooms.error
     }
 }
 function mapPropsToDispatch(dispatch){

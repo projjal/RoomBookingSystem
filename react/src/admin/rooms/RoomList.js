@@ -26,6 +26,15 @@ class RoomList extends Component{
                  </div>
                 </li>);
     }
+
+    showAddErrorStatus(){
+        if(this.props.rooms.error){
+            return(<div>Error in adding room. Please try again</div>);
+        }
+        else{
+            return(<div></div>);
+        }
+    }
     render(){
         if(JSON.stringify(this.props.rooms) !== JSON.stringify({})){
             console.log('rooms',this.props.rooms.rooms.length);
@@ -35,6 +44,7 @@ class RoomList extends Component{
                 var arr1=["id","image","type","capacity","description","button"];
                 return(
                 <div>
+                    {this.showAddErrorStatus()}
                     {console.log("In here")}
                     {console.log(this.props.rooms.rooms)}
                     <TableView heading={arr1} data={this.props.rooms.rooms} entity="rooms"/>
@@ -61,6 +71,7 @@ class RoomList extends Component{
 function mapStateToProps(state){
     return{
         rooms:state.rooms
+
     }
 }
 function mapPropsToDispatch(dispatch){

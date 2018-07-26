@@ -5,11 +5,16 @@ import {assert} from 'chai';
 
 describe('Rooms Component', function () {
 
-    let wrapper;
-    beforeEach(function () {
+    //let wrapper;
+    it('renders room component', function () {
+        const wrapper = shallow(<AdminRooms/>);
+        assert.equal(wrapper.getElement().type, 'div');
+      });
+    /* beforeEach(function () {
+
         wrapper = shallow(<AdminRooms/>);
       });
     it('renders room component', function() {
         assert.equal(wrapper.getElement().type, 'div');
-    });
+    }); */
 });

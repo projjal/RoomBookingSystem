@@ -2,10 +2,12 @@ export default function(state={}, action){
     switch(action.type){
         case "ROOMS_LIST_FETCH": {
             state={ ...state,rooms: action.payload}
+            state={...state,error:false}
             break;
         }
         case "ROOMS_LIST_ADD":{
             state={ ...state,rooms: [...state.rooms, action.payload]}
+            state={...state,error:false}
             break;
         }
         case "ROOMS_LIST_DELETE":{
@@ -21,6 +23,15 @@ export default function(state={}, action){
             }
             console.log('updated room list',newRoomList);
             state={ ...state,rooms: newRoomList}
+            state={...state,error:false}
+            break;
+        }
+        case "ROOMS_LIST_ADD_FAILED":{
+            state={...state,error:true}
+            break;
+        }
+        case "ROOMS_LIST_FAILED":{
+            //state unchanged, checked in UI. 
             break;
         }
     }
