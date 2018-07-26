@@ -59,7 +59,7 @@ class BookingTable extends Component{
 	{
 		return(
 		<tr key={key}>
-		<td></td>
+		<td>{book.room.type}</td>
 		<td>{this.funcDate(book.bookedForDate)}</td>
 		<td>{book.client.name}</td>
 		<td>{book.total}</td>

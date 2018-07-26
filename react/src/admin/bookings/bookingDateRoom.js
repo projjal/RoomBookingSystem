@@ -24,6 +24,7 @@ class BookingDateRoom extends Component{
 		this.handleChange=this.handleChange.bind(this);
 		this.submitForm=this.submitForm.bind(this);
 		this.func=this.func.bind(this);
+		this.func2=this.func2.bind(this);
 		
 		
 		axios.get('/api/rooms/',{ 'headers': {} })
@@ -37,6 +38,11 @@ class BookingDateRoom extends Component{
 	func(res)
 	{
 		this.setState({roomsList:res});
+	}
+
+	func2(res)
+	{
+		this.setState({duration:res});
 	}
 
 
@@ -93,14 +99,18 @@ class BookingDateRoom extends Component{
        var prev=this.state.roomsData;
        var obj2=Object.assign(prev,updatedState);
        this.setState({roomsData:obj2});
-        	
-        	if(event.target.value=="hourly")
-        		this.setState({duration:Duration().hourly});
-        	else if(event.target.value=="halfDay")
-        		this.setState({duration:Duration().halfdays});
-        	else
 
-        		this.setState({duration:["Full Day"]});
+       console.log("hii helloo");
+
+       var months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+         var dt=this.state.roomsData.date;
+		var y=parseInt(dt.slice(0,4));
+		var m=parseInt(dt.slice(5,7));
+		var d=parseInt(dt.slice(8,10));
+		var dat=months[m-1]+" "+d+" "+y;
+        	
+        	axios.get("/api/bookings/getSlots?roomId="+this.state.roomsData.room.id+"&bookingDate="+dat
+        		+"&slot="+event.target.value).then((res)=>this.func2(res.data));
         }
 
          handleChange3(event)
@@ -176,8 +186,8 @@ class BookingDateRoom extends Component{
 			 <td><label>Duration</label></td>
 			 <td><select name="duration" ref="duration" onChange={this.handleChange2}>
 			 <option value="select">Select</option>
-			 <option value="hourly">Hourly</option>
-            <option value="halfDay">Half-day</option>
+			 <option value="Hourly">Hourly</option>
+            <option value="Half-day">Half-day</option>
             <option value="fullDay">Full Day</option>
             
           	</select></td>
