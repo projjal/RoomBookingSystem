@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {addRoomBookingDetails} from './endUserAction';
+import axios from 'axios';
 
 class BookRoomForm extends Component{
   constructor(props){
@@ -26,6 +27,18 @@ class BookRoomForm extends Component{
     }
     else if(target.name === 'duration'){
       this.setState({duration:value})
+      if(target.value === 'Hourly'){
+        var months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+        var dt=this.state.date;
+ 		    var y=parseInt(dt.slice(0,4));
+ 		    var m=parseInt(dt.slice(5,7));
+ 		    var d=parseInt(dt.slice(8,10));
+ 		    var dat=months[m-1]+" "+d+" "+y;
+        console.log("HAIII", this.props.room);
+        console.log("Date here ", dat);
+        axios.get("/api/bookings/getSlots?roomId="+this.props.room.id+"&bookingDate="+dat
+         		+"&slot="+target.value).then((res)=>{this.setState({tofrom:res.data})});
+      }
     }
     else if(target.name === 'tofrom'){
       this.setState({tofrom:value})
@@ -57,9 +70,9 @@ class BookRoomForm extends Component{
       <td><label>Duration</label></td>
       <td><select type="duration" name="duration" className="form-control" required onChange={(evt)=>this.handleChange(evt)}>
           <option value="select">Select</option>
-          <option value="halfDay">Half-day</option>
+          <option value="Half-day">Half-day</option>
           <option value="fullDay">Full Day</option>
-          <option value="hourly">Hourly</option>
+          <option value="Hourly">Hourly</option>
         </select></td>
       </tr>
 
@@ -95,7 +108,7 @@ render(){
         <h1>Book Page</h1>
         <h3>{this.props.room.type}</h3>
         <p>Capacity: {this.props.room.capacity} people</p>
-        <BookRoomForm bookRoomDetails={(formData)=>this.props.addRoomBookingDetails(formData)}/>
+        <BookRoomForm bookRoomDetails={(formData)=>this.props.addRoomBookingDetails(formData)} room={this.props.room}/>
         </div>
       )
     }
