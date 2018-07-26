@@ -117,6 +117,18 @@ func1(res)
 			this.props.selectFoods(fform);
 
 
+			var total = 0;
+	    this.props.foods.map((food,i)=>total+=food.price)
+	    this.props.equipments.map((eq,i)=>total+=eq.price)
+	    if(this.props.roomBookingDetails.duration === "Hourly"){
+	      total+=this.props.room.pricePerHour;
+	    }else if(this.props.roomBookingDetails.duration === "Half-day"){
+	      total+=this.props.room.pricePerHour * 6;
+	    }else if(this.props.roomBookingDetails.duration === "fullDay"){
+	      total+=this.props.room.pricePerDay;
+	    }else{
+	    }
+			this.props.roomBookingDetails.setState({total:total});
 		}
 
 
@@ -163,7 +175,10 @@ render(){
 
 function mapStateToProps(state){
     return{
-        room:state.endUsers.room
+        room:state.endUsers.room,
+				roomBookingDetails:state.endUsers.roomBookingDetails,
+				equipments:state.endUsers.equipments,
+			  foods:state.endUsers.foods
     }
 }
 

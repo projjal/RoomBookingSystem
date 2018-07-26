@@ -126,10 +126,21 @@ class Confirmation extends Component{
     finalBooking["bookedForDate"] = this.props.roomBookingDetails.date;
     finalBooking["bookingDate"] = Date.now();
     finalBooking["payment"] = this.props.clientDetails.payment;
-    finalBooking["total"] = 0;
     finalBooking["layout"] = this.props.layout;
     finalBooking["layout"].image = this.props.fetchLayout.image;
-    console.log(finalBooking);
+
+    var total = 0;
+    this.props.foods.map((food,i)=>total+=food.price)
+    this.props.equipments.map((eq,i)=>total+=eq.price)
+    if(this.props.roomBookingDetails.duration === "Hourly"){
+      total+=this.props.room.pricePerHour;
+    }else if(this.props.roomBookingDetails.duration === "Half-day"){
+      total+=this.props.room.pricePerHour * 6;
+    }else if(this.props.roomBookingDetails.duration === "fullDay"){
+      total+=this.props.room.pricePerDay;
+    }else{
+    }
+    finalBooking["total"] = total;
     this.props.postBookingDetails(finalBooking);
   }
 

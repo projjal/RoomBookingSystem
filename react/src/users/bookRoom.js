@@ -12,7 +12,8 @@ class BookRoomForm extends Component{
         duration:"",
         tofrom1:[],
         tofrom:"",
-        attendees:0
+        attendees:0,
+        total:0
       }
 
       this.handleChange=this.handleChange.bind(this);
@@ -33,7 +34,7 @@ class BookRoomForm extends Component{
     }
     else if(target.name === 'duration'){
       this.setState({duration:value})
-      
+
         var months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
         var dt=this.state.date;
  		    var y=parseInt(dt.slice(0,4));
