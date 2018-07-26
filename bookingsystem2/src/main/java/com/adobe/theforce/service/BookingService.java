@@ -11,54 +11,48 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.adobe.theforce.dao.BookingDao;
 import com.adobe.theforce.entity.Booking;
-import com.adobe.theforce.exceptions.DaoException;
 import com.adobe.theforce.util.BookingComparator;
 
 
-
-/**
- * 
- * Service class for Booking entity
- *
- */
 @Service
 public class BookingService {
 	@Autowired
 	private BookingDao bookingDao;
-
+	
 	@Transactional
 	public void addBooking(Booking booking)  throws Exception{
 		int roomID = booking.getRoom().getId();
 		Date date = booking.getBookedForDate();
 		String slot = booking.getDuration();
-		if(isAvailable(roomID,date,slot))
+//		if(isAvailable(roomID,date,slot))
 			bookingDao.addBooking(booking);
-		else{
-			throw new DaoException("Room Not Available");
-		}
+//		else{
+//			throw new DaoException("Room Not Available");
+//		}
 	}
-
+	
 	public List<Booking> getBookings()  throws Exception{
 		return bookingDao.getBookings();
 	}
-
+	
 	public Booking getBooking(int id)  throws Exception{
 		return bookingDao.getBooking(id);
 	}
-
+	
 	@Transactional
 	public void deleteBooking(int id)  throws Exception{
 		bookingDao.deleteBooking(id);
 	}
-
+	
 	@Transactional
 	public void updateBooking(Booking booking)  throws Exception{
 		bookingDao.updateBooking(booking);
 	}
-
+	
 	/*
 	 * Latest 3 bookings for the dashboard
 	 */
+	
 	public List<Booking> getLatestBookings()  throws Exception{
 		List<Booking> b = bookingDao.getBookings();
 		b.sort(new BookingComparator());
@@ -70,29 +64,29 @@ public class BookingService {
 		}
 		return result;
 	}
-
+	
 	/*
 	 * Number of Bookings made today
 	 */
+	
 	public int getBookingsMadeToday()  throws Exception{
 		int count = 0;
 		Calendar today = Calendar.getInstance();
 		today.set(Calendar.HOUR_OF_DAY, 0);
 		List<Booking> b = bookingDao.getBookings();
 		for(Booking i : b){
+//			System.out.println(today.getTime().getDate() + "||||||||||||" + i.getBookingDate().getDate());
+//			System.out.println(today.getTime().getMonth() + "||||||||||||" + i.getBookingDate().getMonth());
+//			System.out.println(today.getTime().getYear() + "||||||||||||" + i.getBookingDate().getYear());
 			if((today.getTime().getYear() == i.getBookingDate().getYear())&&(today.getTime().getMonth() == i.getBookingDate().getMonth())&&(today.getTime().getDate() == i.getBookingDate().getDate()))
-			{
-				count++;
-
-			}
+				{
+					//System.out.println("count++");
+					count++;
+					
+				}
 		}
 		return count;
 	}
-
-
-	/*
-	 * Number of bookings scheduled for today
-	 */
 	public int getTodaysBookings()  throws Exception{
 		int count = 0;
 		Calendar today = Calendar.getInstance();
@@ -100,77 +94,69 @@ public class BookingService {
 		List<Booking> b = bookingDao.getBookings();
 		for(Booking i : b){
 			System.out.println(today.getTime());
+//			System.out.println(today.getTime().getMonth() + "||||||||||||" + i.getBookingDate().getMonth());
+//			System.out.println(today.getTime().getYear() + "||||||||||||" + i.getBookingDate().getYear());
 			if((today.getTime().getYear() == i.getBookedForDate().getYear())&&(today.getTime().getMonth() == i.getBookedForDate().getMonth())&&(today.getTime().getDate() == i.getBookedForDate().getDate()))
-			{
-				count++;
-
-			}
+				{
+					//System.out.println("count++");
+					count++;
+					
+				}
 		}
 		return count;
 	}
-
-	/**
-	 * 
-	 * @param date
-	 * @return list of booking at a given date
-	 * @throws Exception
-	 */
 	public List<Booking> getTodayBookingList(Date date) throws Exception {
 		List<Booking> result = new ArrayList<Booking>();
 		List<Booking> b = bookingDao.getBookings();
+		//////////////////////////////////////////////
+		
+		
 
-
-
+//	    System.out.println(date.getYear() + "  " + date.getMonth() + " " + date.getDate());
 		for(Booking i : b){
-			if((date.getYear() == i.getBookingDate().getYear())&&(date.getMonth() == i.getBookingDate().getMonth())&&(date.getDate() == i.getBookingDate().getDate()))
+//			System.out.println(date);
+//			System.out.println(i.getBookingDate().getYear() + " " + i.getBookingDate().getMonth() + " " + i.getBookingDate().getDate());
+			if((date.getYear() == i.getBookedForDate().getYear())&&(date.getMonth() == i.getBookedForDate().getMonth())&&(date.getDate() == i.getBookedForDate().getDate()))
 				result.add(i);
 		}
 		return result;
 	}
-
-
-
-
+	
+	/*
+	 * Number of bookings for today
+	 */
+	
+	
 	/*
 	 * Total number of bookings
 	 */
-
+	
 	public int getTotalBookings()  throws Exception{
 		return bookingDao.getBookings().size();
 	}
-
-
-
-	/**
-	 * 
-	 * @param roomId
-	 * @param date
-	 * @param slot
-	 * @return whether particular room is available on a particular date and slot
-	 */
+	
 	public Boolean isAvailable(int roomId,Date date,String slot){
 		Boolean ans = false;
-		String[] time = slot.split("-");
-		String[] begTime = time[0].split(":");
-		String[] endTime = time[1].split(":");
+		Integer[] parsedDuration = parseDuration(slot);
 		String type = "";
-		if(Integer.parseInt(endTime[0]) - Integer.parseInt(begTime[0]) < 3){
+		if(parsedDuration[1] - parsedDuration[0] < 3){
 			type = "Hourly";
 		}
 		else
-			if(Integer.parseInt(endTime[0]) - Integer.parseInt(begTime[0]) < 5){
+			if(parsedDuration[1] - parsedDuration[0] < 5){
 				type = "Half-day";
 			}
 			else
 				type = "Full-day";
-
+		
 		List<String> freeSlots = null;
 		try {
-			freeSlots = getFreeSlots(roomId, date, type);
+			 freeSlots = getFreeSlots(roomId, date, type);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			//			e.printStackTrace();
+//			e.printStackTrace();
 		}
+		
 		for(String freeSlot:freeSlots){
 			if(freeSlot.equals(slot)){
 				ans = true;
@@ -178,15 +164,34 @@ public class BookingService {
 		}
 		return ans;
 	}
-
-	/**
-	 * 
-	 * @param roomId
-	 * @param date
-	 * @param slot
-	 * @return Free slots for a given room id at a particular date
-	 * @throws Exception
-	 */
+	public Integer[] parseDuration(String duration){
+		Integer[] parsed = new Integer[2];
+		String[] reqTime = duration.split("-");
+		String startTime = reqTime[0];
+		String endTime = reqTime[1];
+		String[] startHour = startTime.split(":");
+		String[] endHour = endTime.split(":");
+		parsed[0] = Integer.parseInt(startHour[0]);
+		parsed[1] = Integer.parseInt(endHour[0]);
+		 return parsed;
+	}
+	
+	public boolean isOverlap(Integer[] interval1,Integer[] interval2){
+		boolean ans = false;
+		
+		if((interval2[0] == interval1[0] && interval2[1] == interval1[1]))
+				ans = true;
+		
+		if((interval2[0] < interval1[0] &&  interval1[0] < interval2[1]) || (interval2[0] < interval1[1] &&  interval1[1] < interval2[1])){
+			ans = true;
+		}
+		if((interval1[0] < interval2[0] &&  interval2[0] < interval1[1]) || (interval1[0] < interval2[1] &&  interval2[1] < interval1[1])){
+			ans = true;
+		}
+		System.out.println(ans);
+		return ans;
+	}
+	
 	public List<String> getFreeSlots(int roomId,Date date,String slot) throws Exception{
 		List<Booking> bookings = this.getTodayBookingList(date);
 		List<String> bookedSlots = new ArrayList<String>();
@@ -200,17 +205,53 @@ public class BookingService {
 				allDayFlag = 0;
 			}
 		}
-
+		
+		for(String st : bookedSlots){
+			System.out.println(st);
+		}
+		
 		List<String> freeSlots = new ArrayList<String>();
 		if(slot.equals("Hourly"))
 		{	
+			System.out.println("here");
 			for(String slots:allSlots){
+				System.out.println("Free Slot = " + slots);
+				int flag = 1;
+				Integer[] parsedFreeSlot = parseDuration(slots);
+					for(String booked:bookedSlots){
+						System.out.println("Booked slot = " + booked);
+						System.out.print(" ---1 ");
+						Integer[] parsedBookedSlot = parseDuration(booked);
+						System.out.println(parsedFreeSlot[0] + " " + parsedFreeSlot[1] + "----" + parsedBookedSlot[0] + " " + parsedBookedSlot[1]);
+						if(isOverlap(parsedFreeSlot, parsedBookedSlot)){
+							flag = 0;
+						}
+					}
+					if(flag == 1){
+						freeSlots.add(slots);
+					}
+			}
+		}
+		else
+		if(slot.equals("Half-day")){
+			for(String slots:halfDaySlots){
 				int flag = 1;
 				String[] start = slots.split("-");
-				for(String booked:bookedSlots){
-					String[] bookedStart = booked.split("-");
-					if(start[0].equals(bookedStart[0])){
-						flag = 0;
+				int startIndex = 0;
+				if(start[0].equals("13:00")){
+					startIndex = 5;
+				}
+				else if(start[0].equals("19:00")){
+					startIndex = 11;
+				}
+				for(int i=startIndex;i<startIndex+4;++i){
+					String betweenSlot = allSlots[i];
+					Integer[] parsedBetweenSlot = parseDuration(betweenSlot);
+					for(String booked:bookedSlots){
+						 Integer[] parsedBookedSlot = parseDuration(booked);
+						 if(isOverlap(parsedBetweenSlot,parsedBookedSlot)){
+							 flag = 0;
+						 }
 					}
 				}
 				if(flag == 1){
@@ -218,37 +259,11 @@ public class BookingService {
 				}
 			}
 		}
-		else
-			if(slot.equals("Half-day")){
-				for(String slots:halfDaySlots){
-					int flag = 1;
-					String[] start = slots.split("-");
-					int startIndex = 0;
-					if(start[0].equals("13:00")){
-						startIndex = 5;
-					}
-					else if(start[0].equals("19:00")){
-						startIndex = 11;
-					}
-					for(int i=startIndex;i<startIndex+4;++i){
-						String[] betweenSlot = allSlots[i].split("-");
-						for(String booked:bookedSlots){
-							String[] bookedStart = booked.split("-");
-							if(betweenSlot[0].equals(bookedStart[0])){
-								flag = 0;
-							}
-						}
-					}
-					if(flag == 1){
-						freeSlots.add(slots);
-					}
-				}
+		else{
+			if(allDayFlag == 1){
+				freeSlots.add(fullDaySlot[0]);
 			}
-			else{
-				if(allDayFlag == 1){
-					freeSlots.add(fullDaySlot[0]);
-				}
-			}
+		}
 		return freeSlots;	
 	}
 }
