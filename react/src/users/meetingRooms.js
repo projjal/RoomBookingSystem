@@ -3,6 +3,7 @@ import {fetchRooms} from '../admin/rooms/roomsAction';
 import {selectRoom} from './endUserAction.js';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
+import {fetchRoom} from './endUserAction';
 
 class SubMeetingRooms extends Component{
 
@@ -20,7 +21,7 @@ class SubMeetingRooms extends Component{
             <p>{this.props.data.description}</p>
           </div>
           <div className="col-md-4 book-button">
-            <button className="btn btn-primary btn-small" onClick={evt=>this.props.selectRoom(this.props.data)}>Book this room</button>
+            <button className="btn btn-primary btn-small" onClick={evt=>{this.props.selectRoom(this.props.data); this.props.fetchRoom(this.props.id);}}>Book this room</button>
             </div>
         </div>
     )
@@ -40,7 +41,8 @@ class MeetingRooms extends Component{
               return(
               <div>
                   <ul className="ul-room">
-                  {this.props.rooms.rooms.map((rooms, i)=><li key={i}><SubMeetingRooms data={rooms} selectRoom={(data)=>this.props.selectRoom(data)}/></li>)}
+                  {console.log("HALLLPPP", this.props.rooms.rooms)}
+                  {this.props.rooms.rooms.map((rooms, i)=><li key={i}><SubMeetingRooms data={rooms} id={rooms.id} selectRoom={(data)=>this.props.selectRoom(data)} fetchRoom={(id)=>this.props.fetchRoom(id)}/></li>)}
                   </ul>
               </div>
            );
@@ -62,13 +64,15 @@ class MeetingRooms extends Component{
 }
 function mapStateToProps(state){
     return{
-        rooms:state.rooms
+        rooms:state.rooms,
+        fetchRoom: state.endUsers.fetchRoom
     }
 }
 function mapPropsToDispatch(dispatch){
     return bindActionCreators({
         fetchRooms:fetchRooms,
-        selectRoom:selectRoom
+        selectRoom:selectRoom,
+        fetchRoom:fetchRoom
     },dispatch);
 }
 

@@ -35,6 +35,13 @@ export default function(state={}, action){
         case "ROOM_FAILED":{
             break;
         }
+        case "LAYOUT_FETCH":{
+          state={ ...state,fetchLayout: action.payload}
+          break;
+        }
+        case "LAYOUT_FAILED":{
+            break;
+        }
     }
 
     return state;

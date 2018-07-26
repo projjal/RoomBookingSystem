@@ -18,6 +18,19 @@ export function fetchRoom(id){
 
 }
 
+export function fetchLayout(id){
+
+    return (dispatch, getState) => {
+        axios.get("/api/layouts/"+id)
+        .then((response)=>{
+            console.log(response.data);
+            dispatch({type:"LAYOUT_FETCH", payload:response.data});
+        }).catch((error)=>{
+            dispatch({type : "LAYOUT_FAILED", error : error});
+        });
+    };
+}
+
 export function selectLayout(layout){
     return {type:"LAYOUT_SELECTED", payload:layout};
 }

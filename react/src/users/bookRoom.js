@@ -11,6 +11,7 @@ class BookRoomForm extends Component{
         date:"",
         duration:"",
         tofrom1:[],
+        tofrom:"",
         attendees:0
       }
 
@@ -32,7 +33,7 @@ class BookRoomForm extends Component{
     }
     else if(target.name === 'duration'){
       this.setState({duration:value})
-      if(target.value === 'Hourly'){
+      
         var months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
         var dt=this.state.date;
  		    var y=parseInt(dt.slice(0,4));
@@ -43,7 +44,7 @@ class BookRoomForm extends Component{
         console.log("Date here ", dat);
         axios.get("/api/bookings/getSlots?roomId="+this.props.room.id+"&bookingDate="+dat
          		+"&slot="+target.value).then((res)=>{this.func2(res.data)});
-      }
+
     }
     else if(target.name === 'tofrom'){
       this.setState({tofrom:value})

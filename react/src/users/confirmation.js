@@ -7,7 +7,6 @@ import {fetchRoom} from './endUserAction';
 class Confirmation extends Component{
   constructor(props){
     super(props);
-    this.state.fetchRoom(this.state.room.id);
   }
 
     showRoomStatus(){
@@ -118,10 +117,10 @@ class Confirmation extends Component{
     finalBooking["client"] = this.props.clientDetails.clientDetails;
     finalBooking["foodItems"] = this.props.foods;
     finalBooking["equipmentItems"] = this.props.equipments;
-    finalBooking["duration"] = "08:00-09:00";
+    finalBooking["duration"] = this.props.roomBookingDetails.tofrom;
     finalBooking["room"] = this.props.room;
     finalBooking["room"].image = this.props.fetchRoom.image;
-    finalBooking["status"] = 1;
+    finalBooking["status"] = "success";
     finalBooking["bookedForDate"] = this.props.roomBookingDetails.date;
     finalBooking["bookingDate"] = Date.now();
     finalBooking["payment"] = this.props.clientDetails.payment;
@@ -163,7 +162,7 @@ return{
   foods:state.endUsers.foods,
   roomBookingDetails:state.endUsers.roomBookingDetails,
   clientDetails:state.endUsers.userDetails,
-  fetchRoom: state.endUsers.fetchRoom
+  fetchRoom:state.endUsers.fetchRoom
 }
 }
 function mapPropsToDispatch(dispatch){

@@ -5,6 +5,7 @@ import {selectLayout} from './endUserAction.js';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import BookingEquipments from './bookingEquipment.js';
+import {fetchLayout} from './endUserAction';
 
 class LayoutList extends Component{
   render(){
@@ -12,7 +13,7 @@ class LayoutList extends Component{
       <div className="col-md-4">
           <h4>{this.props.data.name}</h4>
           <img height="100px" width="150px" src={this.props.data.image}/>
-          <button className="btn btn-primary" style={{"padding":"15px 32px"}} onClick={evt=>this.props.selectLayout(this.props.data)}>Select</button>
+          <button className="btn btn-primary" style={{"padding":"15px 32px"}} onClick={evt=>{this.props.selectLayout(this.props.data); this.props.fetchLayout(this.props.id);}}>Select</button>
       </div>
     )
   }
@@ -35,7 +36,7 @@ class RoomSetup extends Component{
               <div>
                   <div style={{"display":"block"}}>
                     <h3>Layouts</h3>
-                    {this.props.layouts.layouts.map((layouts, i)=><LayoutList data={layouts} key={i} selectLayout={(data)=>this.props.selectLayout(data)}/>)}
+                    {this.props.layouts.layouts.map((layouts, i)=><LayoutList data={layouts} key={i} id={layouts.id} selectLayout={(data)=>this.props.selectLayout(data)} fetchLayout={(id)=>this.props.fetchLayout(id)}/>)}
                   </div>
                   <div style={{"display":"inline-flex", "padding-top":"100px","margin-top":"100px"}}>
                     <div><h3>Equipments</h3></div>
@@ -67,14 +68,16 @@ function mapStateToProps(state){
     return{
         layouts:state.layouts,
         equipments:state.equipments,
-        room:state.endUsers.room
+        room:state.endUsers.room,
+        fetchLayout: state.endUsers.fetchLayout
     }
 }
 function mapPropsToDispatch(dispatch){
     return bindActionCreators({
         fetchLayouts:fetchLayouts,
         fetchEquipments:fetchEquipments,
-        selectLayout:selectLayout
+        selectLayout:selectLayout,
+        fetchLayout:fetchLayout
     },dispatch);
 }
 
