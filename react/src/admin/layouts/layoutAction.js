@@ -42,9 +42,9 @@ export function addLayout(data){
     return (dispatch, getState) => {
         axios.post("/upload/img",{"img":data.image,"type":"layouts"},{"Content-Type":"text/plain"}).then((response)=>{
             console.log(response);
-            data.image=response.data.imgUrl;
+            //data.image=response.data.imgUrl;
             console.log('form data to be sent to the server ',data);
-            axios.post("/api/layouts",data,{"Content-Type":"application/json"})
+            axios.post("/api/layouts",{...data,image:response.data.imgUrl},{"Content-Type":"application/json"})
             .then((response)=>{
                 console.log(response);
                 if(response.status===200){
