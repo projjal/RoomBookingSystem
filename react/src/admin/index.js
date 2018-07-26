@@ -9,11 +9,7 @@ import {Provider} from 'react-redux'; // stitch react and redux
 
 const creatStoreWithMiddleware=applyMiddleware(thunk)(createStore);
 import thunk from 'redux-thunk';
-/* ReactDOM.render(
-<Provider store={creatStoreWithMiddleware(reducers)}>
-<App/>
-</Provider>,
-document.querySelector('.container')); */
+
 class AdminApp extends Component{
     render(){
         return(
