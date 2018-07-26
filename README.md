@@ -30,5 +30,9 @@ This will start the backend server on localhost:8080
 
 This will start the front end server on localhost:8081
 
-##Viewing API details using swagger
-Access from /swagger-ui.html at java server
+## Viewing API details using swagger
+Can be accessed using the URL extension `/swagger-ui.html` at the java server
+
+## Demonstration
+
+![alt text](/Screenshots/screen-grab.gif)
