@@ -2,9 +2,13 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {postBookingDetails} from './endUserAction';
 import { bindActionCreators } from 'redux';
-import axios from 'axios';
+import {fetchRoom} from './endUserAction';
 
 class Confirmation extends Component{
+  constructor(props){
+    super(props);
+    this.state.fetchRoom(this.state.room.id);
+  }
 
     showRoomStatus(){
     if(this.props){
@@ -116,7 +120,7 @@ class Confirmation extends Component{
     finalBooking["equipmentItems"] = this.props.equipments;
     finalBooking["duration"] = "08:00-09:00";
     finalBooking["room"] = this.props.room;
-    finalBooking["room"].image = null;
+    finalBooking["room"].image = this.props.fetchRoom.image;
     finalBooking["status"] = 1;
     finalBooking["bookedForDate"] = this.props.roomBookingDetails.date;
     finalBooking["bookingDate"] = Date.now();
@@ -159,6 +163,7 @@ return{
   foods:state.endUsers.foods,
   roomBookingDetails:state.endUsers.roomBookingDetails,
   clientDetails:state.endUsers.userDetails,
+  fetchRoom: state.endUsers.fetchRoom
 }
 }
 function mapPropsToDispatch(dispatch){

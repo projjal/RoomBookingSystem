@@ -26,6 +26,14 @@ export default function(state={}, action){
         }
         case "ROOM_BOOKING_DETAILS_ADDED":{
             state={ ...state,roomBookingDetails: action.payload}
+            break;
+        }
+        case "ROOM_FETCH":{
+          state={ ...state,fetchRoom: action.payload}
+          break;
+        }
+        case "ROOM_FAILED":{
+            break;
         }
     }
 
