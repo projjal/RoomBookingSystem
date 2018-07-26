@@ -79,19 +79,20 @@ class Confirmation extends Component{
   showClientDetails(){
     if(this.props){
       if(this.props.clientDetails){
-        console.log(this.props.clientDetails);
-        return(
+        if(this.props.clientDetails.clientDetails){
+          console.log(this.props.clientDetails);
+          return(
           <div>
           <div>
           <h4>Personal details</h4>
-          <p>Name: {this.props.clientDetails.name}</p><br/>
-          <p>Email: {this.props.clientDetails.email}</p><br/>
+          <p>Name: {this.props.clientDetails.clientDetails.name}</p><br/>
+          <p>Email: {this.props.clientDetails.clientDetails.email}</p><br/>
           </div>
 
           <div>
           <h4>Billing Address</h4>
-          <p>Comapny: {this.props.clientDetails.company}</p><br/>
-          <p>State: {this.props.clientDetails.state} City: {this.props.clientDetails.city}</p><br/>
+          <p>Comapny: {this.props.clientDetails.clientDetails.company}</p><br/>
+          <p>State: {this.props.clientDetails.clientDetails.state} City: {this.props.clientDetails.clientDetails.city}</p><br/>
           </div>
 
           <div>
@@ -101,6 +102,7 @@ class Confirmation extends Component{
           </div>
         )
 
+        }
       }
       else{
         return(
