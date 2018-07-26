@@ -50,7 +50,7 @@ public class Booking {
 	private String paymentMethod;
 	
 	
-	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
 	@JoinColumn(name="room_id")
 	private Room room;
 //	private String roomType;
@@ -60,7 +60,7 @@ public class Booking {
 	private Client client;
 	
 	
-	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
 	@JoinColumn(name="layout_id")
 	private Layout layout;
 //	private String layoutName;
