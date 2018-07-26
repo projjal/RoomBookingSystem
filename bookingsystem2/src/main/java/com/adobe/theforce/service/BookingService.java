@@ -106,26 +106,7 @@ public class BookingService {
 		//////////////////////////////////////////////
 		
 		
-<<<<<<< Updated upstream
-	    DateFormat readFormat = new SimpleDateFormat( "MMM dd yyyy");
 
-	    Date date = null;
-//	    System.out.println(date1);
-	    date1 = date1.replace("\"", "");
-	    date1 = date1.replace("+", " ");
-	    date1 = date1.replace("=", "");
-	    
-//	    System.out.println(date1);
-
-
-	    try {
-	       date = readFormat.parse( date1 );
-	    } catch ( Exception e ) {
-	        e.printStackTrace();
-	        throw e;
-	    }
-=======
->>>>>>> Stashed changes
 //	    System.out.println(date.getYear() + "  " + date.getMonth() + " " + date.getDate());
 		for(Booking i : b){
 //			System.out.println(date);
@@ -155,7 +136,7 @@ public class BookingService {
 		String[] allSlots = {"8:00-9:00","9:00-10:00","10:00-11:00","11:00-12:00","12:00-13:00","13:00-14:00","14:00-15:00","15:00-16:00","16:00-17:00","17:00-18:00","18:00-19:00","19:00-20:00","20:00-21:00","21:00-22:00","22:00-23:00"};
 		String[] halfDaySlots = {"8:00-12:00","13:00-17:00","19:00-23:00"};
 		for(Booking b:bookings){
-			if(b.getRoomType().equals(roomId)){
+			if(b.getRoom().getId() == roomId){
 				bookedSlots.add(b.getDuration());
 			}
 		}
