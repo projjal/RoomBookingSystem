@@ -16,8 +16,7 @@ class AddRoom extends Component{
             pricePerDay:0,
             pricePerHour:0,
             status:true,
-            layoutId:[],
-            layoutName:[]
+            layoutItems:[]
 
         }
     }
@@ -28,28 +27,21 @@ class AddRoom extends Component{
         if(target.type==='checkbox'){
             console.log(target.checked);
             if(target.checked){
-                this.setState({layoutId: [...this.state.layoutId, target.value.split('-')[0]]});
-                this.setState({layoutName: [...this.state.layoutName, target.value.split('-')[1]]});  
+                this.setState({layoutItems:[...this.state.layoutItems, this.props.layouts.layouts[target.value]]})  
             }
             else{
-                var tId=target.value.split('-')[0];
-                var tName=target.value.split('-')[1];
-                var layoutIDs=[];
-                var layoutName=[];
-                for(var i=0;i<this.state.layoutId.length;i++){
-                    if(this.state.layoutId[i]==tId){
+                var newLayoutItems=[];
+                for(var i=0;i<this.state.layoutItems.length;i++){
+                    if(this.state.layoutItems[i].id==this.props.layouts.layouts[target.value].id){
                         continue;
                     }
                     else{
-                        layoutIDs.push(this.state.layoutId[i]);
-                        layoutName.push(this.state.layoutName[i]);
+                        newLayoutItems.push(this.state.layoutItems[i])
                     }
                 }
-                this.setState({layoutId:layoutIDs});
-                this.setState({layoutName:layoutName});
-            }
-            console.log(this.state.layoutId);       
-            console.log(this.state.layoutName);       
+                this.setState({layoutItems:newLayoutItems});
+            }     
+            console.log(this.state.layoutItems);       
         }
         else{
             this.setState({
@@ -124,7 +116,7 @@ class AddRoom extends Component{
                         return(
                             <div className="checkbox" key={i}>
                                 <label>
-                                <input type="checkbox" name={layout.name}  value={layout.id+"-"+layout.name} onChange={(evt)=>this.handleInputChange(evt)} /> {layout.name}</label>
+                                <input type="checkbox" name={layout.name}  value={i} onChange={(evt)=>this.handleInputChange(evt)} /> {layout.name}</label>
                             </div>
                         );
 
