@@ -32,10 +32,11 @@ module.exports = {
         app.use(bodyParser.json());
         app.use(cookieParser())
         app.use('/admin/',(req,res,next)=>{
-          if (req.cookies['JSESSIONID'] === undefined)
+          if (req.cookies['JSESSIONID'] === undefined){
             res.redirect('/login');
-          next();
-          
+          } else{
+            next();
+          }
         })
         app.post("/download/img",(req,res)=>{
           var filePath= req.body.filePath;

@@ -1,5 +1,7 @@
 package com.adobe.theforce.web;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,7 @@ public class LoginController {
 	@RequestMapping(value = "/api/logoutsuccess",method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity logoutSuccess() throws DaoException{
+//		request.getSession().invalidate();
 		return new ResponseEntity(HttpStatus.OK);
 	}
 	

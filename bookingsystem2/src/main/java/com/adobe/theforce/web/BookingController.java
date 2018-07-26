@@ -44,6 +44,7 @@ public class BookingController {
 		}
 		else
 			try{
+				System.out.println("entered bookings");
 				return bookingService.getBookings();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -68,7 +69,7 @@ public class BookingController {
 		try{
 		bookingService.deleteBooking(id);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
 			throw new DaoException("Unable to delete Booking with Id = " + id);
 		}
 	}

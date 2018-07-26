@@ -29,7 +29,7 @@ export function login(email, password) {
           console.log("responseis")
             if(response.status===200){
               // console.log("200")
-              history.push('/admin')
+              history.push('/admin/')
               // dispatch(setLoginSuccess(true));
             }
         }).catch((error)=>{
