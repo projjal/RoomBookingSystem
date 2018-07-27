@@ -18,20 +18,16 @@
 			}
 			this.props.fetchBookings();
 
-			this.func=this.func.bind(this);
+			this.setBookings=this.setBookings.bind(this);
 			this.deleteBook=this.deleteBook.bind(this);
 			this.funcrender=this.funcrender.bind(this);
 			this.funcDate=this.funcDate.bind(this);
-		
-
-			// axios.get('/api/bookings/',{ 'headers': {} })
-	//  .then(res => this.func(res.data));
-
+	
 
 		}
 
 
-		func(res)
+		setBookings(res)
 		{
 			this.setState({bookings:res});
 		}
@@ -50,7 +46,6 @@
 
 		deleteBook(id)
 		{
-
 			this.props.deleteBookings(id);
 		}
 

@@ -1,14 +1,13 @@
 	import React, {Component} from 'react';
 	import DateAndTime from './dateAndTime';
-	import RoomList from './roomslist';
-	import Duration from './duration';
 	import axios from 'axios';
 
 
 	class BookingDateRoom extends Component{
 
 
-		constructor(props){
+		constructor(props)
+		{
 			super(props)
 			this.state={
 				roomsList :[],
@@ -18,27 +17,28 @@
 				roomsData:{}
 				
 			}
+
 			this.handleChange1=this.handleChange1.bind(this);
 			this.handleChange2=this.handleChange2.bind(this);
 			this.handleChange3=this.handleChange3.bind(this);
 			this.handleChange=this.handleChange.bind(this);
 			this.submitForm=this.submitForm.bind(this);
-			this.func=this.func.bind(this);
-			this.func2=this.func2.bind(this);
+			this.setRoomList=this.setRoomList.bind(this);
+			this.setDuration=this.setDuration.bind(this);
 			
 			
 			axios.get('/api/rooms/',{ 'headers': {} })
-	.then(res => this.func(res.data));
+			.then(res => this.setRoomList(res.data));
 
 			
 		}
 
-		func(res)
+		setRoomList(res)
 		{
 			this.setState({roomsList:res});
 		}
 
-		func2(res)
+		setDuration(res)
 		{
 			this.setState({duration:res});
 		}
@@ -55,79 +55,80 @@
 
 		handleChange(event)
 		{
-		var updatedState={};
-		updatedState[event.target.name]=event.target.value;
-		var prev=this.state.roomsData;
-		var obj2=Object.assign(prev,updatedState);
-		this.setState({roomsData:obj2});
+			var updatedState={};
+			updatedState[event.target.name]=event.target.value;
+			var prev=this.state.roomsData;
+			var obj2=Object.assign(prev,updatedState);
+			this.setState({roomsData:obj2});
 		
 		}
 
-			handleChange1(event)
-			{
-				var updatedState={};
+		handleChange1(event)
+		{
+			var updatedState={};
 				
-				for(var i=0,len=this.state.roomsList.length;i<len;i++)
+			for(var i=0,len=this.state.roomsList.length;i<len;i++)
+			{
+				if(this.state.roomsList[i].id==event.target.value)
 				{
-					if(this.state.roomsList[i].id==event.target.value)
-					{
-						updatedState[event.target.name]=this.state.roomsList[i];
-					}
-				}
-		var prev=this.state.roomsData;
-		var obj2=Object.assign(prev,updatedState);
-		this.setState({roomsData:obj2});
-
-				for(var i=0,len=this.state.roomsList.length;i<len;i++)
-				{
-					if(event.target.value==this.state.roomsList[i].id)
-						{
-							this.setState({rprice:this.state.roomsList[i].pricePerHour})
-							this.setState({layout:this.state.roomsList[i].layoutItems});
-							break;
-						}
+					updatedState[event.target.name]=this.state.roomsList[i];
 				}
 			}
 
+			var prev=this.state.roomsData;
+			var obj2=Object.assign(prev,updatedState);
+			this.setState({roomsData:obj2});
 
-			handleChange2(event)
+			for(var i=0,len=this.state.roomsList.length;i<len;i++)
 			{
-				var updatedState={};
-		updatedState[event.target.name]=event.target.value;
-		var prev=this.state.roomsData;
-		var obj2=Object.assign(prev,updatedState);
-		this.setState({roomsData:obj2});
+				if(event.target.value==this.state.roomsList[i].id)
+				{
+					this.setState({rprice:this.state.roomsList[i].pricePerHour})
+					this.setState({layout:this.state.roomsList[i].layoutItems});
+					break;
+				}
+			}
+		}
 
-		console.log("hii helloo");
 
-		var months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+		handleChange2(event)
+		{
+			var updatedState={};
+			updatedState[event.target.name]=event.target.value;
+			var prev=this.state.roomsData;
+			var obj2=Object.assign(prev,updatedState);
+			this.setState({roomsData:obj2});
+
+			
+
+			var months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 			var dt=this.state.roomsData.date;
 			var y=parseInt(dt.slice(0,4));
 			var m=parseInt(dt.slice(5,7));
 			var d=parseInt(dt.slice(8,10));
 			var dat=months[m-1]+" "+d+" "+y;
 				
-				axios.get("/api/bookings/getSlots?roomId="+this.state.roomsData.room.id+"&bookingDate="+dat
-					+"&slot="+event.target.value).then((res)=>this.func2(res.data));
-			}
+			axios.get("/api/bookings/getSlots?roomId="+this.state.roomsData.room.id+"&bookingDate="+dat
+			+"&slot="+event.target.value).then((res)=>this.setDuration(res.data));
+		}
 
-			handleChange3(event)
-			{
-				var updatedState={};
-				//console.log("hii");
+
+
+		handleChange3(event)
+		{
+			var updatedState={};
 				
-				for(var i=0,len=this.state.layout.length;i<len;i++)
+			for(var i=0,len=this.state.layout.length;i<len;i++)
+			{
+				if(this.state.layout[i].id==event.target.value)
 				{
-					if(this.state.layout[i].id==event.target.value)
-					{
-						updatedState[event.target.name]=this.state.layout[i].layout;
-						//console.log(this.state.layout[i].layout);
-					}
+					updatedState[event.target.name]=this.state.layout[i].layout;
 				}
-		var prev=this.state.roomsData;
-		var obj2=Object.assign(prev,updatedState);
-		this.setState({roomsData:obj2});
 			}
+			var prev=this.state.roomsData;
+			var obj2=Object.assign(prev,updatedState);
+			this.setState({roomsData:obj2});
+		}
 
 
 		render()
@@ -295,7 +296,7 @@
 			</div>
 
 
-				);
+			);
 		}
 
 	}

@@ -21,16 +21,16 @@
 			this.handleChange1=this.handleChange1.bind(this);
 			this.submit=this.submit.bind(this);
 
-		axios.get('/api/foods/',{ 'headers': {} })
-	.then(res => {this.func1(res.data);
-		this.state.foodList.map((food)=>this.func2(food));
-		});
+			axios.get('/api/foods/',{ 'headers': {} })
+			.then(res => {this.func1(res.data);
+			this.state.foodList.map((food)=>this.func2(food));
+			});
 
-	}
+		}
 
 
 
-	func1(res)
+		func1(res)
 		{
 			this.setState({foodList:res});
 		}
@@ -38,31 +38,31 @@
 		func2(food)
 		{
 		
-		var updatedState={};
-		updatedState[food.name]={
+			var updatedState={};
+			updatedState[food.name]={
 				"food":food,
 				"id":0,
 				"quantity":1,
 				"price":0
 			}
 			var prev=this.state.foodform;
-		var obj2=Object.assign(prev,updatedState);
-		this.setState({foodform:obj2});
+			var obj2=Object.assign(prev,updatedState);
+			this.setState({foodform:obj2});
 
 			var updatedState={};
-		updatedState[food.name]={
+			updatedState[food.name]={
 				"checked":false,
 			}
 			var prev=this.state.check;
-		var obj2=Object.assign(prev,updatedState);
-		this.setState({check:obj2});
+			var obj2=Object.assign(prev,updatedState);
+			this.setState({check:obj2});
 
 		}
 
 
 
 			funcrender(food,key)
-		{
+			{
 			
 			
 			return(

@@ -15,8 +15,8 @@
 			}
 
 			
-			this.func1=this.func1.bind(this);
-			this.func2=this.func2.bind(this);
+			this.setEquipList=this.setEquipList.bind(this);
+			this.settingStates=this.settingStates.bind(this);
 			this.funcrender=this.funcrender.bind(this);
 			this.handleChange=this.handleChange.bind(this);
 			this.handleChange1=this.handleChange1.bind(this);
@@ -24,24 +24,22 @@
 
 
 			axios.get('/api/equipments/',{ 'headers': {} })
-	.then(res => {this.func1(res.data);
-		this.state.equipList.map((equip)=>this.func2(equip));
-		});
-
-
+			.then(res => {this.setEquipList(res.data);
+			this.state.equipList.map((equip)=>this.settingStates(equip));
+			});
 
 		}
 
-		func1(res)
+		setEquipList(res)
 		{
 			this.setState({equipList:res});
 		}
 
-		func2(equip)
+		settingStates(equip)
 		{
 			
-		var updatedState={};
-		updatedState[equip.name]={
+			var updatedState={};
+			updatedState[equip.name]={
 			
 				"equipment":equip,
 				"quantity":1,
@@ -49,19 +47,19 @@
 				"price":0
 			}
 
-		var prev=this.state.equipform;
-		var obj2=Object.assign(prev,updatedState);
-		this.setState({equiform:obj2});
+			var prev=this.state.equipform;
+			var obj2=Object.assign(prev,updatedState);
+			this.setState({equiform:obj2});
 
 		
-		var updatedState={};
-		updatedState[equip.name]={
+			var updatedState={};
+			updatedState[equip.name]={
 				"checked": false
 			}
 
-		var prev=this.state.check;
-		var obj2=Object.assign(prev,updatedState);
-		this.setState({check:obj2});
+			var prev=this.state.check;
+			var obj2=Object.assign(prev,updatedState);
+			this.setState({check:obj2});
 
 
 		}
@@ -91,7 +89,7 @@
 				<td><input name={equip.name} type="checkbox" onChange={this.handleChange}/></td>
 				</tr>
 				);}
-			}
+		}
 
 
 

@@ -62,9 +62,6 @@
 
 	addClientData(obj1){
 		this.setState({clientobj:obj1});
-
-
-
 	}
 
 	setRoomPrice(val){
@@ -84,8 +81,8 @@
 		var updated=this.state.prices;
 		updated.foodPrice=val;
 		updated.subTotal=this.state.prices.roomPrice+
-							this.state.prices.equipPrice+
-								this.state.prices.foodPrice;
+						  this.state.prices.equipPrice+
+						  this.state.prices.foodPrice;
 		updated.tax=updated.subTotal/10;
 		updated.total=updated.subTotal+updated.tax;
 		updated.deposit=updated.total/10;
@@ -121,10 +118,9 @@
 
 
 		return(
+
 			<div>
 
-
-			
 
 			<Tabs defaultActiveKey={1} id="1">
 
@@ -144,7 +140,7 @@
 				setEquipPrice={this.setEquipPrice}/>
 			</div>
 
-				<hr></hr>
+			<hr></hr>
 
 			<div className="formdiv">
 			<h6 className="formhead">Food & Drinks</h6>
@@ -152,11 +148,11 @@
 				setFoodPrice={this.setFoodPrice}/>
 			</div>
 
-				<hr></hr>
+			<hr></hr>
 
-				</Tab>
+			</Tab>
 
-				<Tab eventKey={2} title="Client Details">
+			<Tab eventKey={2} title="Client Details">
 
 			<div className="formdiv">
 			<BookingClientDetails addClientData={this.addClientData}/>
@@ -168,14 +164,11 @@
 			</Tabs>
 
 
+			</div>
 
-		
-
-		</div>
-
-			);
+		);
 	}
-	}
+}
 
 
 

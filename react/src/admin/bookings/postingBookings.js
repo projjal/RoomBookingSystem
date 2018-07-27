@@ -6,23 +6,13 @@
 	export default function(dateroom, equip, food, prices, client, somefunc)
 	{
 
-	//console.log("Hello world!!!");
 
-	
-	
-
-		//console.log("Hello world!!!");
-
-			console.log(dateroom.date);
 				
 		var dt=dateroom.date;
-			var y=parseInt(dt.slice(0,4));
-			var m=parseInt(dt.slice(5,7));
-			var d=parseInt(dt.slice(8,10));
-			//console.log(y,m,d);
-			var dat=new Date(y,m-1,d);
-
-		console.log(dateroom["tofrom"]);
+		var y=parseInt(dt.slice(0,4));
+		var m=parseInt(dt.slice(5,7));
+		var d=parseInt(dt.slice(8,10));
+		var dat=new Date(y,m-1,d);
 
 		var finalobj={};
 
@@ -40,20 +30,8 @@
 		finalobj["status"]=dateroom["status"];
 		finalobj["total"]=prices["total"];
 
-		//console.log(finalobj);
-
-	//console.log("finalobj:",finalobj);
-
-
-	// axios.post("/api/bookings", finalobj)
-	// .then((res)=>{console.log(res)});
-
-
-		
 
 		return finalobj;
-
-
 
 
 	}
