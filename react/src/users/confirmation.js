@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {postBookingDetails} from './endUserAction';
 import { bindActionCreators } from 'redux';
 import {fetchRoom} from './endUserAction';
+import {Alert} from "react-bootstrap";
+
 
 class Confirmation extends Component{
   constructor(props){
@@ -144,14 +146,10 @@ class Confirmation extends Component{
     this.props.postBookingDetails(finalBooking);
   }
 
-  onSuccessfulBooking(){
-    if(this.props){
-      if(this.props.successfulBooking){
-        return(<h4>Booking Successful!!!</h4>);
-      }
-    }
-  }
   render(){
+    let {isBookingConfirmed} = this.props;
+
+
     return(
 
       <div>
@@ -166,8 +164,10 @@ class Confirmation extends Component{
         <div className="div-content">
         {this.showClientDetails()}
         </div>
-        <div>{this.onSuccessfulBooking()}</div>
         <button className="btn btn-primary btn-small" onClick={evt=>this.postBooking()}>Confirm Booking</button>
+        <br/>
+        { isBookingConfirmed && <Alert bsStyle="success"> Booking Successfully added :)</Alert>}
+      
       </div>
 
     )
@@ -184,7 +184,7 @@ return{
   clientDetails:state.endUsers.userDetails,
   fetchRoom:state.endUsers.fetchRoom,
   fetchLayout:state.endUsers.fetchLayout,
-  successfulBooking:state.endUsers.successfulBooking
+  isBookingConfirmed : state.endUsers.isBookingConfirmed
 }
 }
 function mapPropsToDispatch(dispatch){

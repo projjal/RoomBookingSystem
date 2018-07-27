@@ -21,7 +21,7 @@ export default function(state={}, action){
             break;
         }
         case "BOOKING_DETAILS_POSTED":{
-            state={ ...state,finalBooking: action.payload}
+            state={ ...state,finalBooking: action.payload, isBookingConfirmed : true}
             break;
         }
         case "ROOM_BOOKING_DETAILS_ADDED":{
