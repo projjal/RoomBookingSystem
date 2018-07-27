@@ -1,18 +1,18 @@
-    import React, {Component} from 'react';
-    import {fetchRooms} from '../admin/rooms/roomsAction';
-    import {selectRoom} from './endUserAction.js';
-    import {connect} from 'react-redux';
-    import { bindActionCreators } from 'redux';
-    import {fetchRoom} from './endUserAction';
+import React, {Component} from 'react';
+import {fetchRooms} from '../admin/rooms/roomsAction';
+import {selectRoom} from './endUserAction.js';
+import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import {fetchRoom} from './endUserAction';
+import Button from '@react/react-spectrum/Button';
 
-    class SubMeetingRooms extends Component{
+class SubMeetingRooms extends Component{
+    renderImage(){
 
-        renderImage(){
-
-        }
-    render(){
-        return(
-            <div className="container-fluid room-record">
+    }
+render(){
+    return(
+           <div className="container-fluid room-record">
             <div className="col-md-4">
                 <h4 className='cat'>{this.props.data.type}</h4>
                 <img height="180px" width="250px" src={this.props.data.image}/>
@@ -21,12 +21,12 @@
                 <p>{this.props.data.description}</p>
             </div>
             <div className="col-md-4 book-button">
-                <button className="btn btn-primary btn-small" onClick={evt=>{this.props.selectRoom(this.props.data); this.props.fetchRoom(this.props.id);}}>Book this room</button>
-                </div>
+              <Button variant="primary" label="Book this room"  onClick={evt=>{this.props.selectRoom(this.props.data); this.props.fetchRoom(this.props.id);}}/>
+            </div>
             </div>
         )
     }
-    }
+  }
 
     class MeetingRooms extends Component{
     constructor(props){

@@ -1,8 +1,9 @@
-	import React, {Component} from 'react';
-	import axios from 'axios';
-	import {addUserDetails} from './endUserAction';
-	import {connect} from 'react-redux';
-	import { bindActionCreators } from 'redux';
+import React, {Component} from 'react';
+import axios from 'axios';
+import {addUserDetails} from './endUserAction';
+import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import Button from '@react/react-spectrum/Button';
 
 
 	class BookingClientDetails extends Component{
@@ -196,7 +197,7 @@
 
 		<div className="col-md-12">
 
-		<input  className="btn btn-primary button" type="submit" value="Save"/>
+	<Button variant="primary" label="Save"/>
 
 
 		</div>

@@ -1,8 +1,9 @@
-	import React, {Component} from 'react';
+  import React, {Component} from 'react';
 	import axios from 'axios';
 	import {connect} from 'react-redux';
 	import { bindActionCreators } from 'redux';
 	import {selectEquipments} from './endUserAction';
+	import Button from '@react/react-spectrum/Button';
 
 
 	class BookingEquipments extends Component{
@@ -17,7 +18,7 @@
 				check:{}
 			}
 
-			
+
 			this.func1=this.func1.bind(this);
 			this.func2=this.func2.bind(this);
 			this.funcrender=this.funcrender.bind(this);
@@ -42,7 +43,7 @@
 
 		func2(equip)
 		{
-			
+
 		var updatedState={};
 		updatedState[equip.name]={
 				"equipment":equip,
@@ -55,7 +56,7 @@
 		var obj2=Object.assign(prev,updatedState);
 		this.setState({equiform:obj2});
 
-		
+
 		var updatedState={};
 		updatedState[equip.name]={
 				"checked": false
@@ -71,7 +72,7 @@
 
 		funcrender(equip,key)
 		{
-			
+
 			if(!equip.multiunits)
 			{
 			return(
@@ -80,7 +81,7 @@
 				<td>{equip.name}</td>
 				<td>{equip.quantity} Units</td>
 				<td>{equip.price} per booking</td>
-				
+
 				</tr>
 				);}
 			else
@@ -89,10 +90,10 @@
 				<tr key={key}>
 				<td><input name={equip.name} type="checkbox" onChange={this.handleChange}/></td>
 				<td>{equip.name}</td>
-				<td><input name={equip.name} type="number" 
+				<td><input name={equip.name} type="number"
 				defaultValue="1" min="1" onChange={this.handleChange1}/> people</td>
 				<td>{equip.price} per person</td>
-				
+
 				</tr>
 				);}
 			}
@@ -113,7 +114,7 @@
 				this.setState({equipform:prev});
 			}
 
-		
+
 
 			submit(e)
 			{
@@ -133,10 +134,10 @@
 					}
 				}
 				this.props.selectEquipments(fform);
-			
+
 
 			}
-		
+
 
 
 		render()
@@ -147,11 +148,11 @@
 
 				<div>
 
-				
+
 
 				<form onSubmit={this.submit} className="forms1">
 				<table className=" col-md-12">
-				
+
 
 				<tbody>
 
@@ -161,7 +162,7 @@
 				</tbody>
 				</table>
 
-				<input className="btn btn-primary button" type="submit" value="Save"/>
+				<Button variant="primary" label="Save"/>
 
 				</form>
 				</div>

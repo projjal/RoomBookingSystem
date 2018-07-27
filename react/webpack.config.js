@@ -14,11 +14,15 @@ module.exports = {
     module: {
       loaders: [{
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        loader:  'babel-loader',
         query: {
           presets: ['react', 'env','es2015','stage-2']
-        }
-      }]
+        }},
+        {
+        test: /\.css/,
+        loaders: [ 'style-loader', 'css-loader']
+      }
+      ]
     },
     resolve: {
       extensions: ['.js', '.jsx']
@@ -26,7 +30,7 @@ module.exports = {
     devServer: {
       before: function(app) {
         var proxy = proxyMiddleware('/api', {
-          target: 'http://10.41.116.172:8080'
+          target: 'http://localhost:8080'
        });
         app.use(proxy);
         app.use(bodyParser.json());
@@ -94,7 +98,7 @@ module.exports = {
       },
       proxy: {
         '/api':{
-          target:'http://10.41.116.172:8080',
+          target:'http://localhost:8080',
           changeOrigin: true
         }
       },

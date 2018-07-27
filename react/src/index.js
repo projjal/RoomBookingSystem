@@ -14,20 +14,20 @@
   const creatStoreWithMiddleware=applyMiddleware(thunk)(createStore);
   import thunk from 'redux-thunk';
 
-  class App extends Component{
-    render(){
-      return (
-          <Router history={history}>
-            <div className='container-fluid'>
-              <Switch>
-                <Route path='/login' component={LoginForm}/>
-                <Route exact path='/' component={UserApp}/>
-                <Route path='/admin' component={AdminApp} />
-              </Switch>
-            </div>
-          </Router>
-      )
-    }
+class App extends Component{
+  render(){
+    return (
+        <Router history={history}>
+          <div className='container-fluid'>
+            <Switch>
+              <Route path='/login' component={LoginForm}/>
+              <Route exact path='/' component={UserApp}/>
+              <Route path='/admin' component={AdminApp} />
+            </Switch>
+          </div>
+        </Router>
+    )
   }
+}
 
   ReactDOM.render(<Provider store={creatStoreWithMiddleware(reducers)}><App/></Provider>,document.querySelector('.app-container'));

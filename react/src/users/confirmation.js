@@ -1,10 +1,10 @@
-  import React, {Component} from 'react';
-  import {connect} from 'react-redux';
-  import {postBookingDetails} from './endUserAction';
-  import { bindActionCreators } from 'redux';
-  import {fetchRoom} from './endUserAction';
-  import {Alert} from "react-bootstrap";
-
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {postBookingDetails} from './endUserAction';
+import { bindActionCreators } from 'redux';
+import {fetchRoom} from './endUserAction';
+import {Alert} from "react-bootstrap";
+import Button from '@react/react-spectrum/Button';
 
   class Confirmation extends Component{
     constructor(props){
@@ -25,7 +25,7 @@
         }
       }
 
-        
+
       }
 
       showLayoutStatus(){
@@ -155,8 +155,8 @@
           }
         }
       }
-      
-    
+
+
 
     render(){
       let {isBookingConfirmed} = this.props;
@@ -176,12 +176,11 @@
           <div className="div-content">
           {this.showClientDetails()}
           </div>
-          <button className="btn btn-primary btn-small" onClick={evt=>this.postBooking()}>Confirm Booking</button>
+          <Button variant="primary" label="Confirm Booking" onClick={evt=>this.postBooking()}/>
           <br/>
           { isBookingConfirmed && <Alert bsStyle="success"> Booking Successfully added :)</Alert>}
-        
-        </div>
 
+        </div>
       )
     }
   }
