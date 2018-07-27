@@ -16,7 +16,7 @@ This repository contains the codebase for Meeting Room Booking System as a part 
 
 ## Running the JAVA backend
 
-- Inside the `bookingsystem` directory on the command line run the following commands:
+- Inside the `bookingsystem2` directory on the command line run the following commands:
 1) mvn install
 2) mvn jetty:run
 
@@ -24,7 +24,7 @@ This will start the backend server on localhost:8080
 
 ## Running React Front end
 
-- Inside the `project_test` directory run the following commands:
+- Inside the `react` directory run the following commands:
 1) npm install
 2) npm start
 
