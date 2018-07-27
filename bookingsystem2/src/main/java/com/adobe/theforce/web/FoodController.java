@@ -79,8 +79,7 @@ public class FoodController {
 	@ExceptionHandler(DaoException.class)
 	@ResponseBody
 	public ResponseEntity handleDaoException(HttpServletRequest request, DaoException ex){
-		return new ResponseEntity(HttpStatus.BAD_REQUEST);
-
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
 	}
 
 }

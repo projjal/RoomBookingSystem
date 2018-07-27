@@ -164,6 +164,9 @@ public class BookingController {
 		date1 = date1.replace("+", " ");
 		date1 = date1.replace("=", "");
 
+		date1 = date1.replace("%20", "");
+
+
 		Date date;
 		try {
 			date = readFormat.parse( date1 );
@@ -175,6 +178,7 @@ public class BookingController {
 		System.out.println(roomId + " " + date + " " + slot);
 
 
+		
 		try{
 			result = bookingService.getFreeSlots(roomId,date,slot);
 		}catch(Exception ex){
@@ -184,10 +188,8 @@ public class BookingController {
 	}
 
 	@ExceptionHandler(DaoException.class)
-	@ResponseBody
 	public ResponseEntity handleDaoException(HttpServletRequest request, DaoException ex){
-		return new ResponseEntity(HttpStatus.BAD_REQUEST);
-
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
 	}
 
 }
