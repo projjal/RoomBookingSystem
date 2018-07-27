@@ -21,7 +21,7 @@ export default function(state={}, action){
             break;
         }
         case "BOOKING_DETAILS_POSTED":{
-            state={ ...state,finalBooking: action.payload, isBookingConfirmed : true}
+            state={ ...state,finalBooking: action.payload}
             break;
         }
         case "ROOM_BOOKING_DETAILS_ADDED":{
@@ -29,24 +29,25 @@ export default function(state={}, action){
             break;
         }
         case "ROOM_FETCH":{
-          state={ ...state,fetchRoom: action.payload}
-          break;
+            state={ ...state,fetchRoom: action.payload}
+            break;
         }
         case "ROOM_FAILED":{
             break;
         }
         case "LAYOUT_FETCH":{
-          state={ ...state,fetchLayout: action.payload}
-          break;
+            state={ ...state,fetchLayout: action.payload}
+            break;
         }
         case "LAYOUT_FAILED":{
             break;
         }
         case "BOOKING_DETAILS_POSTED":{
-            state={...state,successfulBooking:action.paylo}
+            state={ ...state,finalBooking: action.payload, isBookingConfirmed : true}
             break;
         }
-    }
+    
+}
 
     return state;
 }
